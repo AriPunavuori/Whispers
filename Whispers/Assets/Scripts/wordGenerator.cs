@@ -1,11 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class wordGenerator : MonoBehaviour {
 
     public TextAsset adj;
     public TextAsset noun;
+
+    public Text wordText;
 
     string[] adjList;
     string[] nounList;
@@ -35,6 +38,7 @@ public class wordGenerator : MonoBehaviour {
     void Update() {
         if (Input.GetKeyDown(KeyCode.T)) {
             WordG();
+            wordText.text = myWord;
         }
     }
 }
