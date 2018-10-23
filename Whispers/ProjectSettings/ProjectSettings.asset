@@ -424,6 +424,7 @@ PlayerSettings:
   switchAllowsVideoCapturing: 1
   switchAllowsRuntimeAddOnContentInstall: 0
   switchDataLossConfirmation: 0
+  switchUserAccountLockEnabled: 0
   switchSupportedNpadStyles: 3
   switchNativeFsCacheSize: 32
   switchIsHoldTypeHorizontal: 0
@@ -649,9 +650,9 @@ PlayerSettings:
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: 8b0a0359-34db-4f33-9140-82a5ed6eaeb9
+  cloudProjectId: c7f77042-4eca-4336-b2f5-f7dd8137fc1f
   projectName: Whispers
-  organizationId: punavuori
+  organizationId: unity_fws0khjd99y26w
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
