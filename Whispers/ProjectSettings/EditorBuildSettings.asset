@@ -8,7 +8,10 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NikoDevScene_Network.unity
     guid: 5dc1657d845781b4d957564a0ada221c
+  - enabled: 1
+    path: Assets/Scenes/OseDevScene.unity
+    guid: 850db102bb8e944d7a72b25d789a502c
   m_configObjects: {}
