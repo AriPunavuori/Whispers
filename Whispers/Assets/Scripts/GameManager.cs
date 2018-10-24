@@ -5,6 +5,8 @@ using UnityEngine.Advertisements;
 
 public class GameManager : MonoBehaviour {
 
+    public enum PlayMode { Draw, Type, Watch, Menu };
+
 	// Use this for initialization
 	void Start () {
 		
