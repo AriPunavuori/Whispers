@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NikoDevScene_Network.unity
     guid: 5dc1657d845781b4d957564a0ada221c
+  - enabled: 1
+    path: Assets/Scenes/NikoDevScene.unity
+    guid: 8866ba096df27409b94c060dfb4ac2dd
   m_configObjects: {}
