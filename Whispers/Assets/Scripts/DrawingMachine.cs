@@ -1,3 +1,4 @@
+<<<<<<< HEAD:Whispers/Assets/DrawingMachine.cs
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,11 +17,23 @@ public class DrawingMachine : MonoBehaviour {
     public Drawmode mode;
 
     private void Awake() {
+=======
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class DrawingMachine : MonoBehaviour {
+    public static DrawingMachine instance;
+    public List<List<Vector3>> lines;
+
+    private void Awake() {
+>>>>>>> c1bb3c8b019a6285f5ebe2425c63e7e2108d1db2:Whispers/Assets/Scripts/DrawingMachine.cs
         lines = new List<List<Vector3>>();
         line = new List<Vector3>();
         instance = this;
         mode = Drawmode.Draw;
     }
+<<<<<<< HEAD:Whispers/Assets/DrawingMachine.cs
 
 
     public void PrintLines(){
@@ -89,3 +102,15 @@ public class DrawingMachine : MonoBehaviour {
     }
 
 }
+=======
+
+    void Update () {
+        if(InputManager.instance.IsDrawing()){
+
+        }
+	}
+
+
+
+}
+>>>>>>> c1bb3c8b019a6285f5ebe2425c63e7e2108d1db2:Whispers/Assets/Scripts/DrawingMachine.cs
