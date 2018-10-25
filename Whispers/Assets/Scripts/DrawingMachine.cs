@@ -2,14 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct LineData {
+    public bool isBlack;
+    public List<Vector3> points;
+
+    public LineData(bool isBlack, List<Vector3> points) {
+        this.isBlack = isBlack;
+        this.points = points;
+    }
+}
+
 public class DrawingMachine : MonoBehaviour {
     public enum Drawmode { Draw, Erase };
     public static DrawingMachine instance;
-    public List<List<Vector3>> lines;
+    public List<LineData> lines;
+    public List<GameObject> drawedLines;
     public Vector3 drawPos;
-    List<Vector3> line;
+    LineData line;
     LineRenderer currentLine;
-    List<GameObject> drawedLines;
     public GameObject linePrefab;
     public GameObject eraserPrefab;
     int lineNumber = 0;
@@ -17,8 +28,9 @@ public class DrawingMachine : MonoBehaviour {
     public Drawmode mode;
 
     private void Awake() {
-        lines = new List<List<Vector3>>();
-        line = new List<Vector3>();
+        lines = new List<LineData>();
+        line = new LineData(true, new List<Vector3>());
+        drawedLines = new List<GameObject>();
         instance = this;
         mode = Drawmode.Draw;
     }
@@ -35,7 +47,7 @@ public class DrawingMachine : MonoBehaviour {
         //}
         foreach(var l in lines) {
             var s = "";
-            foreach(var coord in l) {
+            foreach(var coord in l.points) {
                 s += coord + " ";
             }
             print(s);
@@ -45,19 +57,22 @@ public class DrawingMachine : MonoBehaviour {
     public void LineStart(Vector3 curPos) {
         drawPos = curPos;
 
-        if(mode == Drawmode.Draw) {
-            var newLine = Instantiate(linePrefab);
-            currentLine = newLine.GetComponent<LineRenderer>();
-            //drawedLines.Add(newLine);
-        } else {
-            var newLine = Instantiate(eraserPrefab);
-            currentLine = newLine.GetComponent<LineRenderer>();
-           //drawedLines.Add(newLine);
-        }
+        GameObject newLine = Instantiate(mode == Drawmode.Draw ?
+                                         linePrefab :
+                                         eraserPrefab);
 
-        line.Clear();
-        line.Add(drawPos);
+        //if(mode == Drawmode.Draw) {
+        //    newLine = Instantiate(linePrefab);
+        //} else {
+        //    newLine = Instantiate(eraserPrefab);
+        //}
+        currentLine = newLine.GetComponent<LineRenderer>();
+        drawedLines.Add(newLine);
+
+        line.points.Clear();
+        line.points.Add(drawPos);
         currentLine.sortingOrder = lineNumber;
+   
         lineNumber++;
         currentLine.positionCount = 0;
     }
@@ -65,9 +80,9 @@ public class DrawingMachine : MonoBehaviour {
     public void LineContinued(Vector3 curPos) {
         if(Vector3.Distance(curPos, drawPos) > lineDotThreshold) {
             drawPos = curPos;
-            line.Add(drawPos);
-            currentLine.positionCount = line.Count;
-            currentLine.SetPositions(line.ToArray());
+            line.points.Add(drawPos);
+            currentLine.positionCount = line.points.Count;
+            currentLine.SetPositions(line.points.ToArray());
         }
     }
 
@@ -75,11 +90,11 @@ public class DrawingMachine : MonoBehaviour {
         if(Vector3.Distance(curPos, drawPos) > lineDotThreshold) {
             drawPos = curPos;
         }
-        line.Add(drawPos);
+        line.points.Add(drawPos);
 
-        currentLine.positionCount = line.Count;
-        currentLine.SetPositions(line.ToArray());
-        DrawingMachine.instance.lines.Add(new List<Vector3>(line));
+        currentLine.positionCount = line.points.Count;
+        currentLine.SetPositions(line.points.ToArray());
+        //DrawingMachine.instance.lines.Add(new(line.points));
         DrawingMachine.instance.PrintLines();
     }
 
@@ -92,7 +107,11 @@ public class DrawingMachine : MonoBehaviour {
     }
 
     public void Undo(){
-        drawedLines[lineNumber].gameObject.SetActive(false);
-        lineNumber--;
+        if(lineNumber > 0){
+            var last = drawedLines[lineNumber - 1];
+            drawedLines.RemoveAt(lineNumber - 1);
+            Destroy(last);
+            lineNumber--;
+        }
     }
 }
