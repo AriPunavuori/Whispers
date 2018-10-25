@@ -1,5 +1,4 @@
-<<<<<<< HEAD:Whispers/Assets/DrawingMachine.cs
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,33 +9,22 @@ public class DrawingMachine : MonoBehaviour {
     public Vector3 drawPos;
     List<Vector3> line;
     LineRenderer currentLine;
+    List<GameObject> drawedLines;
     public GameObject linePrefab;
     public GameObject eraserPrefab;
-    int lineNumber = 0 ;
+    int lineNumber = 0;
     float lineDotThreshold = 0.1f;
     public Drawmode mode;
 
     private void Awake() {
-=======
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class DrawingMachine : MonoBehaviour {
-    public static DrawingMachine instance;
-    public List<List<Vector3>> lines;
-
-    private void Awake() {
->>>>>>> c1bb3c8b019a6285f5ebe2425c63e7e2108d1db2:Whispers/Assets/Scripts/DrawingMachine.cs
         lines = new List<List<Vector3>>();
         line = new List<Vector3>();
         instance = this;
         mode = Drawmode.Draw;
     }
-<<<<<<< HEAD:Whispers/Assets/DrawingMachine.cs
 
 
-    public void PrintLines(){
+    public void PrintLines() {
         //print(lines.Count);
         //for(int i = 0 ; i < lines.Count ; i++){
         //    var s = "";
@@ -45,9 +33,9 @@ public class DrawingMachine : MonoBehaviour {
         //    }
         //    print(s);
         //}
-        foreach (var l in lines) {
+        foreach(var l in lines) {
             var s = "";
-            foreach (var coord in l) {
+            foreach(var coord in l) {
                 s += coord + " ";
             }
             print(s);
@@ -57,12 +45,14 @@ public class DrawingMachine : MonoBehaviour {
     public void LineStart(Vector3 curPos) {
         drawPos = curPos;
 
-        if (mode == Drawmode.Draw){
+        if(mode == Drawmode.Draw) {
             var newLine = Instantiate(linePrefab);
             currentLine = newLine.GetComponent<LineRenderer>();
+            //drawedLines.Add(newLine);
         } else {
             var newLine = Instantiate(eraserPrefab);
             currentLine = newLine.GetComponent<LineRenderer>();
+           //drawedLines.Add(newLine);
         }
 
         line.Clear();
@@ -72,7 +62,7 @@ public class DrawingMachine : MonoBehaviour {
         currentLine.positionCount = 0;
     }
 
-    public void LineContinued(Vector3 curPos){
+    public void LineContinued(Vector3 curPos) {
         if(Vector3.Distance(curPos, drawPos) > lineDotThreshold) {
             drawPos = curPos;
             line.Add(drawPos);
@@ -93,24 +83,16 @@ public class DrawingMachine : MonoBehaviour {
         DrawingMachine.instance.PrintLines();
     }
 
-    public void DrawingEnabler(){
+    public void DrawingEnabler() {
         mode = Drawmode.Draw;
     }
 
-    public void EraserEnabler(){
+    public void EraserEnabler() {
         mode = Drawmode.Erase;
     }
 
+    public void Undo(){
+        drawedLines[lineNumber].gameObject.SetActive(false);
+        lineNumber--;
+    }
 }
-=======
-
-    void Update () {
-        if(InputManager.instance.IsDrawing()){
-
-        }
-	}
-
-
-
-}
->>>>>>> c1bb3c8b019a6285f5ebe2425c63e7e2108d1db2:Whispers/Assets/Scripts/DrawingMachine.cs
