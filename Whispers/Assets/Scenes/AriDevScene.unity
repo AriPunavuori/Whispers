@@ -191,7 +191,7 @@ GameObject:
   - component: {fileID: 50771948}
   - component: {fileID: 50771947}
   m_Layer: 5
-  m_Name: Pencil
+  m_Name: ChangeColor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,7 +256,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 753373019}
-        m_MethodName: DrawingEnabler
+        m_MethodName: ChangeColor
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -391,10 +391,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6f3f7097d38642a88d501298fd3be87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lines: []
+  drawedLines: []
   drawPos: {x: 0, y: 0, z: 0}
-  linePrefab: {fileID: 1638481305170900, guid: 4351306add86e46baa98e0565139c1f4, type: 2}
-  eraserPrefab: {fileID: 1651175827249466, guid: 48afe7ae7665b49f581c23b7c81b5f47,
-    type: 2}
+  bluePrefab: {fileID: 1638481305170900, guid: 4351306add86e46baa98e0565139c1f4, type: 2}
+  redPrefab: {fileID: 1651175827249466, guid: 48afe7ae7665b49f581c23b7c81b5f47, type: 2}
   mode: 0
 --- !u!4 &753373020
 Transform:
@@ -673,7 +674,7 @@ GameObject:
   - component: {fileID: 1817929472}
   - component: {fileID: 1817929471}
   m_Layer: 5
-  m_Name: Eraser
+  m_Name: Undo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -851,7 +852,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Eraser
+  m_Text: Undo
 --- !u!222 &1922008473
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -926,7 +927,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Pencil
+  m_Text: ChangeColor
 --- !u!222 &2002666086
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -4,27 +4,27 @@ using UnityEngine;
 
 [System.Serializable]
 public struct LineData {
-    public bool isBlack;
+    public bool isBlue;
     public List<Vector3> points;
 
-    public LineData(bool isBlack, List<Vector3> points) {
-        this.isBlack = isBlack;
+    public LineData(bool isBlue, List<Vector3> points) {
+        this.isBlue = isBlue;
         this.points = points;
     }
 }
 
 public class DrawingMachine : MonoBehaviour {
-    public enum Drawmode { Draw, Erase };
+    public enum Drawmode { Blue, Red };
     public static DrawingMachine instance;
     public List<LineData> lines;
     public List<GameObject> drawedLines;
     public Vector3 drawPos;
     LineData line;
     LineRenderer currentLine;
-    public GameObject linePrefab;
-    public GameObject eraserPrefab;
+    public GameObject bluePrefab;
+    public GameObject redPrefab;
     int lineNumber = 0;
-    float lineDotThreshold = 0.1f;
+    float lineDotThreshold = 0.01f;
     public Drawmode mode;
 
     private void Awake() {
@@ -32,7 +32,7 @@ public class DrawingMachine : MonoBehaviour {
         line = new LineData(true, new List<Vector3>());
         drawedLines = new List<GameObject>();
         instance = this;
-        mode = Drawmode.Draw;
+        mode = Drawmode.Blue;
     }
 
 
@@ -57,15 +57,8 @@ public class DrawingMachine : MonoBehaviour {
     public void LineStart(Vector3 curPos) {
         drawPos = curPos;
 
-        GameObject newLine = Instantiate(mode == Drawmode.Draw ?
-                                         linePrefab :
-                                         eraserPrefab);
+        GameObject newLine = Instantiate(mode == Drawmode.Blue ? bluePrefab : redPrefab);
 
-        //if(mode == Drawmode.Draw) {
-        //    newLine = Instantiate(linePrefab);
-        //} else {
-        //    newLine = Instantiate(eraserPrefab);
-        //}
         currentLine = newLine.GetComponent<LineRenderer>();
         drawedLines.Add(newLine);
 
@@ -91,19 +84,22 @@ public class DrawingMachine : MonoBehaviour {
             drawPos = curPos;
         }
         line.points.Add(drawPos);
-
         currentLine.positionCount = line.points.Count;
         currentLine.SetPositions(line.points.ToArray());
         //DrawingMachine.instance.lines.Add(new(line.points));
-        DrawingMachine.instance.PrintLines();
+        PrintLines();
     }
 
-    public void DrawingEnabler() {
-        mode = Drawmode.Draw;
-    }
+    //public void DrawingEnabler() {
+    //    mode = Drawmode.Draw;
+    //}
 
-    public void EraserEnabler() {
-        mode = Drawmode.Erase;
+    //public void EraserEnabler() {
+    //    mode = Drawmode.Erase;
+    //}
+
+    public void ChangeColor(){
+        mode = mode == Drawmode.Blue ? Drawmode.Red : Drawmode.Blue;
     }
 
     public void Undo(){
