@@ -48,7 +48,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
         }
     }
 
-
+    //With SyncVar Hook code:
     //void OnPlayerNameChange(string newName) {
     //    print("OnPlayerNameChanged: OldName: " + PlayerName + " , NewName: " + newName);
 
