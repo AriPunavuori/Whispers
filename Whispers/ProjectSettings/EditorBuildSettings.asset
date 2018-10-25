@@ -5,7 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AriDevScene.unity
     guid: 1cc186215353a402a961b7a2318cbbc1
+  - enabled: 1
+    path: Assets/Scenes/NikoDevScene_Network.unity
+    guid: 5dc1657d845781b4d957564a0ada221c
   m_configObjects: {}
