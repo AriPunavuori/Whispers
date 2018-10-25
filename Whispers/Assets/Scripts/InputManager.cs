@@ -31,11 +31,12 @@ public class InputManager : MonoBehaviour {
         }
 
         if (Input.GetKeyDown(KeyCode.Space)){
-            if(DrawingMachine.instance.mode == DrawingMachine.Drawmode.Draw){
-                DrawingMachine.instance.DrawingEnabler();
-            } else {
-                DrawingMachine.instance.EraserEnabler();
-            }
+            DrawingMachine.instance.Undo();
+            //if(DrawingMachine.instance.mode == DrawingMachine.Drawmode.Draw){
+            //    DrawingMachine.instance.DrawingEnabler();
+            //} else {
+            //    DrawingMachine.instance.EraserEnabler();
+            //}
             
         }
 

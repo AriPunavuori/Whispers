@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour {
 	}
 
     public void Ads() {
-        Advertisement.Show();
+        //Advertisement.Show();
     }
 
 }
