@@ -1,15 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class wordGenerator : MonoBehaviour {
 
     public TextAsset adj;
     public TextAsset noun;
 
-    public Text wordText;
-
+    //public Text wordText;
+    //public TextMeshProUGUI wordText;
     string[] adjList;
     string[] nounList;
 
@@ -22,6 +21,8 @@ public class wordGenerator : MonoBehaviour {
     void Start() {
         adjList = adj.text.Split("\n"[0]);
         nounList = noun.text.Split("\n"[0]);
+        WordG();
+        GameManager.instance.ChangeDrawText("Draw:\n" + myWord);
     }
 
 
@@ -38,7 +39,7 @@ public class wordGenerator : MonoBehaviour {
     void Update() {
         if (Input.GetKeyDown(KeyCode.T)) {
             WordG();
-            wordText.text = myWord;
+            GameManager.instance.ChangeDrawText("Draw:\n" + myWord);
         }
     }
 }
