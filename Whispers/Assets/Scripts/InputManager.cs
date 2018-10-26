@@ -13,7 +13,7 @@ public class InputManager : MonoBehaviour {
 
     void Update() {
 
-        if(!IsPointerOverUIObject(Input.mousePosition)) {
+        if(!IsPointerOverUIObject(Input.mousePosition) && GameManager.instance.mode == GameManager.PlayerMode.Draw) {
             if(Input.GetKeyDown(KeyCode.Mouse0) || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
                 var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 pos.z = 0;
@@ -23,12 +23,12 @@ public class InputManager : MonoBehaviour {
         }
 
         if(isDrawing){
-            if(Input.GetKey(KeyCode.Mouse0) || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved) {
+            if(Input.GetKey(KeyCode.Mouse0) || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved && GameManager.instance.mode == GameManager.PlayerMode.Draw) {
                 var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 pos.z = 0;
                 DrawingMachine.instance.LineContinued(pos);
             }
-            if(Input.GetKeyUp(KeyCode.Mouse0) || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended) {
+            if(Input.GetKeyUp(KeyCode.Mouse0) || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended&& GameManager.instance.mode == GameManager.PlayerMode.Draw) {
                 var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 pos.z = 0;
                 DrawingMachine.instance.LineEnded(pos);

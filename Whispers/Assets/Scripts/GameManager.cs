@@ -9,23 +9,28 @@ using TMPro;
 public class GameManager : NetworkBehaviour {
 
     public static GameManager instance;
-    public TextMeshProUGUI drawText;
-    public Text timerText;
+    public TextMeshProUGUI uiText;
+    // public Text timerText;
     bool started = false;
+    bool drawingNotGuessing = true;
     [SyncVar]
-    float timeToDraw = 10f;
-    public float timerTime;
+    public float timeToDraw = 60f;
+    float timerTime;
     float startTime = 2;
-    public enum PlayMode { Draw, Type, Watch, Menu };
+
+    public enum PlayerMode { Draw, Type, Watch, Menu };
     public GameObject pocket;
     public GameObject pocketPrefab;
+    public GameObject drawingUI;
+    public GameObject writingUI;
     public Slider timerFill;
-
+    public PlayerMode mode;
 
     private void Awake() {
         instance = this;
         timerTime = timeToDraw;
         timerFill.maxValue = timeToDraw;
+        mode = PlayerMode.Menu;
     }
 
 	void Update () {
@@ -33,34 +38,62 @@ public class GameManager : NetworkBehaviour {
         if(startTime<0){
             if(!started){
                 GenerateNewWordsToDraw();
+                mode = PlayerMode.Draw;
                 started = true;
             }
             timerTime -= Time.deltaTime;
             //timerText.text = timerTime.ToString();
 
             if(timerTime <= 0) {
-                GenerateNewWordsToDraw();
+
+                drawingNotGuessing =! drawingNotGuessing;
+
+                if(drawingNotGuessing){
+                    ShowTextToDraw();
+                    drawingUI.SetActive(true);
+                    writingUI.SetActive(false);
+                    mode = PlayerMode.Draw;
+                } else{
+                    PocketReset();
+                    ShowPictureToGuess();
+                    drawingUI.SetActive(false);
+                    writingUI.SetActive(true);
+                    ChangeDrawText("What on earth is this?");
+                    mode = PlayerMode.Type;
+                }
+                timerTime = timeToDraw;
             }
             timerFill.value = timerTime;
         }
-
     }
 
     public void Ads() {
         //Advertisement.Show();
     }
 
+    public void Send(){
+        timerTime = 0;
+    }
+
     public void ChangeDrawText(string text){
-        drawText.text = text;
+        uiText.text = text;
     }
 
     void GenerateNewWordsToDraw(){
+        WordGenerator.instance.WordG();
+        PocketReset();
+    }
+    void PocketReset(){
         Destroy(pocket);
         pocket = Instantiate(pocketPrefab);
-        timerTime = timeToDraw;
-        WordGenerator.instance.WordG();
     }
 
+    void ShowPictureToGuess(){
 
+    }
 
+    void ShowTextToDraw(){
+        GenerateNewWordsToDraw();
+
+    }
 }
