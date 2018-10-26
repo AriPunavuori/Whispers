@@ -58,7 +58,7 @@ public class DrawingMachine : MonoBehaviour {
         drawPos = curPos;
 
         GameObject newLine = Instantiate(mode == Drawmode.Blue ? bluePrefab : redPrefab);
-
+        newLine.transform.parent = GameManager.instance.pocket.transform;
         currentLine = newLine.GetComponent<LineRenderer>();
         drawedLines.Add(newLine);
 
