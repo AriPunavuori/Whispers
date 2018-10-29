@@ -1,4 +1,4 @@
-Aircraft
+﻿Aircraft
 Ant
 Baboon
 Banana
@@ -80,7 +80,7 @@ Ose
 Ari
 Niko
 Kemi
-Yk�
+Ykä
 Aaro
 Mira
 Jaani
