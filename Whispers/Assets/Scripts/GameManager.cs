@@ -11,6 +11,7 @@ public class GameManager : NetworkBehaviour {
     public static GameManager instance;
     public TextMeshProUGUI uiText;
     // public Text timerText;
+    bool nameSet = false;
     bool started = false;
     bool drawingNotGuessing = true;
     [SyncVar]
@@ -22,6 +23,7 @@ public class GameManager : NetworkBehaviour {
     public enum PlayerMode { Draw, Type, Watch, Menu };
     public GameObject pocket;
     public GameObject pocketPrefab;
+    public GameObject nameButton;
     public GameObject drawingUI;
     public GameObject writingUI;
     public Slider timerFill;
@@ -39,34 +41,21 @@ public class GameManager : NetworkBehaviour {
 	void Update () {
         startTime -= Time.deltaTime;
         if(startTime < 0){
-            if(!started){
+            
+            if(PlayerManager.instance.playerData.playerName == "") {
+                SetUI(false);
+                nameSet = false;
+                mode = PlayerMode.Type;
+                ChangeDrawText("Can you please tell me your name?");
+            } else if(!started){
                 GenerateNewWordsToDraw();
                 mode = PlayerMode.Draw;
                 started = true;
+            } else{
+                timerTime -= Time.deltaTime;
             }
-            timerTime -= Time.deltaTime;
-            //timerText.text = timerTime.ToString();
-
             if(timerTime <= 0) {
-
-                drawingNotGuessing =! drawingNotGuessing;
-
-                if(drawingNotGuessing){
-                    DrawingMachine.instance.EraseDrawedLines();
-                    ShowTextToDraw();
-                    drawingUI.SetActive(true);
-                    writingUI.SetActive(false);
-                    mode = PlayerMode.Draw;
-                    SetTimer(timeToDraw);
-                } else{
-                    PocketReset();
-                    ShowPictureToGuess();
-                    drawingUI.SetActive(false);
-                    writingUI.SetActive(true);
-                    ChangeDrawText("What on earth is this?");
-                    mode = PlayerMode.Type;
-                    SetTimer(timeToWrite);
-                }
+                DrawingOrGuessing();
             }
             timerFill.value = timerTime;
         }
@@ -81,9 +70,17 @@ public class GameManager : NetworkBehaviour {
     }
 
     public void SendGuess(){
-        guessedText = textBox.text;
-        textBox.text = "";
-        timerTime = 0;
+
+        if(!nameSet){
+            PlayerManager.instance.SetPlayerName(textBox.text);
+            textBox.text = "";
+            SetUI(true);
+        } else{
+            guessedText = textBox.text;
+            textBox.text = "";
+            timerTime = 0;
+        }
+   
     }
 
     public void ChangeDrawText(string text){
@@ -113,4 +110,32 @@ public class GameManager : NetworkBehaviour {
         timerFill.maxValue = time;
     }
 
+    public void SetName(){
+        PlayerManager.instance.SetPlayerName(textBox.text);
+    }
+
+    void SetUI(bool d){
+        drawingUI.SetActive(d);
+        writingUI.SetActive(!d);
+    }
+
+
+    void DrawingOrGuessing(){
+        drawingNotGuessing = !drawingNotGuessing;
+
+        if(drawingNotGuessing) {
+            DrawingMachine.instance.EraseDrawnLines();
+            ShowTextToDraw();
+            SetUI(true);
+            mode = PlayerMode.Draw;
+            SetTimer(timeToDraw);
+        } else {
+            PocketReset();
+            ShowPictureToGuess();
+            SetUI(false);
+            ChangeDrawText("What on earth is this?");
+            mode = PlayerMode.Type;
+            SetTimer(timeToWrite);
+        }
+    }
 }

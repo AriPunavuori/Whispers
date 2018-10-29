@@ -17,7 +17,7 @@ public class DrawingMachine : MonoBehaviour {
     public enum Drawmode { Blue, Red };
     public static DrawingMachine instance;
     public List<LineData> lines;
-    public List<GameObject> drawedLines;
+    public List<GameObject> drawnLines;
     public Vector3 drawPos;
     LineData line;
     LineRenderer currentLine;
@@ -30,7 +30,7 @@ public class DrawingMachine : MonoBehaviour {
 
     private void Awake() {
         lines = new List<LineData>();
-        drawedLines = new List<GameObject>();
+        drawnLines = new List<GameObject>();
         instance = this;
         mode = Drawmode.Blue;
     }
@@ -61,7 +61,7 @@ public class DrawingMachine : MonoBehaviour {
         GameObject newLine = Instantiate(mode == Drawmode.Blue ? bluePrefab : redPrefab);
         newLine.transform.parent = GameManager.instance.pocket.transform;
         currentLine = newLine.GetComponent<LineRenderer>();
-        drawedLines.Add(newLine);
+        drawnLines.Add(newLine);
         line.points.Clear();
         line.points.Add(drawPos);
         currentLine.sortingOrder = lineNumber;
@@ -117,15 +117,15 @@ public class DrawingMachine : MonoBehaviour {
         }
     }
 
-    public void EraseDrawedLines(){
+    public void EraseDrawnLines(){
         GameManager.instance.PocketReset();
         lines.Clear();
     }
 
     public void Undo(){
         if(lineNumber > 0){
-            var last = drawedLines[lineNumber - 1];
-            drawedLines.RemoveAt(lineNumber - 1);
+            var last = drawnLines[lineNumber - 1];
+            drawnLines.RemoveAt(lineNumber - 1);
             Destroy(last);
             lineNumber--;
         }
