@@ -281,36 +281,26 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114733151568357824, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+    - target: {fileID: 114902325264671356, guid: d124e81a6b8edb2419d780e5aefdc5e9,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 753373019}
+      objectReference: {fileID: 1626861587}
+    - target: {fileID: 114652292440230820, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1626861587}
     - target: {fileID: 223384561691303362, guid: d124e81a6b8edb2419d780e5aefdc5e9,
         type: 2}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1297084493}
-    - target: {fileID: 114652292440230820, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+    - target: {fileID: 114733151568357824, guid: d124e81a6b8edb2419d780e5aefdc5e9,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 753373019}
-    - target: {fileID: 114652292440230820, guid: d124e81a6b8edb2419d780e5aefdc5e9,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1626861587}
-    - target: {fileID: 114902325264671356, guid: d124e81a6b8edb2419d780e5aefdc5e9,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 753373019}
-    - target: {fileID: 114902325264671356, guid: d124e81a6b8edb2419d780e5aefdc5e9,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 1626861587}
     - target: {fileID: 224695410366873898, guid: d124e81a6b8edb2419d780e5aefdc5e9,
         type: 2}
       propertyPath: m_AnchorMax.x
@@ -331,29 +321,15 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114384101221945452, guid: d124e81a6b8edb2419d780e5aefdc5e9,
-        type: 2}
-      propertyPath: m_text
-      value: "\n\n\n\n     Careless\n    Whisperer"
-      objectReference: {fileID: 0}
-    - target: {fileID: 114384101221945452, guid: d124e81a6b8edb2419d780e5aefdc5e9,
-        type: 2}
-      propertyPath: m_textInfo.characterCount
-      value: 31
-      objectReference: {fileID: 0}
-    - target: {fileID: 114384101221945452, guid: d124e81a6b8edb2419d780e5aefdc5e9,
-        type: 2}
-      propertyPath: m_textInfo.spaceCount
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 114384101221945452, guid: d124e81a6b8edb2419d780e5aefdc5e9,
-        type: 2}
-      propertyPath: m_textInfo.lineCount
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d124e81a6b8edb2419d780e5aefdc5e9, type: 2}
   m_IsPrefabAsset: 0
+--- !u!114 &306944054 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114345296848067352, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+    type: 2}
+  m_PrefabInternal: {fileID: 253156168}
+  m_Script: {fileID: 575553740, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!114 &471565277 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114384101221945452, guid: d124e81a6b8edb2419d780e5aefdc5e9,
@@ -505,11 +481,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 114401811313645480, guid: d8844b4a075c3428db91749a6a4cc0dc,
-        type: 2}
-      propertyPath: wordText
-      value: 
-      objectReference: {fileID: 471565277}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8844b4a075c3428db91749a6a4cc0dc, type: 2}
   m_IsPrefabAsset: 0
@@ -554,45 +525,14 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 114880363971394308, guid: e937099e38528b043b9b809cac4b39ff,
         type: 2}
-      propertyPath: drawText
+      propertyPath: uiText
       value: 
       objectReference: {fileID: 471565277}
-    - target: {fileID: 114880363971394308, guid: e937099e38528b043b9b809cac4b39ff,
-        type: 2}
-      propertyPath: timerBar
-      value: 
-      objectReference: {fileID: 1086454175}
-    - target: {fileID: 114880363971394308, guid: e937099e38528b043b9b809cac4b39ff,
-        type: 2}
-      propertyPath: timerFill
-      value: 
-      objectReference: {fileID: 1086454176}
-    - target: {fileID: 114880363971394308, guid: e937099e38528b043b9b809cac4b39ff,
-        type: 2}
-      propertyPath: timerTime
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 114880363971394308, guid: e937099e38528b043b9b809cac4b39ff,
         type: 2}
       propertyPath: pocket
       value: 
       objectReference: {fileID: 1350384951}
-    - target: {fileID: 114880363971394308, guid: e937099e38528b043b9b809cac4b39ff,
-        type: 2}
-      propertyPath: pocketPrefab
-      value: 
-      objectReference: {fileID: 1562480790772770, guid: adbc33536c7484628bb5b9b367414c00,
-        type: 2}
-    - target: {fileID: 114880363971394308, guid: e937099e38528b043b9b809cac4b39ff,
-        type: 2}
-      propertyPath: timeToDraw
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 114880363971394308, guid: e937099e38528b043b9b809cac4b39ff,
-        type: 2}
-      propertyPath: uiText
-      value: 
-      objectReference: {fileID: 471565277}
     - target: {fileID: 114880363971394308, guid: e937099e38528b043b9b809cac4b39ff,
         type: 2}
       propertyPath: drawingUI
@@ -605,18 +545,17 @@ Prefab:
       objectReference: {fileID: 248367176}
     - target: {fileID: 114880363971394308, guid: e937099e38528b043b9b809cac4b39ff,
         type: 2}
-      propertyPath: input
+      propertyPath: timerFill
       value: 
-      objectReference: {fileID: 908939252}
+      objectReference: {fileID: 1086454176}
+    - target: {fileID: 114880363971394308, guid: e937099e38528b043b9b809cac4b39ff,
+        type: 2}
+      propertyPath: textBox
+      value: 
+      objectReference: {fileID: 306944054}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e937099e38528b043b9b809cac4b39ff, type: 2}
   m_IsPrefabAsset: 0
---- !u!114 &908939252 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114345936501857566, guid: d124e81a6b8edb2419d780e5aefdc5e9,
-    type: 2}
-  m_PrefabInternal: {fileID: 253156168}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1039870184
 Prefab:
   m_ObjectHideFlags: 0
@@ -656,14 +595,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114363682311024364, guid: 8a38f985833ba4a89b5e9191dfc88d35,
+        type: 2}
+      propertyPath: pocket
+      value: 
+      objectReference: {fileID: 1350384951}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a38f985833ba4a89b5e9191dfc88d35, type: 2}
   m_IsPrefabAsset: 0
---- !u!224 &1086454175 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 224318273127642422, guid: d124e81a6b8edb2419d780e5aefdc5e9,
-    type: 2}
-  m_PrefabInternal: {fileID: 253156168}
 --- !u!114 &1086454176 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 114332346669067642, guid: d124e81a6b8edb2419d780e5aefdc5e9,

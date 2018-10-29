@@ -41,7 +41,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   adj: {fileID: 4900000, guid: 4cab82a7dfd9bd243a4504796238fdd2, type: 3}
   noun: {fileID: 4900000, guid: 5158fd60443cacf49943a7bc18ba106f, type: 3}
-  wordText: {fileID: 0}
 --- !u!222 &222455546048392350
 CanvasRenderer:
   m_ObjectHideFlags: 1

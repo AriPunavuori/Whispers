@@ -51,5 +51,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a89c4cb848768e94980a1baba4f2c593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 0}
-  timerTime: 10
+  uiText: {fileID: 0}
+  timeToDraw: 60
+  timeToWrite: 30
+  pocket: {fileID: 0}
+  pocketPrefab: {fileID: 1562480790772770, guid: adbc33536c7484628bb5b9b367414c00,
+    type: 2}
+  drawingUI: {fileID: 0}
+  writingUI: {fileID: 0}
+  timerFill: {fileID: 0}
+  mode: 0
+  textBox: {fileID: 0}
+  guessedText: 
