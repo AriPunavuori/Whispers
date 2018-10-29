@@ -57,3 +57,4 @@ MonoBehaviour:
   bluePrefab: {fileID: 1638481305170900, guid: 4351306add86e46baa98e0565139c1f4, type: 2}
   redPrefab: {fileID: 1651175827249466, guid: 48afe7ae7665b49f581c23b7c81b5f47, type: 2}
   mode: 0
+  pocket: {fileID: 0}
