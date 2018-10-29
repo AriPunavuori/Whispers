@@ -15,8 +15,9 @@ public class GameManager : NetworkBehaviour {
     bool drawingNotGuessing = true;
     [SyncVar]
     public float timeToDraw = 60f;
+    public float timeToWrite = 30f;
     float timerTime;
-    float startTime = 2;
+    float startTime = 1;
 
     public enum PlayerMode { Draw, Type, Watch, Menu };
     public GameObject pocket;
@@ -25,6 +26,8 @@ public class GameManager : NetworkBehaviour {
     public GameObject writingUI;
     public Slider timerFill;
     public PlayerMode mode;
+    public InputField textBox;
+    public string guessedText;
 
     private void Awake() {
         instance = this;
@@ -35,7 +38,7 @@ public class GameManager : NetworkBehaviour {
 
 	void Update () {
         startTime -= Time.deltaTime;
-        if(startTime<0){
+        if(startTime < 0){
             if(!started){
                 GenerateNewWordsToDraw();
                 mode = PlayerMode.Draw;
@@ -49,10 +52,12 @@ public class GameManager : NetworkBehaviour {
                 drawingNotGuessing =! drawingNotGuessing;
 
                 if(drawingNotGuessing){
+                    DrawingMachine.instance.EraseDrawedLines();
                     ShowTextToDraw();
                     drawingUI.SetActive(true);
                     writingUI.SetActive(false);
                     mode = PlayerMode.Draw;
+                    SetTimer(timeToDraw);
                 } else{
                     PocketReset();
                     ShowPictureToGuess();
@@ -60,8 +65,8 @@ public class GameManager : NetworkBehaviour {
                     writingUI.SetActive(true);
                     ChangeDrawText("What on earth is this?");
                     mode = PlayerMode.Type;
+                    SetTimer(timeToWrite);
                 }
-                timerTime = timeToDraw;
             }
             timerFill.value = timerTime;
         }
@@ -71,7 +76,13 @@ public class GameManager : NetworkBehaviour {
         //Advertisement.Show();
     }
 
-    public void Send(){
+    public void SendDrawing(){
+        timerTime = 0;
+    }
+
+    public void SendGuess(){
+        guessedText = textBox.text;
+        textBox.text = "";
         timerTime = 0;
     }
 
@@ -83,17 +94,23 @@ public class GameManager : NetworkBehaviour {
         WordGenerator.instance.WordG();
         PocketReset();
     }
-    void PocketReset(){
+
+    public void PocketReset(){
         Destroy(pocket);
         pocket = Instantiate(pocketPrefab);
     }
 
     void ShowPictureToGuess(){
-
+        DrawingMachine.instance.ShowDrawedLines();
     }
 
     void ShowTextToDraw(){
-        GenerateNewWordsToDraw();
-
+        ChangeDrawText("Draw " + guessedText);
     }
+
+    void SetTimer(float time){
+        timerTime = time;
+        timerFill.maxValue = time;
+    }
+
 }

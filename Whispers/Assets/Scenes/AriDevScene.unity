@@ -586,7 +586,7 @@ Prefab:
     - target: {fileID: 114880363971394308, guid: e937099e38528b043b9b809cac4b39ff,
         type: 2}
       propertyPath: timeToDraw
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 114880363971394308, guid: e937099e38528b043b9b809cac4b39ff,
         type: 2}
