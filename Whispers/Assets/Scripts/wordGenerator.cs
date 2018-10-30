@@ -29,6 +29,6 @@ public class WordGenerator : MonoBehaviour {
         Adj = (adjList[Random.Range(0, adjList.Length)]);
         Noun = (nounList[Random.Range(0, nounList.Length)]);
         myWord = Adj + " " + Noun;
-        GameManager.instance.ChangeDrawText("Draw:\n" + myWord);
+        GameManager.instance.ChangeDrawText("Hi " + PlayerManager.instance.playerData.playerName + ", Can you draw:\n" + myWord + "?");
     }
 }

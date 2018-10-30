@@ -21,7 +21,6 @@ public class InputManager : MonoBehaviour {
                 isDrawing = true;
             }
         }
-
         if(isDrawing){
             if(Input.GetKey(KeyCode.Mouse0) || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved && GameManager.instance.mode == GameManager.PlayerMode.Draw) {
                 var pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -38,11 +37,6 @@ public class InputManager : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.Space)) {
             DrawingMachine.instance.Undo();
-            //if(DrawingMachine.instance.mode == DrawingMachine.Drawmode.Draw){
-            //    DrawingMachine.instance.DrawingEnabler();
-            //} else {
-            //    DrawingMachine.instance.EraserEnabler();
-            //}
         }
     }
 

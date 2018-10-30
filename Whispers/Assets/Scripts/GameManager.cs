@@ -10,12 +10,12 @@ public class GameManager : NetworkBehaviour {
 
     public static GameManager instance;
     public TextMeshProUGUI uiText;
-    // public Text timerText;
     bool nameSet = false;
     bool started = false;
     bool drawingNotGuessing = true;
     [SyncVar]
     public float timeToDraw = 60f;
+    [SyncVar]
     public float timeToWrite = 30f;
     float timerTime;
     float startTime = 1;
@@ -44,12 +44,12 @@ public class GameManager : NetworkBehaviour {
             
             if(PlayerManager.instance.playerData.playerName == "") {
                 SetUI(false);
-                nameSet = false;
                 mode = PlayerMode.Type;
                 ChangeDrawText("Can you please tell me your name?");
             } else if(!started){
                 GenerateNewWordsToDraw();
                 mode = PlayerMode.Draw;
+                nameSet = true;
                 started = true;
             } else{
                 timerTime -= Time.deltaTime;
@@ -80,7 +80,6 @@ public class GameManager : NetworkBehaviour {
             textBox.text = "";
             timerTime = 0;
         }
-   
     }
 
     public void ChangeDrawText(string text){
@@ -98,7 +97,7 @@ public class GameManager : NetworkBehaviour {
     }
 
     void ShowPictureToGuess(){
-        DrawingMachine.instance.ShowDrawedLines();
+        DrawingMachine.instance.ShowDrawnLines();
     }
 
     void ShowTextToDraw(){
