@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour {
     public static PlayerManager instance;
 
     [System.Serializable]
-	public struct PlayerData {
+	public struct PlayerData { 
         public string playerName;
         public int playerID;
         public List<float> playerIMG;
@@ -23,12 +23,15 @@ public class PlayerManager : MonoBehaviour {
 
     private void Awake() {
         instance = this;
-        if(PlayerPrefs.GetString("Name") == null)
+        // PlayerPrefs.SetString("Name", ""); // Tällä voi nollata nimen
+        if(PlayerPrefs.GetString("Name") == null){
             playerData.playerName = "";
-        else
+        } else {
             playerData.playerName = PlayerPrefs.GetString("Name");
+        }
     }
-    public void SetPlayerName(string name){
+
+    public void SetPlayerName(string name){ // Asetetaan nimi
         playerData.playerName = name;
         PlayerPrefs.SetString("Name", name);
     }

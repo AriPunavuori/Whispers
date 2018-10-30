@@ -25,10 +25,10 @@ public class WordGenerator : MonoBehaviour {
         nounList = noun.text.Split("\n"[0]);
     }
 
-    public void WordG() {
+    public void WordG() { // Sanageneraattori
         Adj = (adjList[Random.Range(0, adjList.Length)]);
         Noun = (nounList[Random.Range(0, nounList.Length)]);
         myWord = Adj + " " + Noun;
-        GameManager.instance.ChangeDrawText("Hi " + PlayerManager.instance.playerData.playerName + ", Can you draw:\n" + myWord + "?");
+        GameManager.instance.ChangeUIText("Hi " + PlayerManager.instance.playerData.playerName + ", Can you draw:\n" + myWord + "?");
     }
 }
