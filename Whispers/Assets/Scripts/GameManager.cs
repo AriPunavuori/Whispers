@@ -26,6 +26,9 @@ public class GameManager : NetworkBehaviour {
 
     public string guessedText;
 
+    public int roundNumbr = 1;
+    public int playerCount = 1;
+
     bool nameSet = false;
     bool started = false;
     bool drawingNotGuessing = true;
@@ -55,6 +58,7 @@ public class GameManager : NetworkBehaviour {
                 ChangeUIText("Can you please tell me your name?"); // Asetetaan nimi SendGuess() funktiossa
             } else if(!started){
                 GenerateNewWordsToDraw(); // Ensimmäisen sanasetin luonti
+
                 mode = PlayerMode.Draw;
                 nameSet = true;
                 started = true;
@@ -74,6 +78,8 @@ public class GameManager : NetworkBehaviour {
 
     public void SendDrawing(){ // Funktio joka kutsutaan UI-Buttonilla piirto-UI:ssä
         timerTime = 0;
+        roundNumbr++;
+        RoundDataManager.instance.AddPicture(DrawingMachine.instance.lines, 0);
     }
 
     public void SendGuess() { // Funktio joka kutsutaan UI-Buttonilla kirjoitus-UI:ssä
@@ -87,6 +93,9 @@ public class GameManager : NetworkBehaviour {
             textBox.text = "";
             timerTime = 0;
         }
+        roundNumbr++;
+        RoundDataManager.instance.AddGuess(guessedText, 0);
+
     }
 
     public void ChangeUIText(string text){ // UI-Tekstin vaihto
@@ -95,6 +104,7 @@ public class GameManager : NetworkBehaviour {
 
     void GenerateNewWordsToDraw(){ // Sanageneraattorikutsu
         WordGenerator.instance.WordG();
+        RoundDataManager.instance.AddGuess(WordGenerator.instance.myWord, 0);
         PocketReset();
     }
 
@@ -103,8 +113,13 @@ public class GameManager : NetworkBehaviour {
         pocket = Instantiate(pocketPrefab);
     }
 
-    void ShowPictureToGuess(){ // Näytetään kuva arvattavaksi
-        DrawingMachine.instance.ShowDrawnLines();
+    void ShowPictureToGuess(int playerID){ // Näytetään kuva arvattavaksi
+        //DrawingMachine.instance.ShowDrawnLines();
+
+        var chainIdx = (roundNumbr + playerID - 1) % playerCount;
+
+        var rm = RoundDataManager.instance;
+        RoundDataManager.instance.ShowDrawnLines(rm.chains[chainIdx].pictures[roundNumbr/2]);
     }
 
     void ShowTextToDraw(){ // Näytetään teksti piirrettäväksi
@@ -136,7 +151,7 @@ public class GameManager : NetworkBehaviour {
             SetTimer(timeToDraw);
         } else {
             PocketReset();
-            ShowPictureToGuess();
+            ShowPictureToGuess(0);
             SetUI(false);
             ChangeUIText("What on earth is this?");
             mode = PlayerMode.Type;

@@ -14,7 +14,7 @@ public class WordGenerator : MonoBehaviour {
 
     string Adj;
     string Noun;
-    string myWord;
+    public string myWord;
 
     private void Awake() {
         instance = this;

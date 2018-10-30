@@ -84,21 +84,21 @@ public class DrawingMachine : MonoBehaviour {
         mode = mode == Drawmode.Blue ? Drawmode.Red : Drawmode.Blue;
     }
 
-    public void ShowDrawnLines(){
+    //public void ShowDrawnLines(){
 
-        print(lines.Count);
-        foreach(var l in lines) {
+    //    print(lines.Count);
+    //    foreach(var l in lines) {
 
-            var drawnLine = Instantiate(bluePrefab); // Fiksaa värit
-            drawnLine.transform.parent = GameManager.instance.pocket.transform;
+    //        var drawnLine = Instantiate(bluePrefab); // Fiksaa värit
+    //        drawnLine.transform.parent = GameManager.instance.pocket.transform;
 
-            var lineToDraw = drawnLine.GetComponent<LineRenderer>();
-            foreach(var point in l.points) {
-                lineToDraw.positionCount = l.points.Count;
-                lineToDraw.SetPositions(l.points.ToArray());
-            }
-        }
-    }
+    //        var lineToDraw = drawnLine.GetComponent<LineRenderer>();
+    //        foreach(var point in l.points) {
+    //            lineToDraw.positionCount = l.points.Count;
+    //            lineToDraw.SetPositions(l.points.ToArray());
+    //        }
+    //    }
+    //}
 
     public void EraseDrawnLines(){
         GameManager.instance.PocketReset();
