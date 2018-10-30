@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class HostGame : MonoBehaviour {
 
     [SerializeField]
     private uint roomSize = 6;
-    private string roomName;
+    public string roomName;
+
+    public InputField roomNameInput;    
 
     NetworkManager networkManager;
 
@@ -23,10 +26,12 @@ public class HostGame : MonoBehaviour {
     }
 
     public void CreateRoom() {
-        if (roomName != "" && roomName != null) {
+        print("trying to create a room");
+        if (roomName != "" || roomName == null) {
             Debug.Log("Creating Room: " + roomName + " with room for " + roomSize + " players.");
             // Create room
             networkManager.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
+            print("room called " + roomName + " created");
         }
     }
 

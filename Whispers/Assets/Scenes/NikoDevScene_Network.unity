@@ -233,7 +233,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 1175}
+  m_SizeDelta: {x: 480, y: 1175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &218668808
 MonoBehaviour:
@@ -576,7 +576,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1090409065}
         m_MethodName: SetRoomName
-        m_Mode: 5
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -752,9 +752,9 @@ MonoBehaviour:
     m_Bottom: 0
   m_ChildAlignment: 4
   m_Spacing: 15
-  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 1
+  m_ChildControlWidth: 0
   m_ChildControlHeight: 0
 --- !u!1001 &429952299
 Prefab:
@@ -839,8 +839,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 133.6, y: -54.4}
-  m_SizeDelta: {x: 227.7, y: 59.3}
+  m_AnchoredPosition: {x: 228.3, y: -74.2}
+  m_SizeDelta: {x: 417.1, y: 98.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &544599954
 MonoBehaviour:
@@ -863,7 +863,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 45
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -874,7 +874,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: StatusText
+  m_Text: 
 --- !u!222 &544599955
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1143,7 +1143,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000061023307, y: -0.000094114715}
+  m_AnchoredPosition: {x: 0.000061023307, y: -0.00007686336}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &789472017
@@ -1157,7 +1157,7 @@ MonoBehaviour:
   m_Script: {fileID: 1741964061, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalFit: 0
+  m_HorizontalFit: 2
   m_VerticalFit: 2
 --- !u!114 &789472018
 MonoBehaviour:
@@ -1294,6 +1294,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomSize: 6
+  roomName: 
+  roomNameInput: {fileID: 0}
 --- !u!114 &1090409066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1329,7 +1331,8 @@ MonoBehaviour:
   m_ScriptCRCCheck: 1
   m_MaxDelay: 0.01
   m_LogLevel: 2
-  m_PlayerPrefab: {fileID: 0}
+  m_PlayerPrefab: {fileID: 1338765599224570, guid: 47d5b4aa2933ed846b16adcf00ed5fa6,
+    type: 2}
   m_AutoCreatePlayer: 1
   m_PlayerSpawnMethod: 0
   m_OfflineScene: 
@@ -1454,7 +1457,7 @@ GameObject:
   - component: {fileID: 1152088506}
   - component: {fileID: 1152088505}
   m_Layer: 5
-  m_Name: JoniGameTitle
+  m_Name: JoinGameTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1476,7 +1479,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 78.4}
+  m_SizeDelta: {x: 480, y: 78.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1152088505
 MonoBehaviour:
@@ -1596,7 +1599,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 364429650}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2087,7 +2090,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 84.88}
+  m_SizeDelta: {x: 480, y: 84.88}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1850687612
 MonoBehaviour:
