@@ -9,66 +9,62 @@ using TMPro;
 public class GameManager : NetworkBehaviour {
 
     public static GameManager instance;
-    public TextMeshProUGUI uiText;
-    // public Text timerText;
-    bool started = false;
-    bool drawingNotGuessing = true;
-    [SyncVar]
-    public float timeToDraw = 60f;
-    public float timeToWrite = 30f;
-    float timerTime;
-    float startTime = 1;
 
-    public enum PlayerMode { Draw, Type, Watch, Menu };
+    public TextMeshProUGUI uiText;
+
+    public enum PlayerMode { Draw, Type, Watch, Menu }; // Onko tarpeellinen?
+
     public GameObject pocket;
     public GameObject pocketPrefab;
+    public GameObject nameButton;
     public GameObject drawingUI;
     public GameObject writingUI;
+
     public Slider timerFill;
     public PlayerMode mode;
     public InputField textBox;
+
     public string guessedText;
+
+    bool nameSet = false;
+    bool started = false;
+    bool drawingNotGuessing = true;
+
+    [SyncVar]
+    public float timeToDraw = 60f;
+    [SyncVar]
+    public float timeToWrite = 30f;
+
+    float timerTime;
+    float startTime = 1;
 
     private void Awake() {
         instance = this;
         timerTime = timeToDraw;
-        timerFill.maxValue = timeToDraw;
+        timerFill.maxValue = timeToDraw; 
         mode = PlayerMode.Menu;
     }
 
 	void Update () {
-        startTime -= Time.deltaTime;
-        if(startTime < 0){
-            if(!started){
-                GenerateNewWordsToDraw();
+        startTime -= Time.deltaTime; // Introaika
+        if(startTime < 0){ 
+            
+            if(PlayerManager.instance.playerData.playerName == "") { // Onko nimi asetettu
+                SetUI(false);
+                mode = PlayerMode.Type;
+                ChangeUIText("Can you please tell me your name?"); // Asetetaan nimi SendGuess() funktiossa
+            } else if(!started){
+                GenerateNewWordsToDraw(); // Ensimmäisen sanasetin luonti
                 mode = PlayerMode.Draw;
+                nameSet = true;
                 started = true;
+            } else{
+                timerTime -= Time.deltaTime; // Peruspelin looppiajastin
             }
-            timerTime -= Time.deltaTime;
-            //timerText.text = timerTime.ToString();
-
             if(timerTime <= 0) {
-
-                drawingNotGuessing =! drawingNotGuessing;
-
-                if(drawingNotGuessing){
-                    DrawingMachine.instance.EraseDrawedLines();
-                    ShowTextToDraw();
-                    drawingUI.SetActive(true);
-                    writingUI.SetActive(false);
-                    mode = PlayerMode.Draw;
-                    SetTimer(timeToDraw);
-                } else{
-                    PocketReset();
-                    ShowPictureToGuess();
-                    drawingUI.SetActive(false);
-                    writingUI.SetActive(true);
-                    ChangeDrawText("What on earth is this?");
-                    mode = PlayerMode.Type;
-                    SetTimer(timeToWrite);
-                }
+                DrawingOrGuessing(); // Peruspeli (Piirretään tai arvataan)
             }
-            timerFill.value = timerTime;
+            timerFill.value = timerTime; // Tiimalasin ajan kuluminen
         }
     }
 
@@ -76,41 +72,75 @@ public class GameManager : NetworkBehaviour {
         //Advertisement.Show();
     }
 
-    public void SendDrawing(){
+    public void SendDrawing(){ // Funktio joka kutsutaan UI-Buttonilla piirto-UI:ssä
         timerTime = 0;
     }
 
-    public void SendGuess(){
-        guessedText = textBox.text;
-        textBox.text = "";
-        timerTime = 0;
+    public void SendGuess() { // Funktio joka kutsutaan UI-Buttonilla kirjoitus-UI:ssä
+
+        if(!nameSet){
+            SetName();
+            textBox.text = "";
+            SetUI(true);
+        } else{
+            guessedText = textBox.text;
+            textBox.text = "";
+            timerTime = 0;
+        }
     }
 
-    public void ChangeDrawText(string text){
+    public void ChangeUIText(string text){ // UI-Tekstin vaihto
         uiText.text = text;
     }
 
-    void GenerateNewWordsToDraw(){
+    void GenerateNewWordsToDraw(){ // Sanageneraattorikutsu
         WordGenerator.instance.WordG();
         PocketReset();
     }
 
-    public void PocketReset(){
+    public void PocketReset() { // Piirrettyjen viivojen(Peliobjektien) poisto 
         Destroy(pocket);
         pocket = Instantiate(pocketPrefab);
     }
 
-    void ShowPictureToGuess(){
-        DrawingMachine.instance.ShowDrawedLines();
+    void ShowPictureToGuess(){ // Näytetään kuva arvattavaksi
+        DrawingMachine.instance.ShowDrawnLines();
     }
 
-    void ShowTextToDraw(){
-        ChangeDrawText("Draw " + guessedText);
+    void ShowTextToDraw(){ // Näytetään teksti piirrettäväksi
+        ChangeUIText("Draw " + guessedText);
     }
 
-    void SetTimer(float time){
+    void SetTimer(float time){ // Asetetaan ajastin sekä ajastimen koko
         timerTime = time;
         timerFill.maxValue = time;
     }
 
+    public void SetName(){ // Kutsutaan nimenasetusfunktio
+        PlayerManager.instance.SetPlayerName(textBox.text);
+    }
+
+    void SetUI(bool d){ // Vaihdetaan UI-Näkymää
+        drawingUI.SetActive(d);
+        writingUI.SetActive(!d);
+    }
+
+    void DrawingOrGuessing(){ // Peruspelin vaihtelu
+        drawingNotGuessing = !drawingNotGuessing;
+
+        if(drawingNotGuessing) {
+            DrawingMachine.instance.EraseDrawnLines();
+            ShowTextToDraw();
+            SetUI(true);
+            mode = PlayerMode.Draw;
+            SetTimer(timeToDraw);
+        } else {
+            PocketReset();
+            ShowPictureToGuess();
+            SetUI(false);
+            ChangeUIText("What on earth is this?");
+            mode = PlayerMode.Type;
+            SetTimer(timeToWrite);
+        }
+    }
 }

@@ -17,7 +17,7 @@ public class DrawingMachine : MonoBehaviour {
     public enum Drawmode { Blue, Red };
     public static DrawingMachine instance;
     public List<LineData> lines;
-    public List<GameObject> drawedLines;
+    public List<GameObject> drawnLines;
     public Vector3 drawPos;
     LineData line;
     LineRenderer currentLine;
@@ -30,22 +30,13 @@ public class DrawingMachine : MonoBehaviour {
 
     private void Awake() {
         lines = new List<LineData>();
-        drawedLines = new List<GameObject>();
+        drawnLines = new List<GameObject>();
         instance = this;
         mode = Drawmode.Blue;
     }
 
-
     public void PrintLines() {
-
-        //print(lines.Count);
-        //for(int i = 0 ; i < lines.Count ; i++){
-        //    var s = "";
-        //    for(int j = 0 ; j < lines[i].Count ; j++){
-        //        s += lines[i][j] + " ";
-        //    }
-        //    print(s);
-        //}
+    
         foreach(var l in lines) {
             var s = "";
             foreach(var coord in l.points) {
@@ -61,7 +52,7 @@ public class DrawingMachine : MonoBehaviour {
         GameObject newLine = Instantiate(mode == Drawmode.Blue ? bluePrefab : redPrefab);
         newLine.transform.parent = GameManager.instance.pocket.transform;
         currentLine = newLine.GetComponent<LineRenderer>();
-        drawedLines.Add(newLine);
+        drawnLines.Add(newLine);
         line.points.Clear();
         line.points.Add(drawPos);
         currentLine.sortingOrder = lineNumber;
@@ -89,27 +80,19 @@ public class DrawingMachine : MonoBehaviour {
         PrintLines();
     }
 
-    public void DrawingEnabler() {
-        mode = Drawmode.Blue;
-    }
-
-    public void EraserEnabler() {
-        mode = Drawmode.Red;
-    }
-
     public void ChangeColor(){
         mode = mode == Drawmode.Blue ? Drawmode.Red : Drawmode.Blue;
     }
 
-    public void ShowDrawedLines(){
+    public void ShowDrawnLines(){
 
         print(lines.Count);
         foreach(var l in lines) {
 
-            var drawedLine = Instantiate(bluePrefab); // Fiksaa värit
-            drawedLine.transform.parent = GameManager.instance.pocket.transform;
+            var drawnLine = Instantiate(bluePrefab); // Fiksaa värit
+            drawnLine.transform.parent = GameManager.instance.pocket.transform;
 
-            var lineToDraw = drawedLine.GetComponent<LineRenderer>();
+            var lineToDraw = drawnLine.GetComponent<LineRenderer>();
             foreach(var point in l.points) {
                 lineToDraw.positionCount = l.points.Count;
                 lineToDraw.SetPositions(l.points.ToArray());
@@ -117,15 +100,15 @@ public class DrawingMachine : MonoBehaviour {
         }
     }
 
-    public void EraseDrawedLines(){
+    public void EraseDrawnLines(){
         GameManager.instance.PocketReset();
         lines.Clear();
     }
 
     public void Undo(){
         if(lineNumber > 0){
-            var last = drawedLines[lineNumber - 1];
-            drawedLines.RemoveAt(lineNumber - 1);
+            var last = drawnLines[lineNumber - 1];
+            drawnLines.RemoveAt(lineNumber - 1);
             Destroy(last);
             lineNumber--;
         }

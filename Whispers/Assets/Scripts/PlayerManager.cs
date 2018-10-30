@@ -4,19 +4,35 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
 
-	public struct PlayerData {
+    public static PlayerManager instance;
+
+    [System.Serializable]
+	public struct PlayerData { 
         public string playerName;
         public int playerID;
         public List<float> playerIMG;
+
+        public PlayerData(string playerName, int playerID, List<float> playerIMG) {
+            this.playerName = playerName;
+            this.playerID = playerID;
+            this.playerIMG = playerIMG;
+        }
     }
 
+    public PlayerData playerData;
 
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void Awake() {
+        instance = this;
+        // PlayerPrefs.SetString("Name", ""); // Tällä voi nollata nimen
+        if(PlayerPrefs.GetString("Name") == null){
+            playerData.playerName = "";
+        } else {
+            playerData.playerName = PlayerPrefs.GetString("Name");
+        }
+    }
+
+    public void SetPlayerName(string name){ // Asetetaan nimi
+        playerData.playerName = name;
+        PlayerPrefs.SetString("Name", name);
+    }
 }
