@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Picture = System.Collections.Generic.List<LineData>;
 
 [System.Serializable]
 public struct LineData {
@@ -107,6 +108,17 @@ public class DrawingMachine : MonoBehaviour {
 
     public void ChangeColor(){
         mode = mode == Drawmode.Blue ? Drawmode.Red : Drawmode.Blue;
+    }
+
+    public void ShowPicture(Picture picture) {
+
+        foreach(var l in picture) {
+            var drawnLine = Instantiate(bluePrefab);
+            drawnLine.transform.parent = gm.pocket.transform;
+            var lineToDraw = drawnLine.GetComponent<LineRenderer>();
+            lineToDraw.positionCount = l.points.Count;
+            lineToDraw.SetPositions(l.points.ToArray());
+        }
     }
 
     public void EraseDrawnLines(){

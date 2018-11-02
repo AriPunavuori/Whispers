@@ -54,17 +54,6 @@ public class RoundDataManager : MonoBehaviour {
         guesses = new List<string>();
     }
 
-    public void ShowPicture(Picture picture) {
-
-        foreach (var l in picture) {
-            var drawnLine = Instantiate(bluePrefab);
-            drawnLine.transform.parent = gm.pocket.transform;
-            var lineToDraw = drawnLine.GetComponent<LineRenderer>();
-            lineToDraw.positionCount = l.points.Count;
-            lineToDraw.SetPositions(l.points.ToArray());
-        }
-    }
-
     public void AddPictureToChain(Picture picture, int playerID) {
         //print("Player ID: " + playerID);
         print("Number of lines: " + picture.Count);

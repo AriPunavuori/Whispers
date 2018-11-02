@@ -141,7 +141,7 @@ public class GameManager : NetworkBehaviour {
         print("Chain: " + chainIdx);
         print("Round: " + roundNumbr);
         var pics = rdm.chains[chainIdx].pictures;
-        rdm.ShowPicture(pics[roundNumbr/2]);
+        dm.ShowPicture(pics[roundNumbr/2]);
         roundNumbr++;
     }
 
