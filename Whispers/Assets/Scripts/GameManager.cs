@@ -53,6 +53,7 @@ public class GameManager : NetworkBehaviour {
         timerTime = timeToDraw;
         timerFill.maxValue = timeToDraw; 
         mode = PlayerMode.Menu;
+        Fabric.EventManager.Instance.PostEvent("tune");
     }
 
 	void Update () {
