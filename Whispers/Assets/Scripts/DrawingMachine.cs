@@ -14,6 +14,7 @@ public struct LineData {
 }
 
 public class DrawingMachine : MonoBehaviour {
+
     public enum Drawmode { Blue, Red };
     static DrawingMachine _instance;
     public static DrawingMachine instance {
@@ -24,6 +25,7 @@ public class DrawingMachine : MonoBehaviour {
             return _instance;
         }
     }
+
     public List<LineData> lines;
     public List<GameObject> drawnLines;
     public Vector3 drawPos;
@@ -36,10 +38,26 @@ public class DrawingMachine : MonoBehaviour {
     public Drawmode mode;
     public GameObject pocket;
 
+    RoundDataManager rdm;
+    PlayerManager pm;
+    WordGenerator wg;
+    InputManager im;
+    GameManager gm;
+
     private void Awake() {
+                rdm = RoundDataManager.instance;
+        pm = PlayerManager.instance;
+        wg = WordGenerator.instance;
+        im = InputManager.instance;
+        gm = GameManager.instance;
+        rdm = RoundDataManager.instance;
         lines = new List<LineData>();
         drawnLines = new List<GameObject>();
         mode = Drawmode.Blue;
+    }
+
+    private void Start() {
+
     }
 
     public void PrintLines() {
@@ -57,7 +75,7 @@ public class DrawingMachine : MonoBehaviour {
         drawPos = curPos;
         line = new LineData(true, new List<Vector3>());
         GameObject newLine = Instantiate(mode == Drawmode.Blue ? bluePrefab : redPrefab);
-        newLine.transform.parent = GameManager.instance.pocket.transform;
+        newLine.transform.parent = gm.pocket.transform;
         currentLine = newLine.GetComponent<LineRenderer>();
         drawnLines.Add(newLine);
         line.points.Clear();
@@ -91,24 +109,8 @@ public class DrawingMachine : MonoBehaviour {
         mode = mode == Drawmode.Blue ? Drawmode.Red : Drawmode.Blue;
     }
 
-    //public void ShowDrawnLines(){
-
-    //    print(lines.Count);
-    //    foreach(var l in lines) {
-
-    //        var drawnLine = Instantiate(bluePrefab); // Fiksaa värit
-    //        drawnLine.transform.parent = GameManager.instance.pocket.transform;
-
-    //        var lineToDraw = drawnLine.GetComponent<LineRenderer>();
-    //        foreach(var point in l.points) {
-    //            lineToDraw.positionCount = l.points.Count;
-    //            lineToDraw.SetPositions(l.points.ToArray());
-    //        }
-    //    }
-    //}
-
     public void EraseDrawnLines(){
-        GameManager.instance.PocketReset();
+        gm.PocketReset();
         lines.Clear();
     }
 

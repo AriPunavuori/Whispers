@@ -49,18 +49,34 @@ public class GameManager : NetworkBehaviour {
     float timerTime;
     float startTime = 1;
 
+    RoundDataManager rdm;
+    PlayerManager pm;
+    DrawingMachine dm;
+    WordGenerator wg;
+    InputManager im;
+    GameManager gm;
+
     private void Awake() {
+        rdm = RoundDataManager.instance;
+        pm = PlayerManager.instance;
+        dm = DrawingMachine.instance;
+        wg = WordGenerator.instance;
+        im = InputManager.instance;
         timerTime = timeToDraw;
         timerFill.maxValue = timeToDraw; 
         mode = PlayerMode.Menu;
         Fabric.EventManager.Instance.PostEvent("tune");
     }
 
-	void Update () {
+    private void Start() {
+
+    }
+
+    void Update () {
         startTime -= Time.deltaTime; // Introaika
         if(startTime < 0){ 
-            
-            if(PlayerManager.instance.playerData.playerName == "") { // Onko nimi asetettu
+
+            if(pm.playerData.playerName == "") { // Onko nimi asetettu
                 SetUI(false);
                 mode = PlayerMode.Type;
                 ChangeUIText("Can you please tell me your name?"); // Asetetaan nimi SendGuess() funktiossa
@@ -86,7 +102,7 @@ public class GameManager : NetworkBehaviour {
 
     public void SendDrawing(){ // Funktio joka kutsutaan UI-Buttonilla piirto-UI:ssä
         timerTime = 0;
-        RoundDataManager.instance.AddPicture(DrawingMachine.instance.lines, 0);
+        rdm.AddPictureToChain(dm.lines, 0);
     }
 
     public void SendGuess() { // Funktio joka kutsutaan UI-Buttonilla kirjoitus-UI:ssä
@@ -100,7 +116,7 @@ public class GameManager : NetworkBehaviour {
             textBox.text = "";
             timerTime = 0;
         }
-        RoundDataManager.instance.AddGuess(guessedText, PlayerManager.instance.playerData.playerID);
+        rdm.AddGuessToChain(guessedText, pm.playerData.playerID);
     }
 
     public void ChangeUIText(string text){ // UI-Tekstin vaihto
@@ -108,8 +124,8 @@ public class GameManager : NetworkBehaviour {
     }
 
     void GenerateNewWordsToDraw(){ // Sanageneraattorikutsu
-        WordGenerator.instance.WordG();
-        RoundDataManager.instance.AddGuess(WordGenerator.instance.myWord, 0);
+        wg.WordG();
+        rdm.AddGuessToChain(wg.myWord, 0);
         PocketReset();
     }
 
@@ -119,9 +135,8 @@ public class GameManager : NetworkBehaviour {
     }
 
     void ShowPictureToGuess(int playerID){ // Näytetään kuva arvattavaksi
-        //DrawingMachine.instance.ShowDrawnLines();
+        //dm.ShowDrawnLines();
         var chainIdx = (roundNumbr + playerID - 1) % playerCount;
-        var rdm = RoundDataManager.instance;
         print("Number of players: " + playerCount);
         print("Chain: " + chainIdx);
         print("Round: " + roundNumbr);
@@ -142,7 +157,7 @@ public class GameManager : NetworkBehaviour {
     }
 
     public void SetName(){ // Kutsutaan nimenasetusfunktio
-        PlayerManager.instance.SetPlayerName(textBox.text);
+        pm.SetPlayerName(textBox.text);
     }
 
     void SetUI(bool d){ // Vaihdetaan UI-Näkymää
@@ -154,14 +169,14 @@ public class GameManager : NetworkBehaviour {
         drawingNotGuessing = !drawingNotGuessing;
 
         if(drawingNotGuessing) {
-            DrawingMachine.instance.EraseDrawnLines();
+            dm.EraseDrawnLines();
             ShowTextToDraw();
             SetUI(true);
             mode = PlayerMode.Draw;
             SetTimer(timeToDraw);
         } else {
             PocketReset();
-            ShowPictureToGuess(PlayerManager.instance.playerData.playerID);
+            ShowPictureToGuess(pm.playerData.playerID);
             SetUI(false);
             ChangeUIText("What on earth is this?");
             mode = PlayerMode.Type;

@@ -26,6 +26,20 @@ public class WordGenerator : MonoBehaviour {
     string Noun;
     public string myWord;
 
+    RoundDataManager rdm;
+    PlayerManager pm;
+    DrawingMachine dm;
+    WordGenerator wg;
+    InputManager im;
+    GameManager gm;
+
+    private void Awake() {
+        pm = PlayerManager.instance;
+        dm = DrawingMachine.instance;
+        rdm = RoundDataManager.instance;
+        im = InputManager.instance;
+        gm = GameManager.instance;
+    }
     void Start() {
         adjList = adj.text.Split((string[])null, System.StringSplitOptions.RemoveEmptyEntries);
         nounList = noun.text.Split((string[])null, System.StringSplitOptions.RemoveEmptyEntries);
@@ -36,6 +50,6 @@ public class WordGenerator : MonoBehaviour {
         Noun = (nounList[Random.Range(0, nounList.Length)]);
         myWord = Adj + " " + Noun;
         //print(Adj.Length);
-        GameManager.instance.ChangeUIText("Hi " + PlayerManager.instance.playerData.playerName + ", Can you draw:\n" + myWord + "?");
+        gm.ChangeUIText("Hi " + pm.playerData.playerName + ", Can you draw:\n" + myWord + "?");
     }
 }

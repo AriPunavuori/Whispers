@@ -29,6 +29,13 @@ public class PlayerManager : MonoBehaviour {
 
     public PlayerData playerData;
 
+    RoundDataManager rdm;
+    DrawingMachine dm;
+    WordGenerator wg;
+    InputManager im;
+    GameManager gm;
+
+
     private void Awake() {
         // PlayerPrefs.SetString("Name", ""); // Tällä voi nollata nimen
         if(PlayerPrefs.GetString("Name") == null){
@@ -36,6 +43,11 @@ public class PlayerManager : MonoBehaviour {
         } else {
             playerData.playerName = PlayerPrefs.GetString("Name");
         }
+        rdm = RoundDataManager.instance;
+        dm = DrawingMachine.instance;
+        wg = WordGenerator.instance;
+        im = InputManager.instance;
+        gm = GameManager.instance;
     }
 
     public void SetPlayerName(string name){ // Asetetaan nimi
