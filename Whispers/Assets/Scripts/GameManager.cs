@@ -8,7 +8,15 @@ using TMPro;
 
 public class GameManager : NetworkBehaviour {
 
-    public static GameManager instance;
+    static GameManager _instance;
+    public static GameManager instance{
+        get{
+            if(!_instance){
+                _instance = FindObjectOfType<GameManager>();
+            }
+            return _instance;
+        }
+    }
 
     public TextMeshProUGUI uiText;
 
@@ -42,7 +50,6 @@ public class GameManager : NetworkBehaviour {
     float startTime = 1;
 
     private void Awake() {
-        instance = this;
         timerTime = timeToDraw;
         timerFill.maxValue = timeToDraw; 
         mode = PlayerMode.Menu;
@@ -78,7 +85,6 @@ public class GameManager : NetworkBehaviour {
 
     public void SendDrawing(){ // Funktio joka kutsutaan UI-Buttonilla piirto-UI:ssä
         timerTime = 0;
-        roundNumbr++;
         RoundDataManager.instance.AddPicture(DrawingMachine.instance.lines, 0);
     }
 
@@ -93,9 +99,7 @@ public class GameManager : NetworkBehaviour {
             textBox.text = "";
             timerTime = 0;
         }
-        roundNumbr++;
-        RoundDataManager.instance.AddGuess(guessedText, 0);
-
+        RoundDataManager.instance.AddGuess(guessedText, PlayerManager.instance.playerData.playerID);
     }
 
     public void ChangeUIText(string text){ // UI-Tekstin vaihto
@@ -115,15 +119,20 @@ public class GameManager : NetworkBehaviour {
 
     void ShowPictureToGuess(int playerID){ // Näytetään kuva arvattavaksi
         //DrawingMachine.instance.ShowDrawnLines();
-
         var chainIdx = (roundNumbr + playerID - 1) % playerCount;
-
-        var rm = RoundDataManager.instance;
-        RoundDataManager.instance.ShowDrawnLines(rm.chains[chainIdx].pictures[roundNumbr/2]);
+        var rdm = RoundDataManager.instance;
+        print("Number of players: " + playerCount);
+        print("Chain: " + chainIdx);
+        print("Round: " + roundNumbr);
+        var pics = rdm.chains[chainIdx].pictures;
+        rdm.ShowPicture(pics[roundNumbr/2]);
+        roundNumbr++;
     }
 
     void ShowTextToDraw(){ // Näytetään teksti piirrettäväksi
         ChangeUIText("Draw " + guessedText);
+        print("Round: " + roundNumbr);
+        roundNumbr++;
     }
 
     void SetTimer(float time){ // Asetetaan ajastin sekä ajastimen koko
@@ -151,7 +160,7 @@ public class GameManager : NetworkBehaviour {
             SetTimer(timeToDraw);
         } else {
             PocketReset();
-            ShowPictureToGuess(0);
+            ShowPictureToGuess(PlayerManager.instance.playerData.playerID);
             SetUI(false);
             ChangeUIText("What on earth is this?");
             mode = PlayerMode.Type;

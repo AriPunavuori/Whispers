@@ -30,7 +30,7 @@ public class WordGenerator : MonoBehaviour {
         Adj = (adjList[Random.Range(0, adjList.Length)]);
         Noun = (nounList[Random.Range(0, nounList.Length)]);
         myWord = Adj + " " + Noun;
-        print(Adj.Length);
+        //print(Adj.Length);
         GameManager.instance.ChangeUIText("Hi " + PlayerManager.instance.playerData.playerName + ", Can you draw:\n" + myWord + "?");
     }
 }

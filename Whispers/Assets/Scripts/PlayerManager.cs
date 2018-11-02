@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
 
-    public static PlayerManager instance;
+    static PlayerManager _instance;
+    public static PlayerManager instance{
+        get{
+            if(!_instance){
+                _instance = FindObjectOfType<PlayerManager>();
+            }
+            return _instance;
+        }
+    }
 
     [System.Serializable]
 	public struct PlayerData { 
@@ -22,7 +30,6 @@ public class PlayerManager : MonoBehaviour {
     public PlayerData playerData;
 
     private void Awake() {
-        instance = this;
         // PlayerPrefs.SetString("Name", ""); // Tällä voi nollata nimen
         if(PlayerPrefs.GetString("Name") == null){
             playerData.playerName = "";

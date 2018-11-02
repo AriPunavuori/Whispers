@@ -77,7 +77,7 @@ public class DrawingMachine : MonoBehaviour {
         currentLine.positionCount = line.points.Count;
         currentLine.SetPositions(line.points.ToArray());
         lines.Add(line);
-        PrintLines();
+        //PrintLines();
     }
 
     public void ChangeColor(){
