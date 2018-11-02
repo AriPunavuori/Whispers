@@ -15,7 +15,15 @@ public struct LineData {
 
 public class DrawingMachine : MonoBehaviour {
     public enum Drawmode { Blue, Red };
-    public static DrawingMachine instance;
+    static DrawingMachine _instance;
+    public static DrawingMachine instance {
+        get {
+            if(!_instance) {
+                _instance = FindObjectOfType<DrawingMachine>();
+            }
+            return _instance;
+        }
+    }
     public List<LineData> lines;
     public List<GameObject> drawnLines;
     public Vector3 drawPos;
@@ -31,7 +39,6 @@ public class DrawingMachine : MonoBehaviour {
     private void Awake() {
         lines = new List<LineData>();
         drawnLines = new List<GameObject>();
-        instance = this;
         mode = Drawmode.Blue;
     }
 

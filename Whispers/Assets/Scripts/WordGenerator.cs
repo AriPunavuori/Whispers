@@ -4,7 +4,16 @@ using UnityEngine;
 
 
 public class WordGenerator : MonoBehaviour {
-    public static WordGenerator instance;
+    static WordGenerator _instance;
+    public static WordGenerator instance{
+        get{
+            if(!_instance){
+                _instance = FindObjectOfType<WordGenerator>();
+            }
+            return _instance;
+        }
+    }
+ 
     public TextAsset adj;
     public TextAsset noun;
 
@@ -16,10 +25,6 @@ public class WordGenerator : MonoBehaviour {
     string Adj;
     string Noun;
     public string myWord;
-
-    private void Awake() {
-        instance = this;
-    }
 
     void Start() {
         adjList = adj.text.Split((string[])null, System.StringSplitOptions.RemoveEmptyEntries);

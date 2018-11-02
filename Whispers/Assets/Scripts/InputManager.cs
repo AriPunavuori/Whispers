@@ -5,11 +5,16 @@ using UnityEngine.EventSystems;
 
 public class InputManager : MonoBehaviour {
 
-    public static InputManager instance;
-    public bool isDrawing = false;
-    private void Awake() {
-        instance = this;
+    static InputManager _instance;
+    public static InputManager instance {
+        get {
+            if(!_instance) {
+                _instance = FindObjectOfType<InputManager>();
+            }
+            return _instance;
+        }
     }
+    public bool isDrawing = false;
 
     void Update() {
 
