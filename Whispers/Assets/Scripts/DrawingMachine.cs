@@ -39,19 +39,18 @@ public class DrawingMachine : MonoBehaviour {
     public Drawmode mode;
     public GameObject pocket;
 
-    RoundDataManager rdm;
-    PlayerManager pm;
-    WordGenerator wg;
-    InputManager im;
+    //RoundDataManager rdm;
+    //PlayerManager pm;
+    //WordGenerator wg;
+    //InputManager im;
     GameManager gm;
 
     private void Awake() {
-                rdm = RoundDataManager.instance;
-        pm = PlayerManager.instance;
-        wg = WordGenerator.instance;
-        im = InputManager.instance;
+        //pm = PlayerManager.instance;
+        //wg = WordGenerator.instance;
+        //rdm = RoundDataManager.instance;
+        //im = InputManager.instance;
         gm = GameManager.instance;
-        rdm = RoundDataManager.instance;
         lines = new List<LineData>();
         drawnLines = new List<GameObject>();
         mode = Drawmode.Blue;
@@ -112,7 +111,7 @@ public class DrawingMachine : MonoBehaviour {
 
     public void ShowPicture(Picture picture) {
 
-        foreach(var l in picture) {
+        foreach (var l in picture) {
             var drawnLine = Instantiate(bluePrefab);
             drawnLine.transform.parent = gm.pocket.transform;
             var lineToDraw = drawnLine.GetComponent<LineRenderer>();

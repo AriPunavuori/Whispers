@@ -32,17 +32,17 @@ public class RoundDataManager : MonoBehaviour {
     public List<ChainData> chains;
     public GameObject bluePrefab;
 
-    PlayerManager pm;
-    DrawingMachine dm;
-    WordGenerator wg;
-    InputManager im;
+    //PlayerManager pm;
+    //DrawingMachine dm;
+    //WordGenerator wg;
+    //InputManager im;
     GameManager gm;
 
     void Awake() {
-        pm = PlayerManager.instance;
-        dm = DrawingMachine.instance;
-        wg = WordGenerator.instance;
-        im = InputManager.instance;
+        //pm = PlayerManager.instance;
+        //dm = DrawingMachine.instance;
+        //wg = WordGenerator.instance;
+        //im = InputManager.instance;
         gm = GameManager.instance;
         InitGame();
     }
@@ -62,7 +62,7 @@ public class RoundDataManager : MonoBehaviour {
 
     public void AddGuessToChain(string text, int playerID) {
         chains[playerID].guesses.Add(text);
-        //print(guesses[GameManager.instance.roundNumbr/2]);
+        //print(guesses[gm.roundNumbr/2]);
         
     }
 

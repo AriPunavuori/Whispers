@@ -20,7 +20,7 @@ public class GameManager : NetworkBehaviour {
 
     public TextMeshProUGUI uiText;
 
-    public enum PlayerMode { Draw, Type, Watch, Menu }; // Onko tarpeellinen?
+    public enum PlayerMode { Draw, Type, Wait, Watch, Menu }; // Onko tarpeellinen?
 
     public GameObject pocket;
     public GameObject pocketPrefab;
@@ -53,15 +53,17 @@ public class GameManager : NetworkBehaviour {
     PlayerManager pm;
     DrawingMachine dm;
     WordGenerator wg;
-    InputManager im;
+    //InputManager im;
     GameManager gm;
+    UIManager um;
 
     private void Awake() {
         rdm = RoundDataManager.instance;
         pm = PlayerManager.instance;
         dm = DrawingMachine.instance;
         wg = WordGenerator.instance;
-        im = InputManager.instance;
+        um = UIManager.instance;
+        //im = InputManager.instance;
         timerTime = timeToDraw;
         timerFill.maxValue = timeToDraw; 
         mode = PlayerMode.Menu;
@@ -77,9 +79,9 @@ public class GameManager : NetworkBehaviour {
         if(startTime < 0){ 
 
             if(pm.playerData.playerName == "") { // Onko nimi asetettu
-                SetUI(false);
+                um.SetUI(false);
                 mode = PlayerMode.Type;
-                ChangeUIText("Can you please tell me your name?"); // Asetetaan nimi SendGuess() funktiossa
+                um.ChangeUIText("Can you please tell me your name?"); // Asetetaan nimi SendGuess() funktiossa
             } else if(!started){
                 GenerateNewWordsToDraw(); // Ensimmäisen sanasetin luonti
 
@@ -110,7 +112,7 @@ public class GameManager : NetworkBehaviour {
         if(!nameSet){
             SetName();
             textBox.text = "";
-            SetUI(true);
+            um.SetUI(true);
         } else{
             guessedText = textBox.text;
             textBox.text = "";
@@ -146,7 +148,7 @@ public class GameManager : NetworkBehaviour {
     }
 
     void ShowTextToDraw(){ // Näytetään teksti piirrettäväksi
-        ChangeUIText("Draw " + guessedText);
+        um.ChangeUIText("Draw " + guessedText);
         print("Round: " + roundNumbr);
         roundNumbr++;
     }
@@ -160,10 +162,6 @@ public class GameManager : NetworkBehaviour {
         pm.SetPlayerName(textBox.text);
     }
 
-    void SetUI(bool d){ // Vaihdetaan UI-Näkymää
-        drawingUI.SetActive(d);
-        writingUI.SetActive(!d);
-    }
 
     void DrawingOrGuessing(){ // Peruspelin vaihtelu
         drawingNotGuessing = !drawingNotGuessing;
@@ -171,14 +169,14 @@ public class GameManager : NetworkBehaviour {
         if(drawingNotGuessing) {
             dm.EraseDrawnLines();
             ShowTextToDraw();
-            SetUI(true);
+            um.SetUI(true);
             mode = PlayerMode.Draw;
             SetTimer(timeToDraw);
         } else {
             PocketReset();
             ShowPictureToGuess(pm.playerData.playerID);
-            SetUI(false);
-            ChangeUIText("What on earth is this?");
+            um.SetUI(false);
+            um.ChangeUIText("What on earth is this?");
             mode = PlayerMode.Type;
             SetTimer(timeToWrite);
         }

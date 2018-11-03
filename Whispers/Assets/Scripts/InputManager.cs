@@ -16,17 +16,17 @@ public class InputManager : MonoBehaviour {
     }
     public bool isDrawing = false;
 
-    RoundDataManager rdm;
-    PlayerManager pm;
+    //RoundDataManager rdm;
+    //PlayerManager pm;
     DrawingMachine dm;
-    WordGenerator wg;
+    //WordGenerator wg;
     GameManager gm;
 
     private void Awake() {
-        rdm = RoundDataManager.instance;
-        pm = PlayerManager.instance;
+        //rdm = RoundDataManager.instance;
+        //pm = PlayerManager.instance;
+        //wg = WordGenerator.instance;
         dm = DrawingMachine.instance;
-        wg = WordGenerator.instance;
         gm = GameManager.instance;
     }
     void Update() {
