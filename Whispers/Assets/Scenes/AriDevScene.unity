@@ -321,6 +321,22 @@ Prefab:
       propertyPath: writingUI
       value: 
       objectReference: {fileID: 248367176}
+    - target: {fileID: 114222143965876512, guid: 43712077f86994489aab24b46c81abd1,
+        type: 2}
+      propertyPath: pocket
+      value: 
+      objectReference: {fileID: 1350384951}
+    - target: {fileID: 114222143965876512, guid: 43712077f86994489aab24b46c81abd1,
+        type: 2}
+      propertyPath: pocketPrefab
+      value: 
+      objectReference: {fileID: 1562480790772770, guid: adbc33536c7484628bb5b9b367414c00,
+        type: 2}
+    - target: {fileID: 114222143965876512, guid: 43712077f86994489aab24b46c81abd1,
+        type: 2}
+      propertyPath: textBox
+      value: 
+      objectReference: {fileID: 306944054}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 43712077f86994489aab24b46c81abd1, type: 2}
   m_IsPrefabAsset: 0
@@ -330,6 +346,12 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1434874525}
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+--- !u!114 &594374649 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114850969962942578, guid: 2e8a6c69cfe904e1c8d5a45f38e73a69,
+    type: 2}
+  m_PrefabInternal: {fileID: 2100605193}
+  m_Script: {fileID: 11500000, guid: ae8750db57a5145cb9151f4a429cb665, type: 3}
 --- !u!1001 &614581233
 Prefab:
   m_ObjectHideFlags: 0
@@ -420,12 +442,6 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5914fcdb3cadf4fad9ba1fab375bb0a1, type: 2}
   m_IsPrefabAsset: 0
---- !u!114 &753373019 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114363682311024364, guid: 8a38f985833ba4a89b5e9191dfc88d35,
-    type: 2}
-  m_PrefabInternal: {fileID: 1039870184}
-  m_Script: {fileID: 11500000, guid: a6f3f7097d38642a88d501298fd3be87, type: 3}
 --- !u!1001 &847861047
 Prefab:
   m_ObjectHideFlags: 0
@@ -840,26 +856,26 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114733151568357824, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+    - target: {fileID: 114846847571540086, guid: d124e81a6b8edb2419d780e5aefdc5e9,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 753373019}
+      objectReference: {fileID: 594374649}
+    - target: {fileID: 114652292440230820, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 594374649}
     - target: {fileID: 223384561691303362, guid: d124e81a6b8edb2419d780e5aefdc5e9,
         type: 2}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1297084493}
-    - target: {fileID: 114652292440230820, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+    - target: {fileID: 114733151568357824, guid: d124e81a6b8edb2419d780e5aefdc5e9,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1626861587}
-    - target: {fileID: 114846847571540086, guid: d124e81a6b8edb2419d780e5aefdc5e9,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1626861587}
+      objectReference: {fileID: 594374649}
     - target: {fileID: 224695410366873898, guid: d124e81a6b8edb2419d780e5aefdc5e9,
         type: 2}
       propertyPath: m_AnchorMax.x
@@ -888,12 +904,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1522825751866396, guid: d124e81a6b8edb2419d780e5aefdc5e9,
     type: 2}
   m_PrefabInternal: {fileID: 1434874525}
---- !u!114 &1626861587 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114880363971394308, guid: e937099e38528b043b9b809cac4b39ff,
-    type: 2}
-  m_PrefabInternal: {fileID: 902969743}
-  m_Script: {fileID: 11500000, guid: a89c4cb848768e94980a1baba4f2c593, type: 3}
 --- !u!1001 &1709728148
 Prefab:
   m_ObjectHideFlags: 0

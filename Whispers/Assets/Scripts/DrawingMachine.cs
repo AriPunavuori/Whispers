@@ -34,7 +34,7 @@ public class DrawingMachine : MonoBehaviour {
     LineRenderer currentLine;
     public GameObject bluePrefab;
     public GameObject redPrefab;
-    int lineNumber = 0;
+    public int lineNumber = 0;
     float lineDotThreshold = 0.01f;
     public Drawmode mode;
     public GameObject pocket;
@@ -43,25 +43,22 @@ public class DrawingMachine : MonoBehaviour {
     //PlayerManager pm;
     //WordGenerator wg;
     //InputManager im;
-    GameManager gm;
+    //GameManager gm;
+    UIManager um;
 
     private void Awake() {
         //pm = PlayerManager.instance;
         //wg = WordGenerator.instance;
         //rdm = RoundDataManager.instance;
         //im = InputManager.instance;
-        gm = GameManager.instance;
+        um = UIManager.instance;
+        //gm = GameManager.instance;
         lines = new List<LineData>();
         drawnLines = new List<GameObject>();
         mode = Drawmode.Blue;
     }
 
-    private void Start() {
-
-    }
-
     public void PrintLines() {
-    
         foreach(var l in lines) {
             var s = "";
             foreach(var coord in l.points) {
@@ -75,7 +72,7 @@ public class DrawingMachine : MonoBehaviour {
         drawPos = curPos;
         line = new LineData(true, new List<Vector3>());
         GameObject newLine = Instantiate(mode == Drawmode.Blue ? bluePrefab : redPrefab);
-        newLine.transform.parent = gm.pocket.transform;
+        newLine.transform.parent = um.pocket.transform;
         currentLine = newLine.GetComponent<LineRenderer>();
         drawnLines.Add(newLine);
         line.points.Clear();
@@ -113,7 +110,7 @@ public class DrawingMachine : MonoBehaviour {
 
         foreach (var l in picture) {
             var drawnLine = Instantiate(bluePrefab);
-            drawnLine.transform.parent = gm.pocket.transform;
+            drawnLine.transform.parent = um.pocket.transform;
             var lineToDraw = drawnLine.GetComponent<LineRenderer>();
             lineToDraw.positionCount = l.points.Count;
             lineToDraw.SetPositions(l.points.ToArray());
@@ -121,14 +118,15 @@ public class DrawingMachine : MonoBehaviour {
     }
 
     public void EraseDrawnLines(){
-        gm.PocketReset();
+        um.PocketReset();
         lines.Clear();
     }
 
-    public void Undo(){
+    public void DeleteLastLine(){
         if(lineNumber > 0){
             var last = drawnLines[lineNumber - 1];
             drawnLines.RemoveAt(lineNumber - 1);
+            lines.RemoveAt(lineNumber - 1);
             Destroy(last);
             lineNumber--;
         }

@@ -16,18 +16,18 @@ public class InputManager : MonoBehaviour {
     }
     public bool isDrawing = false;
 
-    //RoundDataManager rdm;
+    RoundDataManager rdm;
     PlayerManager pm;
     DrawingMachine dm;
-    //WordGenerator wg;
-    //GameManager gm;
+    UIManager um;
+    GameManager gm;
 
     private void Awake() {
-        //rdm = RoundDataManager.instance;
+        rdm = RoundDataManager.instance;
         pm = PlayerManager.instance;
-        //wg = WordGenerator.instance;
+        um = UIManager.instance;
         dm = DrawingMachine.instance;
-        //gm = GameManager.instance;
+        gm = GameManager.instance;
     }
     void Update() {
 
@@ -56,6 +56,26 @@ public class InputManager : MonoBehaviour {
                 isDrawing = false;
             }
         }
+    }
+
+    public void Undo(){
+        dm.DeleteLastLine();
+    }
+
+    public void SendDrawing() { // Tallennetaan kuva
+        gm.timerTime = 0;
+        rdm.AddPictureToChain(dm.lines, 0);
+    }
+
+    public void SendGuess() { // Funktio joka kutsutaan UI-Buttonilla kirjoitus-UI:ssä
+        rdm.guess = um.textBox.text;
+        um.textBox.text = "";
+        gm.timerTime = 0;
+        rdm.AddGuessToChain(rdm.guess, pm.playerData.playerID);
+    }
+
+    public void SetName(){
+        pm.SetPlayerName(um.textBox.text);
     }
 
     private bool IsPointerOverUIObject(Vector2 position) { // Onko input UI-Elementtien päällä?

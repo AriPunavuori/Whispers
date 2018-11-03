@@ -28,6 +28,7 @@ public class RoundDataManager : MonoBehaviour {
 
     [SerializeField]
     public List<string> guesses;
+    public string guess;
     [SerializeField]
     public List<ChainData> chains;
     public GameObject bluePrefab;

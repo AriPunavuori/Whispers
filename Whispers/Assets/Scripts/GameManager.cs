@@ -17,16 +17,9 @@ public class GameManager : NetworkBehaviour {
         }
     }
 
-    public GameObject pocket;
-    public GameObject pocketPrefab;
     public GameObject nameButton;
-    public GameObject drawingUI;
-    public GameObject writingUI;
 
     public Slider timerFill;
-    public InputField textBox;
-
-    public string guessedText;
 
     public int roundNumbr = 1;
     public int playerCount = 1;
@@ -40,7 +33,7 @@ public class GameManager : NetworkBehaviour {
     [SyncVar]
     public float timeToWrite = 30f;
 
-    float timerTime;
+    public float timerTime;
     float startTime = 1;
 
     RoundDataManager rdm;
@@ -61,10 +54,6 @@ public class GameManager : NetworkBehaviour {
         timerTime = timeToDraw;
         timerFill.maxValue = timeToDraw; 
         Fabric.EventManager.Instance.PostEvent("tune");
-    }
-
-    private void Start() {
-
     }
 
     void Update () {
@@ -94,51 +83,10 @@ public class GameManager : NetworkBehaviour {
         //Advertisement.Show();
     }
 
-    public void SendDrawing(){ // Funktio joka kutsutaan UI-Buttonilla piirto-UI:ssä
-        timerTime = 0;
-        rdm.AddPictureToChain(dm.lines, 0);
-    }
-
-    public void SendGuess() { // Funktio joka kutsutaan UI-Buttonilla kirjoitus-UI:ssä
-
-        if(!nameSet){
-            SetName();
-            textBox.text = "";
-            um.SetUI(true);
-        } else{
-            guessedText = textBox.text;
-            textBox.text = "";
-            timerTime = 0;
-        }
-        rdm.AddGuessToChain(guessedText, pm.playerData.playerID);
-    }
-
     void GenerateNewWordsToDraw(){ // Sanageneraattorikutsu
         wg.WordG();
         rdm.AddGuessToChain(wg.myWord, 0);
-        PocketReset();
-    }
-
-    public void PocketReset() { // Piirrettyjen viivojen(Peliobjektien) poisto 
-        Destroy(pocket);
-        pocket = Instantiate(pocketPrefab);
-    }
-
-    void ShowPictureToGuess(int playerID){ // Näytetään kuva arvattavaksi
-        //dm.ShowDrawnLines();
-        var chainIdx = (roundNumbr + playerID - 1) % playerCount;
-        print("Number of players: " + playerCount);
-        print("Chain: " + chainIdx);
-        print("Round: " + roundNumbr);
-        var pics = rdm.chains[chainIdx].pictures;
-        dm.ShowPicture(pics[roundNumbr/2]);
-        roundNumbr++;
-    }
-
-    void ShowTextToDraw(){ // Näytetään teksti piirrettäväksi
-        um.ChangeUIText("Draw " + guessedText);
-        print("Round: " + roundNumbr);
-        roundNumbr++;
+        um.PocketReset();
     }
 
     void SetTimer(float time){ // Asetetaan ajastin sekä ajastimen koko
@@ -146,27 +94,23 @@ public class GameManager : NetworkBehaviour {
         timerFill.maxValue = time;
     }
 
-    public void SetName(){ // Kutsutaan nimenasetusfunktio
-        pm.SetPlayerName(textBox.text);
-    }
-
-
     void DrawingOrGuessing(){ // Peruspelin vaihtelu
         drawingNotGuessing = !drawingNotGuessing;
 
         if(drawingNotGuessing) {
             dm.EraseDrawnLines();
-            ShowTextToDraw();
+            um.ShowTextToDraw();
             um.SetUI(true);
             pm.playMode = PlayerManager.PlayMode.Draw;
             SetTimer(timeToDraw);
         } else {
-            PocketReset();
-            ShowPictureToGuess(pm.playerData.playerID);
+            um.PocketReset();
+            um.ShowPictureToGuess(pm.playerData.playerID);
             um.SetUI(false);
             um.ChangeUIText("What on earth is this?");
             pm.playMode = PlayerManager.PlayMode.Write;
             SetTimer(timeToWrite);
         }
+        roundNumbr++;
     }
 }
