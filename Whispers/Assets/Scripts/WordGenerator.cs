@@ -31,12 +31,12 @@ public class WordGenerator : MonoBehaviour {
     //DrawingMachine dm;
     //WordGenerator wg;
     PlayerManager pm;
-    GameManager gm;
+    //GameManager gm;
     UIManager um;
 
     private void Awake() {
         pm = PlayerManager.instance;
-        gm = GameManager.instance;
+        //gm = GameManager.instance;
         um = UIManager.instance;
         //dm = DrawingMachine.instance;
         //rdm = RoundDataManager.instance;

@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
 using UnityEngine.Networking;
-using TMPro;
 
 public class GameManager : NetworkBehaviour {
 
@@ -18,10 +17,6 @@ public class GameManager : NetworkBehaviour {
         }
     }
 
-    public TextMeshProUGUI uiText;
-
-    public enum PlayerMode { Draw, Type, Wait, Watch, Menu }; // Onko tarpeellinen?
-
     public GameObject pocket;
     public GameObject pocketPrefab;
     public GameObject nameButton;
@@ -29,7 +24,6 @@ public class GameManager : NetworkBehaviour {
     public GameObject writingUI;
 
     public Slider timerFill;
-    public PlayerMode mode;
     public InputField textBox;
 
     public string guessedText;
@@ -66,7 +60,6 @@ public class GameManager : NetworkBehaviour {
         //im = InputManager.instance;
         timerTime = timeToDraw;
         timerFill.maxValue = timeToDraw; 
-        mode = PlayerMode.Menu;
         Fabric.EventManager.Instance.PostEvent("tune");
     }
 
@@ -80,12 +73,11 @@ public class GameManager : NetworkBehaviour {
 
             if(pm.playerData.playerName == "") { // Onko nimi asetettu
                 um.SetUI(false);
-                mode = PlayerMode.Type;
+                pm.playMode = PlayerManager.PlayMode.Write;
                 um.ChangeUIText("Can you please tell me your name?"); // Asetetaan nimi SendGuess() funktiossa
             } else if(!started){
                 GenerateNewWordsToDraw(); // Ensimmäisen sanasetin luonti
-
-                mode = PlayerMode.Draw;
+                pm.playMode = PlayerManager.PlayMode.Draw;
                 nameSet = true;
                 started = true;
             } else{
@@ -119,10 +111,6 @@ public class GameManager : NetworkBehaviour {
             timerTime = 0;
         }
         rdm.AddGuessToChain(guessedText, pm.playerData.playerID);
-    }
-
-    public void ChangeUIText(string text){ // UI-Tekstin vaihto
-        uiText.text = text;
     }
 
     void GenerateNewWordsToDraw(){ // Sanageneraattorikutsu
@@ -170,14 +158,14 @@ public class GameManager : NetworkBehaviour {
             dm.EraseDrawnLines();
             ShowTextToDraw();
             um.SetUI(true);
-            mode = PlayerMode.Draw;
+            pm.playMode = PlayerManager.PlayMode.Draw;
             SetTimer(timeToDraw);
         } else {
             PocketReset();
             ShowPictureToGuess(pm.playerData.playerID);
             um.SetUI(false);
             um.ChangeUIText("What on earth is this?");
-            mode = PlayerMode.Type;
+            pm.playMode = PlayerManager.PlayMode.Write;
             SetTimer(timeToWrite);
         }
     }

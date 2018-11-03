@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour {
+    public enum PlayMode { Draw, Write, Wait, Watch, Menu };
+    public PlayMode playMode;
 
     static PlayerManager _instance;
     public static PlayerManager instance{
@@ -48,6 +50,7 @@ public class PlayerManager : MonoBehaviour {
         //im = InputManager.instance;
         //dm = DrawingMachine.instance;
         //gm = GameManager.instance;
+        playMode = PlayMode.Menu;
     }
 
     public void SetPlayerName(string name){ // Asetetaan nimi

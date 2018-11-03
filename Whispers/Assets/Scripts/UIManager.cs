@@ -28,6 +28,12 @@ public class UIManager : MonoBehaviour {
     }
     public void SetUI(bool d) { // Vaihdetaan UI-Näkymää
         drawingUI.SetActive(d);
+        //menuUI.SetActive(d);
+        //waitingUI.SetActive(d);
+        //watchingUI.SetActive(d);
         writingUI.SetActive(!d);
+
     }
+
+
 }
