@@ -625,7 +625,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Your quess...
+  m_Text: Write here...
 --- !u!114 &114363927641924044
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1235,7 +1235,7 @@ RectTransform:
   m_LocalScale: {x: 0.99997914, y: 0.99997914, z: 0.99997914}
   m_Children: []
   m_Father: {fileID: 224325711763487372}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -1332,8 +1332,8 @@ RectTransform:
   - {fileID: 224327924517140846}
   - {fileID: 224984126844702450}
   - {fileID: 224219561840628848}
-  - {fileID: 224540347873753046}
   - {fileID: 224083024253339218}
+  - {fileID: 224540347873753046}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1413,7 +1413,7 @@ RectTransform:
   - {fileID: 224476021163209394}
   - {fileID: 224972586655725692}
   m_Father: {fileID: 224325711763487372}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}

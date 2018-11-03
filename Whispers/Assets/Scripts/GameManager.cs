@@ -24,7 +24,7 @@ public class GameManager : NetworkBehaviour {
     public int roundNumbr = 1;
     public int playerCount = 1;
 
-    bool nameSet = false;
+    public bool nameSet = false;
     bool started = false;
     bool drawingNotGuessing = true;
 
@@ -67,6 +67,8 @@ public class GameManager : NetworkBehaviour {
             } else if(!started){
                 GenerateNewWordsToDraw(); // Ensimmäisen sanasetin luonti
                 pm.playMode = PlayerManager.PlayMode.Draw;
+                um.textBox.text = "";
+                um.SetUI(true);
                 nameSet = true;
                 started = true;
             } else{
@@ -98,7 +100,7 @@ public class GameManager : NetworkBehaviour {
         drawingNotGuessing = !drawingNotGuessing;
 
         if(drawingNotGuessing) {
-            dm.EraseDrawnLines();
+            um.EraseDrawnLines();
             um.ShowTextToDraw();
             um.SetUI(true);
             pm.playMode = PlayerManager.PlayMode.Draw;

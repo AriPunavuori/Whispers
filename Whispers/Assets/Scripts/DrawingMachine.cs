@@ -106,23 +106,8 @@ public class DrawingMachine : MonoBehaviour {
         mode = mode == Drawmode.Blue ? Drawmode.Red : Drawmode.Blue;
     }
 
-    public void ShowPicture(Picture picture) {
-
-        foreach (var l in picture) {
-            var drawnLine = Instantiate(bluePrefab);
-            drawnLine.transform.parent = um.pocket.transform;
-            var lineToDraw = drawnLine.GetComponent<LineRenderer>();
-            lineToDraw.positionCount = l.points.Count;
-            lineToDraw.SetPositions(l.points.ToArray());
-        }
-    }
-
-    public void EraseDrawnLines(){
-        um.PocketReset();
-        lines.Clear();
-    }
-
     public void DeleteLastLine(){
+        print(lineNumber);
         if(lineNumber > 0){
             var last = drawnLines[lineNumber - 1];
             drawnLines.RemoveAt(lineNumber - 1);

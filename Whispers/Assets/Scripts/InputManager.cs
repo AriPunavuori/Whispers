@@ -29,6 +29,7 @@ public class InputManager : MonoBehaviour {
         dm = DrawingMachine.instance;
         gm = GameManager.instance;
     }
+
     void Update() {
 
         // Kosketuksen alussa tehdään seuraavaa
@@ -68,14 +69,14 @@ public class InputManager : MonoBehaviour {
     }
 
     public void SendGuess() { // Funktio joka kutsutaan UI-Buttonilla kirjoitus-UI:ssä
-        rdm.guess = um.textBox.text;
-        um.textBox.text = "";
-        gm.timerTime = 0;
-        rdm.AddGuessToChain(rdm.guess, pm.playerData.playerID);
-    }
-
-    public void SetName(){
-        pm.SetPlayerName(um.textBox.text);
+        if(!gm.nameSet){
+            pm.SetPlayerName(um.textBox.text);
+        }else{
+            rdm.guess = um.textBox.text;
+            um.textBox.text = "";
+            gm.timerTime = 0;
+            rdm.AddGuessToChain(rdm.guess, pm.playerData.playerID);
+        }
     }
 
     private bool IsPointerOverUIObject(Vector2 position) { // Onko input UI-Elementtien päällä?

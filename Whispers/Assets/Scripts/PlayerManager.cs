@@ -39,7 +39,7 @@ public class PlayerManager : MonoBehaviour {
 
 
     private void Awake() {
-        // PlayerPrefs.SetString("Name", ""); // Tällä voi nollata nimen
+        PlayerPrefs.SetString("Name", ""); // Tällä voi nollata nimen
         if(PlayerPrefs.GetString("Name") == null){
             playerData.playerName = "";
         } else {

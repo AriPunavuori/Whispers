@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour {
 
     RoundDataManager rdm;
     //PlayerManager pm;
-    //DrawingMachine dm;
+    DrawingMachine dm;
     //WordGenerator wg;
     //InputManager im;
     GameManager gm;
@@ -34,6 +34,7 @@ public class UIManager : MonoBehaviour {
 
     public GameObject pocket;
     public GameObject pocketPrefab;
+
     public GameObject linePrefab;
 
     public InputField textBox;
@@ -42,7 +43,7 @@ public class UIManager : MonoBehaviour {
         rdm = RoundDataManager.instance;
         gm = GameManager.instance;
         //pm = PlayerManager.instance;
-        //dm = DrawingMachine.instance;
+        dm = DrawingMachine.instance;
         //wg = WordGenerator.instance;
         //im = InputManager.instance;
     }
@@ -80,9 +81,15 @@ public class UIManager : MonoBehaviour {
         ChangeUIText("Draw " + rdm.guess);
     }
 
+    public void EraseDrawnLines() {
+        PocketReset();
+        dm.lines.Clear();
+        dm.drawnLines.Clear();
+        dm.lineNumber = 0;
+    }
+
     public void PocketReset() { // Piirrettyjen viivojen(Peliobjektien) poisto 
         Destroy(pocket);
         pocket = Instantiate(pocketPrefab);
     }
-
 }
