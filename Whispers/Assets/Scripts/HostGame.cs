@@ -7,10 +7,8 @@ using UnityEngine.UI;
 public class HostGame : MonoBehaviour {
 
     [SerializeField]
-    private uint roomSize = 6;
-    public string roomName;
-
-    public InputField roomNameInput;    
+    uint roomSize = 6;
+    int roomCode;   
 
     NetworkManager networkManager;
 
@@ -21,18 +19,16 @@ public class HostGame : MonoBehaviour {
         }
     }
 
-    public void SetRoomName(string name) {
-        roomName = name;
+    public void GenerateRoomCode() {
+        roomCode = Random.Range(1000, 9999);
     }
 
     public void CreateRoom() {
-        print("trying to create a room");
-        if (roomName != "" || roomName == null) {
-            Debug.Log("Creating Room: " + roomName + " with room for " + roomSize + " players.");
-            // Create room
-            networkManager.matchMaker.CreateMatch(roomName, roomSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
-            print("room called " + roomName + " created");
-        }
+        GenerateRoomCode();
+        Debug.Log("Creating room with tag: " + roomCode + " for " + roomSize + " players.");
+        // Create room
+        networkManager.matchMaker.CreateMatch(roomCode.ToString(), roomSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
+        print("room called " + roomCode + " created");
     }
 
 
