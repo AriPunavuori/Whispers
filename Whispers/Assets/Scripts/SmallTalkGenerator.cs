@@ -36,7 +36,7 @@ public class SmallTalkGenerator : MonoBehaviour {
     string Ask;
     string Ques;
     string State;
-    string Jones;
+    public string Jones;
     public string myFirst;
     public string mySecond;
 
@@ -80,7 +80,7 @@ public class SmallTalkGenerator : MonoBehaviour {
         if (myFirst == Dec) {
             mySecond = State;
         } else mySecond = Ques;
-
-        SMTalk.text = (myFirst + "\n" + Jones + "\n" + mySecond);
+        um.ChangeUIText(myFirst + "\n" + Jones + "\n" + mySecond);
+        //SMTalk.text = (myFirst + "\n" + Jones + "\n" + mySecond);
     }
 }

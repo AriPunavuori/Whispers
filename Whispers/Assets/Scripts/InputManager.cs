@@ -21,6 +21,7 @@ public class InputManager : MonoBehaviour {
     DrawingMachine dm;
     UIManager um;
     GameManager gm;
+    SmallTalkGenerator smg;
 
     private void Awake() {
         rdm = RoundDataManager.instance;
@@ -28,6 +29,7 @@ public class InputManager : MonoBehaviour {
         um = UIManager.instance;
         dm = DrawingMachine.instance;
         gm = GameManager.instance;
+        smg = SmallTalkGenerator.instance;
     }
 
     void Update() {
@@ -71,7 +73,8 @@ public class InputManager : MonoBehaviour {
     public void SendGuess() { // Funktio joka kutsutaan UI-Buttonilla kirjoitus-UI:ssä
         if(!gm.nameSet){
             pm.SetPlayerName(um.textBox.text);
-        }else{
+            smg.Jones = um.textBox.text;
+        } else{
             rdm.guess = um.textBox.text;
             um.textBox.text = "";
             gm.timerTime = 0;
