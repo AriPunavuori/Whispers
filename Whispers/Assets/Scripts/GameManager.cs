@@ -61,14 +61,14 @@ public class GameManager : NetworkBehaviour {
         if(startTime < 0){ 
 
             if(pm.playerData.playerName == "") { // Onko nimi asetettu
-                um.SetUI(false);
                 pm.playMode = PlayerManager.PlayMode.Write;
+                um.SetUI();
                 um.ChangeUIText("Can you please tell me your name?"); // Asetetaan nimi SendGuess() funktiossa
             } else if(!started){
                 GenerateNewWordsToDraw(); // Ensimmäisen sanasetin luonti
                 pm.playMode = PlayerManager.PlayMode.Draw;
                 um.textBox.text = "";
-                um.SetUI(true);
+                um.SetUI();
                 nameSet = true;
                 started = true;
             } else{
@@ -102,15 +102,15 @@ public class GameManager : NetworkBehaviour {
         if(drawingNotGuessing) {
             um.EraseDrawnLines();
             um.ShowTextToDraw();
-            um.SetUI(true);
             pm.playMode = PlayerManager.PlayMode.Draw;
+            um.SetUI();
             SetTimer(timeToDraw);
         } else {
             um.PocketReset();
             um.ShowPictureToGuess(pm.playerData.playerID);
-            um.SetUI(false);
-            um.ChangeUIText("What on earth is this?");
             pm.playMode = PlayerManager.PlayMode.Write;
+            um.SetUI();
+            um.ChangeUIText("What on earth is this?");
             SetTimer(timeToWrite);
         }
         roundNumbr++;

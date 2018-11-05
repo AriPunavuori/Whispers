@@ -20,7 +20,7 @@ public class UIManager : MonoBehaviour {
     public TextMeshProUGUI uiText;
 
     RoundDataManager rdm;
-    //PlayerManager pm;
+    PlayerManager pm;
     DrawingMachine dm;
     //WordGenerator wg;
     //InputManager im;
@@ -42,7 +42,7 @@ public class UIManager : MonoBehaviour {
     private void Awake() {
         rdm = RoundDataManager.instance;
         gm = GameManager.instance;
-        //pm = PlayerManager.instance;
+        pm = PlayerManager.instance;
         dm = DrawingMachine.instance;
         //wg = WordGenerator.instance;
         //im = InputManager.instance;
@@ -52,12 +52,12 @@ public class UIManager : MonoBehaviour {
         uiText.text = text;
     }
 
-    public void SetUI(bool d) { // Vaihdetaan UI-Näkymää
-        drawingUI.SetActive(d);
-        //menuUI.SetActive(d);
-        //waitingUI.SetActive(d);
-        //watchingUI.SetActive(d);
-        writingUI.SetActive(!d);
+    public void SetUI() { // Vaihdetaan UI-Näkymää
+        drawingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Draw);
+        menuUI.SetActive(pm.playMode == PlayerManager.PlayMode.Menu);
+        waitingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Wait);
+        watchingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Watch);
+        writingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Write);
     }
 
     public void ShowPictureToGuess(int playerID) { // Näytetään kuva arvattavaksi
