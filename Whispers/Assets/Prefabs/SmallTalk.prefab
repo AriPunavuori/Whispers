@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1495542162027352}
+  m_IsPrefabAsset: 1
+--- !u!1 &1495542162027352
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4004261367682348}
+  - component: {fileID: 114728734358564628}
+  m_Layer: 0
+  m_Name: SmallTalk
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4004261367682348
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1495542162027352}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114728734358564628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1495542162027352}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4c2d0367933bdb4eb16482b59d3ea6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  declare: {fileID: 4900000, guid: 33529ce88ab722546a291343b78ac2cb, type: 3}
+  asking: {fileID: 4900000, guid: a0af18a9161c12b429ca99a0478b72fe, type: 3}
+  question: {fileID: 4900000, guid: a31dfc1fcac2fc24ba364dd98dba827d, type: 3}
+  statement: {fileID: 4900000, guid: dea765dc7cf254a4d8307d6927e1e0b5, type: 3}
+  myFirst: 
+  mySecond: 
