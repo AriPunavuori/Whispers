@@ -19,12 +19,12 @@ public class PlayerManager : MonoBehaviour {
     [System.Serializable]
 	public struct PlayerData { 
         public string playerName;
-        public int playerID;
+        public bool playerRDY;
         public List<float> playerIMG;
 
-        public PlayerData(string playerName, int playerID, List<float> playerIMG) {
+        public PlayerData(string playerName, bool playerRDY, List<float> playerIMG) {
             this.playerName = playerName;
-            this.playerID = playerID;
+            this.playerRDY = playerRDY;
             this.playerIMG = playerIMG;
         }
     }

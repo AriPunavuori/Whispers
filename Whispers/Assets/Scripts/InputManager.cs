@@ -22,6 +22,7 @@ public class InputManager : MonoBehaviour {
     UIManager um;
     GameManager gm;
     SmallTalkGenerator smg;
+    HostGame hg;
 
     private void Awake() {
         rdm = RoundDataManager.instance;
@@ -30,6 +31,7 @@ public class InputManager : MonoBehaviour {
         dm = DrawingMachine.instance;
         gm = GameManager.instance;
         smg = SmallTalkGenerator.instance;
+        hg = HostGame.instance;
     }
 
     void Update() {
@@ -66,8 +68,7 @@ public class InputManager : MonoBehaviour {
     }
 
     public void SendDrawing() { // Tallennetaan kuva
-        gm.timerTime = 0;
-        rdm.AddPictureToChain(dm.lines, 0);
+        rdm.AddPictureToChain(dm.lines, gm.playerID);
     }
 
     public void SendGuess() { // Funktio joka kutsutaan UI-Buttonilla kirjoitus-UI:ssä
@@ -77,9 +78,15 @@ public class InputManager : MonoBehaviour {
         } else{
             rdm.guess = um.textBox.text;
             um.textBox.text = "";
-            gm.timerTime = 0;
-            rdm.AddGuessToChain(rdm.guess, pm.playerData.playerID);
+            rdm.AddGuessToChain(rdm.guess, gm.playerID);
         }
+    }
+
+    public void CreateRoom(){
+        hg.CreateRoom();
+        pm.playMode = PlayerManager.PlayMode.Wait;
+        um.SetUI();
+        um.uiText.text = "Ask ppl to join room #: " + hg.roomCode;
     }
 
     private bool IsPointerOverUIObject(Vector2 position) { // Onko input UI-Elementtien päällä?

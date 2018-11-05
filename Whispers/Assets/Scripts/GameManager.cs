@@ -17,24 +17,23 @@ public class GameManager : NetworkBehaviour {
         }
     }
 
-    public GameObject nameButton;
 
-    public Slider timerFill;
-
-    public int roundNumbr = 1;
-    public int playerCount = 1;
 
     public bool nameSet = false;
     bool started = false;
     bool drawingNotGuessing = true;
 
-    [SyncVar]
+    public int playerCount = 1;
+    public int playerID = 0;
+
     public float timeToDraw = 60f;
-    [SyncVar]
     public float timeToWrite = 30f;
 
-    public float timerTime;
+    public int roundNumbr = 1;
+
     float startTime = 1;
+    public float roundTimer;
+    public Slider timerFill;
 
     RoundDataManager rdm;
     PlayerManager pm;
@@ -51,34 +50,39 @@ public class GameManager : NetworkBehaviour {
         wg = WordGenerator.instance;
         um = UIManager.instance;
         //im = InputManager.instance;
-        timerTime = timeToDraw;
+        roundTimer = timeToDraw;
         timerFill.maxValue = timeToDraw; 
         Fabric.EventManager.Instance.PostEvent("tune");
     }
 
     void Update () {
-        startTime -= Time.deltaTime; // Introaika
-        if(startTime < 0){ 
 
-            if(pm.playerData.playerName == "") { // Onko nimi asetettu
-                pm.playMode = PlayerManager.PlayMode.Write;
-                um.SetUI();
-                um.ChangeUIText("Can you please tell me your name?"); // Asetetaan nimi SendGuess() funktiossa
-            } else if(!started){
-                GenerateNewWordsToDraw(); // Ensimmäisen sanasetin luonti
-                pm.playMode = PlayerManager.PlayMode.Draw;
-                um.textBox.text = "";
-                um.SetUI();
-                nameSet = true;
-                started = true;
-            } else{
-                timerTime -= Time.deltaTime; // Peruspelin looppiajastin
-            }
-            if(timerTime <= 0) {
-                DrawingOrGuessing(); // Peruspeli (Piirretään tai arvataan)
-            }
-            timerFill.value = timerTime; // Tiimalasin ajan kuluminen
-        }
+
+
+
+
+        //startTime -= Time.deltaTime; // Introaika
+        //if(startTime < 0){ 
+
+        //    if(pm.playerData.playerName == "") { // Onko nimi asetettu
+        //        pm.playMode = PlayerManager.PlayMode.Write;
+        //        um.SetUI();
+        //        um.ChangeUIText("Can you please tell me your name?"); // Asetetaan nimi SendGuess() funktiossa
+        //    } else if(!started){
+        //        GenerateNewWordsToDraw(); // Ensimmäisen sanasetin luonti
+        //        pm.playMode = PlayerManager.PlayMode.Draw;
+        //        um.textBox.text = "";
+        //        um.SetUI();
+        //        nameSet = true;
+        //        started = true;
+        //    } else{
+        //        timerTime -= Time.deltaTime; // Peruspelin looppiajastin
+        //    }
+        //    if(timerTime <= 0) {
+        //        DrawingOrGuessing(); // Peruspeli (Piirretään tai arvataan)
+        //    }
+        //    timerFill.value = timerTime; // Tiimalasin ajan kuluminen
+        //}
     }
 
     public void Ads() {
@@ -92,27 +96,27 @@ public class GameManager : NetworkBehaviour {
     }
 
     void SetTimer(float time){ // Asetetaan ajastin sekä ajastimen koko
-        timerTime = time;
+        roundTimer = time;
         timerFill.maxValue = time;
     }
 
-    void DrawingOrGuessing(){ // Peruspelin vaihtelu
-        drawingNotGuessing = !drawingNotGuessing;
+    //void DrawingOrGuessing(){ // Peruspelin vaihtelu
+    //    drawingNotGuessing = !drawingNotGuessing;
 
-        if(drawingNotGuessing) {
-            um.EraseDrawnLines();
-            um.ShowTextToDraw();
-            pm.playMode = PlayerManager.PlayMode.Draw;
-            um.SetUI();
-            SetTimer(timeToDraw);
-        } else {
-            um.PocketReset();
-            um.ShowPictureToGuess(pm.playerData.playerID);
-            pm.playMode = PlayerManager.PlayMode.Write;
-            um.SetUI();
-            um.ChangeUIText("What on earth is this?");
-            SetTimer(timeToWrite);
-        }
-        roundNumbr++;
-    }
+    //    if(drawingNotGuessing) {
+    //        um.EraseDrawnLines();
+    //        um.ShowTextToDraw();
+    //        pm.playMode = PlayerManager.PlayMode.Draw;
+    //        um.SetUI();
+    //        SetTimer(timeToDraw);
+    //    } else {
+    //        um.PocketReset();
+    //        um.ShowPictureToGuess(pm.playerData.playerID);
+    //        pm.playMode = PlayerManager.PlayMode.Write;
+    //        um.SetUI();
+    //        um.ChangeUIText("What on earth is this?");
+    //        SetTimer(timeToWrite);
+    //    }
+    //    roundNumbr++;
+    //}
 }

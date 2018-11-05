@@ -38,6 +38,7 @@ public class UIManager : MonoBehaviour {
     public GameObject linePrefab;
 
     public InputField textBox;
+    public InputField textBox2;
 
     private void Awake() {
         rdm = RoundDataManager.instance;
@@ -46,6 +47,10 @@ public class UIManager : MonoBehaviour {
         dm = DrawingMachine.instance;
         //wg = WordGenerator.instance;
         //im = InputManager.instance;
+    }
+
+    public void Join(){
+        textBox2.gameObject.SetActive(true);
     }
 
     public void ChangeUIText(string text) { // UI-Tekstin vaihto
