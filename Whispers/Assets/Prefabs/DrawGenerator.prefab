@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1385742930572428}
+  m_IsPrefabAsset: 1
+--- !u!1 &1385742930572428
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4795560650580608}
+  - component: {fileID: 114878269090641850}
+  m_Layer: 0
+  m_Name: DrawGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4795560650580608
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1385742930572428}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 183.48837, y: 283.1324, z: -5.9731684}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114878269090641850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1385742930572428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0de6f7eb3d22f924f9ab7479298af366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aProb: 0
+  anProb: 0
+  SMTalk: {fileID: 0}
+  aAdjectives: {fileID: 4900000, guid: 7cf3076fff5631b4c80bf1e48f916ef7, type: 3}
+  anAdjectives: {fileID: 4900000, guid: d03c98b0056ff124c8f18f645061e28e, type: 3}
+  artistNouns: {fileID: 4900000, guid: 0d70675f47f83cb44be298f66ea23aae, type: 3}
+  endAdjectives: {fileID: 4900000, guid: 5b3fde3387fafff488349f72ddbbbc75, type: 3}
+  could: {fileID: 4900000, guid: c3b4cbf40258ae04aa5556a2fab4e945, type: 3}
+  Jones: 
+  aOrAn: 
+  artistAdj: 
+  endAdj: 
+  couldL: 

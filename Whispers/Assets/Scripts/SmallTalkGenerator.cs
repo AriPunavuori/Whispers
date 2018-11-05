@@ -83,4 +83,7 @@ public class SmallTalkGenerator : MonoBehaviour {
         um.ChangeUIText(myFirst + "\n" + Jones + "\n" + mySecond);
         //SMTalk.text = (myFirst + "\n" + Jones + "\n" + mySecond);
     }
+
+    
+
 }
