@@ -26,8 +26,6 @@ public class RoundDataManager : MonoBehaviour {
         }
     }
 
-    [SerializeField]
-    public List<string> guesses;
     public string guess;
     [SerializeField]
     public List<ChainData> chains;
@@ -52,7 +50,6 @@ public class RoundDataManager : MonoBehaviour {
         for(int i = 0 ; i < gm.playerCount ; i++) {
             chains.Add(new ChainData(new List<Picture>(), new List<string>()));
         }
-        guesses = new List<string>();
     }
 
     public void AddPictureToChain(Picture picture, int playerID) {
