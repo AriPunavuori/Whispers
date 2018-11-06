@@ -27,6 +27,7 @@ public class JoinGame : MonoBehaviour {
             statusText.text = "No rooms found.";
             return;
         }
+        print(matchList.Count);
         JoinRoom(matchList[0]);
     }
 
