@@ -54,7 +54,7 @@ public class PlayerManager : MonoBehaviour {
     }
 
     public void SetPlayerName(string name){ // Asetetaan nimi
-        playerData.playerName = name;
-        PlayerPrefs.SetString("Name", name);
+        playerData.playerName = name.RemoveDiacritics();
+        PlayerPrefs.SetString("Name", name.RemoveDiacritics());
     }
 }

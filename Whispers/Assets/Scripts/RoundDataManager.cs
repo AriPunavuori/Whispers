@@ -26,6 +26,8 @@ public class RoundDataManager : MonoBehaviour {
         }
     }
 
+
+
     public string guess;
     [SerializeField]
     public List<ChainData> chains;
@@ -59,7 +61,7 @@ public class RoundDataManager : MonoBehaviour {
     }
 
     public void AddGuessToChain(string text, int playerID) {
-        chains[playerID].guesses.Add(text);
+        chains[playerID].guesses.Add(text.RemoveDiacritics());
         //print(guesses[gm.roundNumbr/2]);
         
     }
