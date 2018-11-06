@@ -7,66 +7,34 @@ using UnityEngine.Networking.Match;
 public class JoinGame : MonoBehaviour {
 
     private NetworkManager networkManager;
-    List<GameObject> roomList = new List<GameObject>();
+
     [SerializeField]
     Text statusText;
-    [SerializeField]
-    GameObject roomListItemPrefab;
-    [SerializeField]
-    Transform roomListParent;
+
+    HostGame hg;
+    public InputField textBox;
 
     private void Start() {
+        hg = HostGame.instance;
         networkManager = NetworkManager.singleton;
         if (networkManager.matchMaker == null) {
             networkManager.StartMatchMaker();
         }
-
-        RefreshRoomList();
-
     }
-
-    public void RefreshRoomList() {
-        ClearRoomList();
-        networkManager.matchMaker.ListMatches(0, 20, "", true, 0, 0, OnMatchList);
-        statusText.text = "Loading...";
-    }
-
-
 
     public void OnMatchList(bool success, string extendedInfo, List<MatchInfoSnapshot> matchList) {
-        statusText.text = "";
         if (!success || matchList == null) {
             statusText.text = "No rooms found.";
             return;
         }
-
-        foreach (MatchInfoSnapshot match in matchList) {
-            GameObject _roomListItemGO = Instantiate(roomListItemPrefab);
-            _roomListItemGO.transform.SetParent(roomListParent);
-
-            RoomListItem _roomListItem = _roomListItemGO.GetComponent<RoomListItem>();
-            if (_roomListItem != null) {
-                _roomListItem.Setup(match, JoinRoom);
-            }
-
-            roomList.Add(_roomListItemGO);
-        }
-        if (roomList.Count == 0) {
-            statusText.text = "No rooms at the moment.";
-        }
+        JoinRoom(matchList[0]);
     }
 
-    void ClearRoomList() {
-        for (int i = 0; i < roomList.Count; i++) {
-            Destroy(roomList[i]);
-        }
-        roomList.Clear();
+    public void JoinButton() {
+        networkManager.matchMaker.ListMatches(0, 20, textBox.text, true, 0, 0, OnMatchList);
     }
-    
+
     public void JoinRoom(MatchInfoSnapshot _match) {
-        print("Joining..." + _match.name);
         networkManager.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, networkManager.OnMatchJoined);
-        ClearRoomList();
-        statusText.text = "JOINING...";
     }
 }

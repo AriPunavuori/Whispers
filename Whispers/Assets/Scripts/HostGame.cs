@@ -36,17 +36,7 @@ public class HostGame : MonoBehaviour {
 
     public void CreateRoom() {
         GenerateRoomCode();
-        Debug.Log("Creating room with tag: " + roomCode + " for " + roomSize + " players.");
-        // Create room
-
         networkManager.matchMaker.CreateMatch(roomCode.ToString(), roomSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
         print("room called " + roomCode + " created");
     }
-
-    public void JoinRoom(MatchInfoSnapshot _match) {
-        print("Joining..." + _match.name);
-        networkManager.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, networkManager.OnMatchJoined);
-    }
-
-
 }

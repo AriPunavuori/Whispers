@@ -19,7 +19,7 @@ public class PlayerUnit : NetworkBehaviour {
     // (We get it probably from the PlayerConnectionObject)
     float ourLatency;
 
-    float latencySmoothingFactor = 5;
+    float latencySmoothingFactor = 0;
 
 	void Update () {
         // This update runs ALL playerUnits, not just the one I own.
