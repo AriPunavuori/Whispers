@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 
@@ -8,14 +9,18 @@ public class JoinGame : MonoBehaviour {
 
     private NetworkManager networkManager;
 
-    [SerializeField]
-    Text statusText;
-
     HostGame hg;
+    UIManager um;
     public InputField textBox;
+    MatchInfoSnapshot foundGame;
+    public Text statusText;
+    private void Awake() {
+        um = UIManager.instance;
+        hg = HostGame.instance;
+    }
 
     private void Start() {
-        hg = HostGame.instance;
+
         networkManager = NetworkManager.singleton;
         if (networkManager.matchMaker == null) {
             networkManager.StartMatchMaker();
@@ -23,11 +28,21 @@ public class JoinGame : MonoBehaviour {
     }
 
     public void OnMatchList(bool success, string extendedInfo, List<MatchInfoSnapshot> matchList) {
-        if (!success || matchList == null) {
-            statusText.text = "No rooms found.";
+        if(!success) {
+            statusText.text = "Room search unsuccesful.";
             return;
         }
-        JoinRoom(matchList[0]);
+        if (matchList == null) {
+            statusText.text = "There is no list.";
+            return;
+        }
+        if(matchList.Count == 0){
+            statusText.text = "No rooms found";
+            return;
+        }
+        print(matchList.Count);
+        foundGame = matchList[0];
+        JoinRoom(foundGame);
     }
 
     public void JoinButton() {
@@ -35,6 +50,7 @@ public class JoinGame : MonoBehaviour {
     }
 
     public void JoinRoom(MatchInfoSnapshot _match) {
+        statusText.text = "Trying to join found match.";
         networkManager.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, networkManager.OnMatchJoined);
     }
 }
