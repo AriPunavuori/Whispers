@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/AriDevScene_Network.unity
     guid: e4c39718c840245279439170bca82f60
   - enabled: 1

@@ -7,6 +7,7 @@ using UnityEngine.Networking.Match;
 
 public class HostGame : MonoBehaviour {
 
+
     static HostGame _instance;
     public static HostGame instance {
         get {
@@ -23,7 +24,12 @@ public class HostGame : MonoBehaviour {
 
     NetworkManager networkManager;
     public Text statusText;
+    UIManager um;
 
+
+    private void Awake() {
+        um = UIManager.instance;
+    }
     private void Start() {
         networkManager = NetworkManager.singleton;
         if (networkManager.matchMaker == null) {
@@ -39,6 +45,6 @@ public class HostGame : MonoBehaviour {
         GenerateRoomCode();
         networkManager.matchMaker.CreateMatch(roomCode.ToString(), roomSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
         print(roomCode);
-        statusText.text = "room called " + roomCode + " created";
+        um.uiText.text = "room called " + roomCode + " created";
     }
 }
