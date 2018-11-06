@@ -22,6 +22,7 @@ public class HostGame : MonoBehaviour {
     public int roomCode;   
 
     NetworkManager networkManager;
+    public Text statusText;
 
     private void Start() {
         networkManager = NetworkManager.singleton;
@@ -37,6 +38,7 @@ public class HostGame : MonoBehaviour {
     public void CreateRoom() {
         GenerateRoomCode();
         networkManager.matchMaker.CreateMatch(roomCode.ToString(), roomSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
-        print("room called " + roomCode + " created");
+        print(roomCode);
+        statusText.text = "room called " + roomCode + " created";
     }
 }

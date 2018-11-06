@@ -86,7 +86,11 @@ public class InputManager : MonoBehaviour {
         hg.CreateRoom();
         pm.playMode = PlayerManager.PlayMode.Wait;
         um.SetUI();
-        um.uiText.text = "Ask ppl to join room #: " + hg.roomCode;
+        um.uiText.text = "Lobby:\nAsk ppl to join room #: " + hg.roomCode;
+    }
+
+    public void JoinRoom(){
+
     }
 
     private bool IsPointerOverUIObject(Vector2 position) { // Onko input UI-Elementtien päällä?

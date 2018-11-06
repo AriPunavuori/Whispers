@@ -45,6 +45,7 @@ public class DrawGenerator : MonoBehaviour {
     public string artistAdj;
     public string endAdj;
     public string couldL;
+    string[] separators = new string[] { "\r\n", "\n" };
 
     PlayerManager pm;
     UIManager um;
@@ -55,11 +56,11 @@ public class DrawGenerator : MonoBehaviour {
 
     }
     void Start() {
-        aAList = aAdjectives.text.Split('\n');
-        anAList = anAdjectives.text.Split('\n');
-        artList = artistNouns.text.Split('\n');
-        endAList = endAdjectives.text.Split('\n');
-        couldList = could.text.Split('\n');
+        aAList = aAdjectives.text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
+        anAList = anAdjectives.text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
+        artList = artistNouns.text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
+        endAList = endAdjectives.text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
+        couldList = could.text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
         Jones = pm.playerData.playerName;
     }
 
@@ -86,8 +87,8 @@ public class DrawGenerator : MonoBehaviour {
             aOrAn = anA;
 
             if (aOrAn == aA) { }
-            um.ChangeUIText(a + aOrAn + art + "\n" + Jones + "\n" + coul +  endA);
-            //SMTalk.text = (myFirst + "\n" + Jones + "\n" + mySecond);
+            //um.ChangeUIText(a + aOrAn + art + "\n" + Jones + "\n" + coul +  endA);
+            SMTalk.text = (a + " " + aOrAn + " " + art + "\n" + Jones + "\n" + coul + " " + endA);
         }
     }
 }
