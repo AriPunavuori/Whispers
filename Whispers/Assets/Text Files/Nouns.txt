@@ -13,13 +13,10 @@ Buffalo
 Butterfly
 Cactus
 Cat
-Ceiling Fan
 Chair
 Chest
 Child
-Children
 Cherry
-Clothes Iron
 Crab
 Crocodile
 Deer
@@ -33,7 +30,6 @@ Feet
 Fish
 Foot
 Fungus
-Glasses
 Guitar
 Hair Dryer
 Hand
@@ -44,10 +40,8 @@ Jeans
 Knife
 Koala
 Leaf
-Leaves
 Lemon
 Man
-Men
 Mice
 Microphone
 Money
@@ -67,15 +61,12 @@ Snake
 Star
 Student
 Teeth
-Testicles
+Testicle
 Television
 Tomato
 Tooth
-Trousers
-Water Heater
 Watermelon
 Woman
-Women
 Ose
 Ari
 Niko
