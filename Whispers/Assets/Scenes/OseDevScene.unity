@@ -933,6 +933,58 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 410800587}
   m_CullTransparentMesh: 0
+--- !u!1001 &440991761
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4795560650580608, guid: d53c4215c6c2c9143855eb628faf7a98, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 183.48837
+      objectReference: {fileID: 0}
+    - target: {fileID: 4795560650580608, guid: d53c4215c6c2c9143855eb628faf7a98, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 283.1324
+      objectReference: {fileID: 0}
+    - target: {fileID: 4795560650580608, guid: d53c4215c6c2c9143855eb628faf7a98, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -5.9731684
+      objectReference: {fileID: 0}
+    - target: {fileID: 4795560650580608, guid: d53c4215c6c2c9143855eb628faf7a98, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4795560650580608, guid: d53c4215c6c2c9143855eb628faf7a98, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4795560650580608, guid: d53c4215c6c2c9143855eb628faf7a98, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4795560650580608, guid: d53c4215c6c2c9143855eb628faf7a98, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4795560650580608, guid: d53c4215c6c2c9143855eb628faf7a98, type: 2}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 114878269090641850, guid: d53c4215c6c2c9143855eb628faf7a98,
+        type: 2}
+      propertyPath: snouns
+      value: 
+      objectReference: {fileID: 4900000, guid: 525317916d604ce4692ba1b1a5e6556e, type: 3}
+    - target: {fileID: 114878269090641850, guid: d53c4215c6c2c9143855eb628faf7a98,
+        type: 2}
+      propertyPath: SMTalk
+      value: 
+      objectReference: {fileID: 1188360456}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d53c4215c6c2c9143855eb628faf7a98, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &489275745
 GameObject:
   m_ObjectHideFlags: 0
@@ -2165,9 +2217,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d071672e2f2cd414296b88e372c3a933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adj: {fileID: 4900000, guid: 4cab82a7dfd9bd243a4504796238fdd2, type: 3}
+  adj1: {fileID: 4900000, guid: ee01da06619ded84b9376c8c52064258, type: 3}
+  adj2: {fileID: 4900000, guid: 25de0d5e9c962c94396359b0d3b91d3b, type: 3}
   noun: {fileID: 4900000, guid: 5158fd60443cacf49943a7bc18ba106f, type: 3}
   myWord: 
+  aProb: 0
+  anProb: 0
+  SMTalk: {fileID: 1188360456}
 --- !u!222 &1235876935
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2843,14 +2899,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a89c4cb848768e94980a1baba4f2c593, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nameButton: {fileID: 0}
-  timerFill: {fileID: 0}
-  roundNumbr: 1
-  playerCount: 1
   nameSet: 0
+  playerCount: 1
+  playerID: 0
   timeToDraw: 60
   timeToWrite: 30
-  timerTime: 10
+  roundNumbr: 1
+  roundTimer: 0
+  timerFill: {fileID: 0}
 --- !u!4 &1653881210
 Transform:
   m_ObjectHideFlags: 0

@@ -19,6 +19,8 @@ public class DrawGenerator : MonoBehaviour {
 
     public float aProb;
     public float anProb;
+    public float firstProb;
+    public float secondProb;
 
     public Text SMTalk;
 
@@ -27,24 +29,24 @@ public class DrawGenerator : MonoBehaviour {
     public TextAsset artistNouns;
     public TextAsset endAdjectives;
     public TextAsset could;
+    public TextAsset snouns;
 
     string[] aAList;
     string[] anAList;
     string[] artList;
     string[] endAList;
     string[] couldList;
+    string[] snounList;
 
     string aA;
     string anA;
     string art;
     string endA;
     string coul;
-    string a;
+    public string a;
+    string snoun;
     public string Jones;
     public string aOrAn;
-    public string artistAdj;
-    public string endAdj;
-    public string couldL;
     string[] separators = new string[] { "\r\n", "\n" };
 
     PlayerManager pm;
@@ -61,6 +63,7 @@ public class DrawGenerator : MonoBehaviour {
         artList = artistNouns.text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
         endAList = endAdjectives.text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
         couldList = could.text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
+        snounList = snouns.text.Split('\n');
         Jones = pm.playerData.playerName;
     }
 
@@ -73,22 +76,29 @@ public class DrawGenerator : MonoBehaviour {
     public void DrawG() { // Sanageneraattori
         aProb = Random.Range(0f, 1f);
         anProb = Random.Range(0f, 1f);
+        firstProb = Random.Range(0f, 1f);
+        secondProb = Random.Range(0f, 1f);
         aA = (aAList[Random.Range(0, aAList.Length)]);
         anA = (anAList[Random.Range(0, anAList.Length)]);
         art = (artList[Random.Range(0, artList.Length)]);
         endA = (endAList[Random.Range(0, endAList.Length)]);
         coul = (couldList[Random.Range(0, couldList.Length)]);
+        snoun = (snounList[Random.Range(0, snounList.Length)]);
 
-        if (aProb > anProb) {
-            a = "Only a";
-            aOrAn = aA;
+        if (firstProb > secondProb) {
+            SMTalk.text = ("This " + snoun + "\n" + "was drawn by " + "\n" + Jones);
         } else {
-            a = "Only an";
-            aOrAn = anA;
 
-            if (aOrAn == aA) { }
+            if (aProb > anProb) {
+                a = "Only a";
+                aOrAn = aA;
+            } else {
+                a = "Only an";
+                aOrAn = anA;
+            }
             //um.ChangeUIText(a + aOrAn + art + "\n" + Jones + "\n" + coul +  endA);
             SMTalk.text = (a + " " + aOrAn + " " + art + "\n" + Jones + "\n" + coul + " " + endA);
         }
     }
 }
+
