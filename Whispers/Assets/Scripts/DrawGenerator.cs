@@ -97,7 +97,7 @@ public class DrawGenerator : MonoBehaviour {
                 aOrAn = anA;
             }
             //um.ChangeUIText(a + aOrAn + art + "\n" + Jones + "\n" + coul +  endA);
-            SMTalk.text = (a + " " + aOrAn + " " + art + "\n" + Jones + "\n" + coul + " " + endA);
+            SMTalk.text = (a + " " + aOrAn + " " + art + " like \n" + Jones + "\n" + coul + " " + endA);
         }
     }
 }
