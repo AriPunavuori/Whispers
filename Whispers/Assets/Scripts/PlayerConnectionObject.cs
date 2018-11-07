@@ -24,6 +24,8 @@ public class PlayerConnectionObject : NetworkBehaviour {
             um.uiText.text = "Room #" + hg.roomCode;
         else
             um.uiText.text = "Wait a second";
+
+        hg.numberOfPlayers++;
     }
 
 	void Update () {
@@ -31,11 +33,11 @@ public class PlayerConnectionObject : NetworkBehaviour {
         if (isLocalPlayer == false) {
             return;
         }
+
     }
 
     [Command]
     void CmdUpdateChainDataOnServer(){
-
         RpcUpdateChaindataOnClients();
     }
 

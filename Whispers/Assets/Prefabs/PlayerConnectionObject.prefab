@@ -19,8 +19,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4193203437208352}
-  - component: {fileID: 114915395281736180}
-  - component: {fileID: 114328234636604932}
+  - component: {fileID: 114598175511197952}
+  - component: {fileID: 114493592468056570}
   m_Layer: 0
   m_Name: PlayerConnectionObject
   m_TagString: Untagged
@@ -41,7 +41,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114328234636604932
+--- !u!114 &114493592468056570
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -52,10 +52,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83674c4bd998e534bbfc0b46a7f0d768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerUnitPrefab: {fileID: 1338765599224570, guid: 47d5b4aa2933ed846b16adcf00ed5fa6,
-    type: 2}
-  PlayerName: Player#
---- !u!114 &114915395281736180
+--- !u!114 &114598175511197952
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -86,4 +83,4 @@ MonoBehaviour:
     i14: 124
     i15: 146
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 0
+  m_LocalPlayerAuthority: 1

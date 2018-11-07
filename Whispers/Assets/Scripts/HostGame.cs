@@ -20,7 +20,8 @@ public class HostGame : MonoBehaviour {
 
     [SerializeField]
     uint roomSize = 6;
-    public int roomCode;   
+    public int roomCode;
+    public int numberOfPlayers;
 
     NetworkManager networkManager;
     public Text statusText;
@@ -48,7 +49,6 @@ public class HostGame : MonoBehaviour {
         networkManager.matchMaker.CreateMatch(roomCode.ToString(), roomSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
         print(roomCode);
         pm.playerData.playerIsHost = true;
-
         //statusText.text = "room called " + roomCode + " created";
     }
 }
