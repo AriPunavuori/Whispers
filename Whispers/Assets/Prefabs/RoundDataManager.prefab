@@ -51,5 +51,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0252bcb70deb1548a274b32efa86de7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guesses: []
-  bluePrefab: {fileID: 0}
+  guess: 
+  chains: []
+  bluePrefab: {fileID: 1787983711274094, guid: 97e401520dd6f43efa74cfa8574b2562, type: 2}

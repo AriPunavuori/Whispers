@@ -21,14 +21,16 @@ public class PlayerManager : MonoBehaviour {
         public string playerName;
         public bool playerRDY;
         public List<float> playerIMG;
+        public bool playerIsHost;
 
-        public PlayerData(string playerName, bool playerRDY, List<float> playerIMG) {
+        public PlayerData(string playerName, bool playerRDY, List<float> playerIMG, bool playerIsHost) {
             this.playerName = playerName;
             this.playerRDY = playerRDY;
             this.playerIMG = playerIMG;
+            this.playerIsHost = playerIsHost;
         }
     }
-
+    bool created;
     public PlayerData playerData;
 
     //RoundDataManager rdm;
@@ -39,7 +41,11 @@ public class PlayerManager : MonoBehaviour {
 
 
     private void Awake() {
-        PlayerPrefs.SetString("Name", ""); // Tällä voi nollata nimen
+        if(!created) {
+            DontDestroyOnLoad(this.gameObject);
+            created = true;
+        }
+        //PlayerPrefs.SetString("Name", ""); // Tällä voi nollata nimen
         if(PlayerPrefs.GetString("Name") == null){
             playerData.playerName = "";
         } else {

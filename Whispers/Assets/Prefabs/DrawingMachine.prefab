@@ -54,7 +54,7 @@ MonoBehaviour:
   lines: []
   drawnLines: []
   drawPos: {x: 0, y: 0, z: 0}
-  bluePrefab: {fileID: 1638481305170900, guid: 4351306add86e46baa98e0565139c1f4, type: 2}
-  redPrefab: {fileID: 1651175827249466, guid: 48afe7ae7665b49f581c23b7c81b5f47, type: 2}
+  linePrefab: {fileID: 1787983711274094, guid: 97e401520dd6f43efa74cfa8574b2562, type: 2}
+  lineNumber: 0
   mode: 0
   pocket: {fileID: 0}

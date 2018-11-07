@@ -25,10 +25,12 @@ public class HostGame : MonoBehaviour {
     NetworkManager networkManager;
     public Text statusText;
     UIManager um;
+    PlayerManager pm;
 
 
     private void Awake() {
         um = UIManager.instance;
+        pm = PlayerManager.instance;
     }
     private void Start() {
         networkManager = NetworkManager.singleton;
@@ -45,6 +47,8 @@ public class HostGame : MonoBehaviour {
         GenerateRoomCode();
         networkManager.matchMaker.CreateMatch(roomCode.ToString(), roomSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
         print(roomCode);
-        statusText.text = "room called " + roomCode + " created";
+        pm.playerData.playerIsHost = true;
+
+        //statusText.text = "room called " + roomCode + " created";
     }
 }

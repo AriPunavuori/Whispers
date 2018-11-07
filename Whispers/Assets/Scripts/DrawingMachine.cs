@@ -32,8 +32,7 @@ public class DrawingMachine : MonoBehaviour {
     public Vector3 drawPos;
     LineData line;
     LineRenderer currentLine;
-    public GameObject bluePrefab;
-    public GameObject redPrefab;
+    public GameObject linePrefab;
     public int lineNumber = 0;
     float lineDotThreshold = 0.01f;
     public Drawmode mode;
@@ -71,7 +70,7 @@ public class DrawingMachine : MonoBehaviour {
     public void LineStart(Vector3 curPos) {
         drawPos = curPos;
         line = new LineData(true, new List<Vector3>());
-        GameObject newLine = Instantiate(mode == Drawmode.Blue ? bluePrefab : redPrefab);
+        GameObject newLine = Instantiate(linePrefab);
         newLine.transform.parent = um.pocket.transform;
         currentLine = newLine.GetComponent<LineRenderer>();
         drawnLines.Add(newLine);
@@ -100,10 +99,6 @@ public class DrawingMachine : MonoBehaviour {
         currentLine.SetPositions(line.points.ToArray());
         lines.Add(line);
         //PrintLines();
-    }
-
-    public void ChangeColor(){
-        mode = mode == Drawmode.Blue ? Drawmode.Red : Drawmode.Blue;
     }
 
     public void DeleteLastLine(){

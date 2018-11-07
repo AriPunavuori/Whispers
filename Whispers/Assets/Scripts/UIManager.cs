@@ -27,7 +27,6 @@ public class UIManager : MonoBehaviour {
     GameManager gm;
 
     public GameObject drawingUI;
-    public GameObject menuUI;
     public GameObject waitingUI;
     public GameObject watchingUI;
     public GameObject writingUI;
@@ -38,7 +37,6 @@ public class UIManager : MonoBehaviour {
     public GameObject linePrefab;
 
     public InputField textBox;
-    public InputField textBox2;
 
     private void Awake() {
         rdm = RoundDataManager.instance;
@@ -49,9 +47,6 @@ public class UIManager : MonoBehaviour {
         //im = InputManager.instance;
     }
 
-    public void Join(){
-        textBox2.gameObject.SetActive(true);
-    }
 
     public void ChangeUIText(string text) { // UI-Tekstin vaihto
         uiText.text = text;
@@ -59,7 +54,6 @@ public class UIManager : MonoBehaviour {
 
     public void SetUI() { // Vaihdetaan UI-Näkymää
         drawingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Draw);
-        menuUI.SetActive(pm.playMode == PlayerManager.PlayMode.Menu);
         waitingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Wait);
         watchingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Watch);
         writingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Write);
