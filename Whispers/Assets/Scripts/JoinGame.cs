@@ -29,15 +29,15 @@ public class JoinGame : MonoBehaviour {
 
     public void OnMatchList(bool success, string extendedInfo, List<MatchInfoSnapshot> matchList) {
         if(!success) {
-            um.uiText.text = "Room search unsuccesful.";
+            statusText.text = "Room search unsuccesful.";
             return;
         }
         if (matchList == null) {
-            um.uiText.text = "There is no list.";
+            statusText.text = "There is no list.";
             return;
         }
         if(matchList.Count == 0){
-            um.uiText.text = "No rooms found";
+            statusText.text = "No rooms found";
             return;
         }
         print(matchList.Count);
@@ -50,7 +50,7 @@ public class JoinGame : MonoBehaviour {
     }
 
     public void JoinRoom(MatchInfoSnapshot _match) {
-        um.uiText.text = "Trying to join found match.";
+        statusText.text = "Trying to join found match.";
         networkManager.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, networkManager.OnMatchJoined);
     }
 }

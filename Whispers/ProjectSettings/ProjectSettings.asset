@@ -710,7 +710,7 @@ PlayerSettings:
   cloudServicesEnabled:
     UNet: 1
   facebookSdkVersion: 7.9.4
-  apiCompatibilityLevel: 2
+  apiCompatibilityLevel: 3
   cloudProjectId: 2adfbfa3-f96d-4d80-a421-98f3a469b1c6
   projectName: Whispers
   organizationId: nikle34

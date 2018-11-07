@@ -45,6 +45,6 @@ public class HostGame : MonoBehaviour {
         GenerateRoomCode();
         networkManager.matchMaker.CreateMatch(roomCode.ToString(), roomSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
         print(roomCode);
-        um.uiText.text = "room called " + roomCode + " created";
+        statusText.text = "room called " + roomCode + " created";
     }
 }
