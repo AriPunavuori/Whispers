@@ -42,6 +42,7 @@ public class GameManager : NetworkBehaviour {
     //InputManager im;
     GameManager gm;
     UIManager um;
+    HostGame hg;
 
     private void Awake() {
         rdm = RoundDataManager.instance;
@@ -49,12 +50,15 @@ public class GameManager : NetworkBehaviour {
         dm = DrawingMachine.instance;
         wg = WordGenerator.instance;
         um = UIManager.instance;
+        hg = HostGame.instance;
         //im = InputManager.instance;
         roundTimer = timeToDraw;
         timerFill.maxValue = timeToDraw; 
         Fabric.EventManager.Instance.PostEvent("tune");
     }
+    private void Start() {
 
+    }
     void Update () {
 
 
@@ -97,7 +101,6 @@ public class GameManager : NetworkBehaviour {
 
     void SetTimer(float time){ // Asetetaan ajastin sekä ajastimen koko
         roundTimer = time;
-        timerFill.maxValue = time;
     }
 
     //void DrawingOrGuessing(){ // Peruspelin vaihtelu
