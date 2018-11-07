@@ -13,13 +13,10 @@ Buffalo
 Butterfly
 Cactus
 Cat
-Ceiling Fan
 Chair
 Chest
 Child
-Children
 Cherry
-Clothes Iron
 Crab
 Crocodile
 Deer
@@ -29,28 +26,20 @@ Elephant
 Elf
 Eye
 Family
-Feet
 Fish
 Foot
 Fungus
-Glasses
 Guitar
-Hair Dryer
 Hand
 Hedgehog
 Horse
 House
-Jeans
 Knife
 Koala
 Leaf
-Leaves
 Lemon
 Man
-Men
-Mice
 Microphone
-Money
 Mouse
 Mousetrap
 Number
@@ -67,15 +56,12 @@ Snake
 Star
 Student
 Teeth
-Testicles
+Testicle
 Television
 Tomato
 Tooth
-Trousers
-Water Heater
 Watermelon
 Woman
-Women
 Ose
 Ari
 Niko
