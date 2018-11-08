@@ -165,7 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f308a8fb2ed40ea9e9ac2b394ee34e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfPlayers: 0
   textToDisplay: 
   inputText: []
   textField: {fileID: 13837710}
@@ -606,6 +605,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114048331933976260, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+        type: 2}
+      propertyPath: m_textAlignment
+      value: 257
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d124e81a6b8edb2419d780e5aefdc5e9, type: 2}
   m_IsPrefabAsset: 0
@@ -808,6 +812,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114401811313645480, guid: d8844b4a075c3428db91749a6a4cc0dc,
+        type: 2}
+      propertyPath: adj1
+      value: 
+      objectReference: {fileID: 4900000, guid: ee01da06619ded84b9376c8c52064258, type: 3}
+    - target: {fileID: 114401811313645480, guid: d8844b4a075c3428db91749a6a4cc0dc,
+        type: 2}
+      propertyPath: adj2
+      value: 
+      objectReference: {fileID: 4900000, guid: 25de0d5e9c962c94396359b0d3b91d3b, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8844b4a075c3428db91749a6a4cc0dc, type: 2}
   m_IsPrefabAsset: 0
@@ -1326,17 +1340,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: '1.
-
-    2.
-
-    3.
-
-    4.
-
-    5.
-
-    6.'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -1404,13 +1408,13 @@ MonoBehaviour:
   m_margin: {x: 0, y: -606.4243, z: 77.277954, w: 0}
   m_textInfo:
     textComponent: {fileID: 1312171928}
-    characterCount: 17
+    characterCount: 0
     spriteCount: 0
-    spaceCount: 5
-    wordCount: 6
+    spaceCount: 0
+    wordCount: 0
     linkCount: 0
-    lineCount: 6
-    pageCount: 1
+    lineCount: 0
+    pageCount: 0
     materialCount: 1
   m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
@@ -1604,6 +1608,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomSize: 6
   roomCode: 0
+  numberOfPlayers: 0
   statusText: {fileID: 0}
 --- !u!1001 &2100605193
 Prefab:

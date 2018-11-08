@@ -20,9 +20,9 @@ public class PlayerConnectionObject : NetworkBehaviour {
             // this object belong to another player.
             return; 
         }
-        if(pm.playerData.playerIsHost)
-            um.uiText.text = "Room #" + hg.roomCode;
-        else
+        if(pm.playerData.playerIsHost){
+            //um.uiText.text = "Room #" + hg.roomCode;
+        } else
             um.uiText.text = "Wait a second";
 
         hg.numberOfPlayers++;

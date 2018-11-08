@@ -19,11 +19,13 @@ public class InputTest : NetworkBehaviour {
     }
 
     private void Start() {
-        for(int i = 0 ; i < hg.numberOfPlayers ; i++) {
-            textToDisplay = i+1 + ". ";
-            inputText.Add(textToDisplay);
+        for(int i = 0 ; i < 6 ; i++) {
+            inputText.Add(i+1 + "." + "\n");
+            print(inputText[i]);
+            textToDisplay = textToDisplay + inputText[i];
         }
         um.uiText.text = textToDisplay;
+
     }
 
     // Update is called once per frame
@@ -37,9 +39,13 @@ public class InputTest : NetworkBehaviour {
         var player = FindObjectOfType<PlayerConnectionObject>();
         var id = player.netId.Value;
         print(id);
-        inputText.Insert((int)id-1, textField.text);
+        inputText[((int)id)-1] = textField.text;
         for(int i = 0 ; i < inputText.Count ; i++ ){
-            textToDisplay = textToDisplay + i + inputText[i] + "\n";
+            if(i==id-1){
+                textToDisplay = textToDisplay + (i + 1) + ". " + inputText[i] + "\n";
+            } else{
+                textToDisplay = textToDisplay + inputText[i];
+            }
         }
         um.uiText.text = textToDisplay;
     }
