@@ -21,7 +21,7 @@ public class HostGame : NetworkBehaviour {
     [SerializeField]
     uint roomSize = 6;
     public int roomCode;
-    [SyncVar]
+
     public int numberOfPlayers;
 
     NetworkManager networkManager;
