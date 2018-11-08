@@ -34,7 +34,7 @@ public class InputTest : NetworkBehaviour {
 	}
 
     public void UpdateInputTextList(){
-        print(hg.numberOfPlayers);
+        //print(hg.numberOfPlayers);
         textToDisplay = "";
         var player = FindObjectOfType<PlayerConnectionObject>();
         var id = player.netId.Value;
