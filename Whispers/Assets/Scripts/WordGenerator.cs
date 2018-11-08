@@ -178,8 +178,8 @@ public class WordGenerator : MonoBehaviour {
     public void GuessG() { // Sanageneraattori
         want = (wantList[Random.Range(0, wantList.Length)]);
 
-        //um.ChangeUIText(Jones + " " + want + " you to draw " + rdm.guess);
-        SMTalk.text = (Jones + " " + want + " you to draw ");//+rdm.guess);
+        //um.ChangeUIText(Jones + " " + want + " you to draw " + rdm.guess.RemoveDiacritics());
+        SMTalk.text = (Jones + " " + want + " you to draw " + rdm.guess.RemoveDiacritics());
     }
 
     public void DrawG() { // Sanageneraattori
@@ -193,6 +193,7 @@ public class WordGenerator : MonoBehaviour {
         endA = (endAList[Random.Range(0, endAList.Length)]);
         coul = (couldList[Random.Range(0, couldList.Length)]);
         snoun = (snounList[Random.Range(0, snounList.Length)]);
+        
 
         if (firstProb > secondProb) {
             //um.ChangeUIText("This " + snoun + "\n" + "was drawn by " + "\n" + Jones);
