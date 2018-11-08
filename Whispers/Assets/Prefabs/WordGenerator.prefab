@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114401811313645480}
   - component: {fileID: 222455546048392350}
   m_Layer: 0
-  m_Name: Word Generator
+  m_Name: WordGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39,8 +39,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d071672e2f2cd414296b88e372c3a933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adj: {fileID: 4900000, guid: 4cab82a7dfd9bd243a4504796238fdd2, type: 3}
+  aProb: 0
+  anProb: 0
+  askProb: 0
+  decProb: 0
+  firstProb: 0
+  secondProb: 0
+  a: 
+  aOrAn: 
+  Jones: 
+  myFirst: 
+  mySecond: 
+  myWord: 
+  want: 
+  SMTalk: {fileID: 0}
+  aAdjectives: {fileID: 0}
+  anAdjectives: {fileID: 0}
+  adj1: {fileID: 0}
+  adj2: {fileID: 0}
+  artistNouns: {fileID: 0}
+  asking: {fileID: 0}
+  could: {fileID: 0}
+  declare: {fileID: 0}
+  endAdjectives: {fileID: 0}
   noun: {fileID: 4900000, guid: 5158fd60443cacf49943a7bc18ba106f, type: 3}
+  question: {fileID: 0}
+  snouns: {fileID: 0}
+  statement: {fileID: 0}
+  wants: {fileID: 0}
 --- !u!222 &222455546048392350
 CanvasRenderer:
   m_ObjectHideFlags: 1
