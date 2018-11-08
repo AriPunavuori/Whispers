@@ -53,12 +53,12 @@ public class PlayerConnectionObject : NetworkBehaviour {
     [Command]
     void CmdAddPlayer(){
         hg.numberOfPlayers++;
-        RpcAddPlayer();
+        RpcUpdatePlayerCount(hg.numberOfPlayers);
     }
 
     [ClientRpc]
-    void RpcAddPlayer(){
-        hg.numberOfPlayers++;
+    void RpcUpdatePlayerCount(int newPlayerCount){
+        hg.numberOfPlayers = newPlayerCount;
     }
 
     [Command]

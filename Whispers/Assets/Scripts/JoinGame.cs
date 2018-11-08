@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine.Networking;
 using UnityEngine.Networking.Match;
 
-public class JoinGame : MonoBehaviour {
+public class JoinGame : NetworkBehaviour {
 
     private NetworkManager networkManager;
 
