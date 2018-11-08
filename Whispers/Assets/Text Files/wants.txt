@@ -1,0 +1,6 @@
+﻿wants
+needs
+would like
+asks
+commands
+orders

@@ -933,58 +933,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 410800587}
   m_CullTransparentMesh: 0
---- !u!1001 &440991761
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4795560650580608, guid: d53c4215c6c2c9143855eb628faf7a98, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 183.48837
-      objectReference: {fileID: 0}
-    - target: {fileID: 4795560650580608, guid: d53c4215c6c2c9143855eb628faf7a98, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 283.1324
-      objectReference: {fileID: 0}
-    - target: {fileID: 4795560650580608, guid: d53c4215c6c2c9143855eb628faf7a98, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -5.9731684
-      objectReference: {fileID: 0}
-    - target: {fileID: 4795560650580608, guid: d53c4215c6c2c9143855eb628faf7a98, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4795560650580608, guid: d53c4215c6c2c9143855eb628faf7a98, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4795560650580608, guid: d53c4215c6c2c9143855eb628faf7a98, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4795560650580608, guid: d53c4215c6c2c9143855eb628faf7a98, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4795560650580608, guid: d53c4215c6c2c9143855eb628faf7a98, type: 2}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 114878269090641850, guid: d53c4215c6c2c9143855eb628faf7a98,
-        type: 2}
-      propertyPath: snouns
-      value: 
-      objectReference: {fileID: 4900000, guid: 525317916d604ce4692ba1b1a5e6556e, type: 3}
-    - target: {fileID: 114878269090641850, guid: d53c4215c6c2c9143855eb628faf7a98,
-        type: 2}
-      propertyPath: SMTalk
-      value: 
-      objectReference: {fileID: 1188360456}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d53c4215c6c2c9143855eb628faf7a98, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &489275745
 GameObject:
   m_ObjectHideFlags: 0
@@ -1925,53 +1873,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1033605525}
   m_CullTransparentMesh: 0
---- !u!1001 &1119370845
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4004261367682348, guid: d3ab3d07bd9c11c44be1bde8db8fea97, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4004261367682348, guid: d3ab3d07bd9c11c44be1bde8db8fea97, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4004261367682348, guid: d3ab3d07bd9c11c44be1bde8db8fea97, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4004261367682348, guid: d3ab3d07bd9c11c44be1bde8db8fea97, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4004261367682348, guid: d3ab3d07bd9c11c44be1bde8db8fea97, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4004261367682348, guid: d3ab3d07bd9c11c44be1bde8db8fea97, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4004261367682348, guid: d3ab3d07bd9c11c44be1bde8db8fea97, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4004261367682348, guid: d3ab3d07bd9c11c44be1bde8db8fea97, type: 2}
-      propertyPath: m_RootOrder
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114728734358564628, guid: d3ab3d07bd9c11c44be1bde8db8fea97,
-        type: 2}
-      propertyPath: SMTalk
-      value: 
-      objectReference: {fileID: 1188360456}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d3ab3d07bd9c11c44be1bde8db8fea97, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &1130492482
 GameObject:
   m_ObjectHideFlags: 0
@@ -2200,7 +2101,7 @@ GameObject:
   - component: {fileID: 1235876933}
   - component: {fileID: 1235876935}
   m_Layer: 0
-  m_Name: Word Generator
+  m_Name: WordGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2217,13 +2118,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d071672e2f2cd414296b88e372c3a933, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  adj1: {fileID: 4900000, guid: ee01da06619ded84b9376c8c52064258, type: 3}
-  adj2: {fileID: 4900000, guid: 25de0d5e9c962c94396359b0d3b91d3b, type: 3}
-  noun: {fileID: 4900000, guid: 5158fd60443cacf49943a7bc18ba106f, type: 3}
-  myWord: 
   aProb: 0
   anProb: 0
+  askProb: 0
+  decProb: 0
+  firstProb: 0
+  secondProb: 0
+  a: 
+  aOrAn: 
+  Jones: 
+  myFirst: 
+  mySecond: 
+  myWord: 
+  want: 
   SMTalk: {fileID: 1188360456}
+  aAdjectives: {fileID: 4900000, guid: 7cf3076fff5631b4c80bf1e48f916ef7, type: 3}
+  anAdjectives: {fileID: 4900000, guid: d03c98b0056ff124c8f18f645061e28e, type: 3}
+  adj1: {fileID: 4900000, guid: ee01da06619ded84b9376c8c52064258, type: 3}
+  adj2: {fileID: 4900000, guid: 25de0d5e9c962c94396359b0d3b91d3b, type: 3}
+  artistNouns: {fileID: 4900000, guid: 0d70675f47f83cb44be298f66ea23aae, type: 3}
+  asking: {fileID: 4900000, guid: a0af18a9161c12b429ca99a0478b72fe, type: 3}
+  could: {fileID: 4900000, guid: c3b4cbf40258ae04aa5556a2fab4e945, type: 3}
+  declare: {fileID: 4900000, guid: 33529ce88ab722546a291343b78ac2cb, type: 3}
+  endAdjectives: {fileID: 4900000, guid: 5b3fde3387fafff488349f72ddbbbc75, type: 3}
+  noun: {fileID: 4900000, guid: 5158fd60443cacf49943a7bc18ba106f, type: 3}
+  question: {fileID: 4900000, guid: a31dfc1fcac2fc24ba364dd98dba827d, type: 3}
+  snouns: {fileID: 4900000, guid: 525317916d604ce4692ba1b1a5e6556e, type: 3}
+  statement: {fileID: 4900000, guid: dea765dc7cf254a4d8307d6927e1e0b5, type: 3}
+  wants: {fileID: 4900000, guid: 7e5d9d220910d3b4e91a271c01d30608, type: 3}
 --- !u!222 &1235876935
 CanvasRenderer:
   m_ObjectHideFlags: 0
