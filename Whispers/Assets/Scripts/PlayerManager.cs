@@ -22,12 +22,14 @@ public class PlayerManager : MonoBehaviour {
         public bool playerRDY;
         public List<float> playerIMG;
         public bool playerIsHost;
+        public int playerID;
 
-        public PlayerData(string playerName, bool playerRDY, List<float> playerIMG, bool playerIsHost) {
+        public PlayerData(string playerName, bool playerRDY, List<float> playerIMG, bool playerIsHost, int playerID) {
             this.playerName = playerName;
             this.playerRDY = playerRDY;
             this.playerIMG = playerIMG;
             this.playerIsHost = playerIsHost;
+            this.playerID = playerID;
         }
     }
     bool created;

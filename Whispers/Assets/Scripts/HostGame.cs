@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 using UnityEngine.UI;
 using UnityEngine.Networking.Match;
 
-public class HostGame : MonoBehaviour {
+public class HostGame : NetworkBehaviour {
 
 
     static HostGame _instance;
@@ -21,6 +21,7 @@ public class HostGame : MonoBehaviour {
     [SerializeField]
     uint roomSize = 6;
     public int roomCode;
+
     public int numberOfPlayers;
 
     NetworkManager networkManager;
