@@ -195,6 +195,7 @@ public class WordGenerator : MonoBehaviour {
         snoun = (snounList[Random.Range(0, snounList.Length)]);
 
         if (firstProb > secondProb) {
+            //um.ChangeUIText("This " + snoun + "\n" + "was drawn by " + "\n" + Jones);
             SMTalk.text = ("This " + snoun + "\n" + "was drawn by " + "\n" + Jones);
         } else {
 
@@ -205,7 +206,7 @@ public class WordGenerator : MonoBehaviour {
                 a = "Only an";
                 aOrAn = anA;
             }
-            //um.ChangeUIText(a + aOrAn + art + "\n" + Jones + "\n" + coul +  endA);
+            //um.ChangeUIText(a + " " + aOrAn + " " + art + " like \n" + Jones + "\n" + coul + " " + endA);
             SMTalk.text = (a + " " + aOrAn + " " + art + " like \n" + Jones + "\n" + coul + " " + endA);
         }
     }
