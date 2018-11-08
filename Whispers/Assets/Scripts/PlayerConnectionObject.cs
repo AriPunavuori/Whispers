@@ -44,11 +44,15 @@ public class PlayerConnectionObject : NetworkBehaviour {
         }
     }
 
+
     void SetNetworkId(){
-        if (!isServer){
-            hg.numberOfPlayers++;
-        }
         pm.playerData.playerID = hg.numberOfPlayers;
+        CmdAddPlayer();
+    }
+
+    [Command]
+    void CmdAddPlayer(){
+        hg.numberOfPlayers++;
     }
 
     [Command]
