@@ -13,6 +13,10 @@ public class PlayerConnectionObject : NetworkBehaviour {
     GameManager gm;
     public int playerID;
 
+    
+    public GameObject playerUIPrefab;
+    public GameObject UIContainer;
+
     private void Awake() {
         um = UIManager.instance;
         hg = HostGame.instance;
@@ -35,6 +39,11 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
         SetNetworkId();
         CmdChangeName(pm.playerData.playerID);
+        var PlayerInfo = Instantiate(playerUIPrefab);
+        UIContainer = GameObject.Find("PlayerInfoContainer");
+        PlayerInfo.transform.parent = UIContainer.transform;
+        PlayerInfo.transform.localScale = Vector3.one;
+
     }
 
 	void Update () {
