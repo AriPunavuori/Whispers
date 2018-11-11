@@ -33,11 +33,12 @@ public class PlayerConnectionObject : NetworkBehaviour {
         } else
             um.uiText.text = "Wait a second";
 
+        CmdAddPlayer();
         SetNetworkId();
         CmdChangeName(pm.playerData.playerID);
     }
 
-	void Update () {
+    void Update () {
         // update runs on EVERYONE's computer wheter or not they own this particular object
         if (isLocalPlayer == false) {
             return;
@@ -46,8 +47,8 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
 
     void SetNetworkId(){
+       
         pm.playerData.playerID = hg.numberOfPlayers;
-        CmdAddPlayer();
     }
 
     [Command]
