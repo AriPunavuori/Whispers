@@ -11,9 +11,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
     RoundDataManager rdm;
     DrawingMachine dm;
     GameManager gm;
-    public int playerID;
 
-    
     public GameObject playerUIPrefab;
     public GameObject UIContainer;
 
@@ -38,13 +36,14 @@ public class PlayerConnectionObject : NetworkBehaviour {
             um.uiText.text = "Wait a second";
 
 
-        SetNetworkId();
+        //SetNetworkId();
         CmdAddPlayer();
-        CmdChangeName(pm.playerData.playerID);
+        //CmdChangeName(pm.playerData.playerID);
         var PlayerInfo = Instantiate(playerUIPrefab);
         UIContainer = GameObject.Find("PlayerInfoContainer");
         //PlayerInfo.transform.parent = UIContainer.transform;
         //PlayerInfo.transform.localScale = Vector3.one;
+
     }
 
     void Update () {
@@ -55,7 +54,8 @@ public class PlayerConnectionObject : NetworkBehaviour {
     }
 
     void SetNetworkId(){
-        pm.playerData.playerID = hg.numberOfPlayers;
+        pm.playerData.playerID = hg.numberOfPlayers - 1;
+        CmdChangeName(pm.playerData.playerID);
     }
 
     [Command]
@@ -67,6 +67,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
     [ClientRpc]
     void RpcUpdatePlayerCount(int newPlayerCount){
         hg.numberOfPlayers = newPlayerCount;
+        SetNetworkId();
     }
 
     [Command]

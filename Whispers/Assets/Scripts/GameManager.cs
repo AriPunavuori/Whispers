@@ -138,9 +138,7 @@ public class GameManager : NetworkBehaviour {
         wg.WordG();
         print(wg.myWord);
         print("PlayerIDSlotInChain: " + playerID);
-
         //rdm.AddGuessToChain(wg.myWord, pm.playerData.playerID);
-
         um.PocketReset();
     }
 
