@@ -31,7 +31,7 @@ public class GameManager : NetworkBehaviour {
     public float timeToDraw = 60f;
     public float timeToWrite = 30f;
 
-    public int roundNumbr = 1;
+    public int roundNumbr = 0;
 
     float startTime = 1;
     public float roundTimer;
@@ -64,7 +64,7 @@ public class GameManager : NetworkBehaviour {
     void Update () {
 
         if(allPlayersReady){
-            if(roundNumbr == 1){
+            if(roundNumbr == 0){
                 // Show first words to draw
                 pm.playMode = PlayerManager.PlayMode.Draw;
                 um.SetUI();
@@ -74,7 +74,7 @@ public class GameManager : NetworkBehaviour {
                 //um.textBox.text = "";
             } else if (roundNumbr < hg.numberOfPlayers){
                 // See if roundnumber is odd or even and then draw or guess
-                if(roundNumbr % 2 == 0){
+                if(roundNumbr % 2 == 0){ // if is even, 
                     um.PocketReset();
                     um.ShowPictureToGuess(pm.playerData.playerID);
                     pm.playMode = PlayerManager.PlayMode.Write;
@@ -83,7 +83,7 @@ public class GameManager : NetworkBehaviour {
                     SetTimer(timeToWrite);
                     PlayerNotReady();
                     roundNumbr++;
-                } else {
+                } else { // odd
                     um.EraseDrawnLines();
                     um.ShowTextToDraw();
                     pm.playMode = PlayerManager.PlayMode.Draw;

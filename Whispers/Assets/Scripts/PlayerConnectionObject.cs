@@ -58,6 +58,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
     [TargetRpc]
     void TargetSetNetworkId(NetworkConnection _target, int id){
         pm.playerData.playerID = id;
+        gm.playerID = id;
         CmdChangeName(pm.playerData.playerID);
     }
 
