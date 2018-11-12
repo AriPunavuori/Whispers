@@ -796,6 +796,43 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e937099e38528b043b9b809cac4b39ff, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &902969744 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1136887274139754, guid: e937099e38528b043b9b809cac4b39ff,
+    type: 2}
+  m_PrefabInternal: {fileID: 902969743}
+--- !u!114 &902969745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 902969744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 233
+    i1: 55
+    i2: 9
+    i3: 158
+    i4: 56
+    i5: 82
+    i6: 139
+    i7: 4
+    i8: 59
+    i9: 155
+    i10: 128
+    i11: 156
+    i12: 172
+    i13: 75
+    i14: 57
+    i15: 255
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!1001 &1039870184
 Prefab:
   m_ObjectHideFlags: 0
@@ -1100,6 +1137,43 @@ Prefab:
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e8a6c69cfe904e1c8d5a45f38e73a69, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &2100605194 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1091823451371040, guid: 2e8a6c69cfe904e1c8d5a45f38e73a69,
+    type: 2}
+  m_PrefabInternal: {fileID: 2100605193}
+--- !u!114 &2100605195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2100605194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 46
+    i1: 138
+    i2: 108
+    i3: 105
+    i4: 207
+    i5: 233
+    i6: 4
+    i7: 225
+    i8: 200
+    i9: 213
+    i10: 164
+    i11: 95
+    i12: 56
+    i13: 231
+    i14: 58
+    i15: 105
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!1001 &2108169003
 Prefab:
   m_ObjectHideFlags: 0

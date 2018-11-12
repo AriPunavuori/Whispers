@@ -18,7 +18,7 @@ public class GameManager : NetworkBehaviour {
     }
 
     public bool nameSet = false;
-    public bool allPlayersReady = false;
+    public int playersReady;
     //bool started = false;
     //bool drawingNotGuessing = true;
 
@@ -56,71 +56,10 @@ public class GameManager : NetworkBehaviour {
 
     }
     void Update () {
-
-        if(allPlayersReady){
-            if(roundNumbr == 0){
-                // Show first words to draw
-                pm.playMode = PlayerManager.PlayMode.Draw;
-                um.SetUI();
-                PlayerNotReady();
-                roundNumbr++;
-                GenerateNewWordsToDraw(); // Ensimmäisen sanasetin luonti
-                //um.textBox.text = "";
-            } else if (roundNumbr < hg.numberOfPlayers){
-                // See if roundnumber is odd or even and then draw or guess
-                if(roundNumbr % 2 == 0){ // if is even, 
-                    um.PocketReset();
-                    um.ShowPictureToGuess(pm.playerData.playerID);
-                    pm.playMode = PlayerManager.PlayMode.Write;
-                    um.SetUI();
-                    um.ChangeUIText("What on earth is this?");
-                    SetTimer(timeToWrite);
-                    PlayerNotReady();
-                    roundNumbr++;
-                } else { // odd
-                    um.EraseDrawnLines();
-                    um.ShowTextToDraw();
-                    pm.playMode = PlayerManager.PlayMode.Draw;
-                    um.SetUI();
-                    SetTimer(timeToDraw);
-                    PlayerNotReady();
-                    roundNumbr++;
-                }
-            } else{
-                // Show chains
-                pm.playMode = PlayerManager.PlayMode.Watch;
-                um.SetUI();
-            }
-            // if isServer: check if all players are ready and set roundnumbr++ and allPlayersReady bool to true
-        }
-
-
-
-        //startTime -= Time.deltaTime; // Introaika
-        //if(startTime < 0){ 
-
-        //    if(pm.playerData.playerName == "") { // Onko nimi asetettu
-        //        pm.playMode = PlayerManager.PlayMode.Write;
-        //        um.SetUI();
-        //        um.ChangeUIText("Can you please tell me your name?"); // Asetetaan nimi SendGuess() funktiossa
-        //    } else if(!started){
-        //        GenerateNewWordsToDraw(); // Ensimmäisen sanasetin luonti
-        //        pm.playMode = PlayerManager.PlayMode.Draw;
-        //        um.textBox.text = "";
-        //        um.SetUI();
-        //        nameSet = true;
-        //        started = true;
-        //    } else{
-        //        timerTime -= Time.deltaTime; // Peruspelin looppiajastin
-        //    }
-        //    if(timerTime <= 0) {
-        //        DrawingOrGuessing(); // Peruspeli (Piirretään tai arvataan)
-        //    }
-        //    timerFill.value = timerTime; // Tiimalasin ajan kuluminen
-        //}
+        // if isServer: check if all players are ready and set roundnumbr++ and allPlayers Ready bool to true
     }
+
     public void PlayerNotReady(){
-        allPlayersReady = false;
         pm.playerData.playerRDY = false;
     }
 
@@ -128,17 +67,47 @@ public class GameManager : NetworkBehaviour {
         //Advertisement.Show();
     }
 
-    void GenerateNewWordsToDraw(){ // Sanageneraattorikutsu
+    public void GenerateNewWordsToDraw(){ // Sanageneraattorikutsu
+        pm.playMode = PlayerManager.PlayMode.Draw;
+        um.SetUI();
+        PlayerNotReady();
         wg.WordG();
-        print(wg.myWord);
-        print("PlayerIDSlotInChain: " + pm.playerData.playerID);
-        rdm.AddGuessToChain(wg.myWord, pm.playerData.playerID);
+        //rdm.AddGuessToChain(wg.myWord, pm.playerData.playerID);
         um.PocketReset();
+    }
+
+    public void Gameplay(){
+        if(roundNumbr < hg.numberOfPlayers) {
+            // See if roundnumber is odd or even and then draw or guess
+            if(roundNumbr % 2 == 0) { // if is even, 
+                um.PocketReset();
+                pm.playMode = PlayerManager.PlayMode.Write;
+                um.SetUI();
+                um.ShowPictureToGuess();
+                um.ChangeUIText("What on earth is this?");
+                SetTimer(timeToWrite);
+                PlayerNotReady();
+                roundNumbr++;
+            } else { // odd
+                um.EraseDrawnLines();
+                um.ShowTextToDraw();
+                pm.playMode = PlayerManager.PlayMode.Draw;
+                um.SetUI();
+                SetTimer(timeToDraw);
+                PlayerNotReady();
+                roundNumbr++;
+            }
+        } else {
+            // Show chains
+            pm.playMode = PlayerManager.PlayMode.Watch;
+            um.SetUI();
+        }
     }
 
     void SetTimer(float time){ // Asetetaan ajastin sekä ajastimen koko
         roundTimer = time;
     }
+
 
     //void DrawingOrGuessing(){ // Peruspelin vaihtelu
     //    drawingNotGuessing = !drawingNotGuessing;
@@ -158,5 +127,28 @@ public class GameManager : NetworkBehaviour {
     //        SetTimer(timeToWrite);
     //    }
     //    roundNumbr++;
+    //}
+
+    //startTime -= Time.deltaTime; // Introaika
+    //if(startTime < 0){ 
+
+    //    if(pm.playerData.playerName == "") { // Onko nimi asetettu
+    //        pm.playMode = PlayerManager.PlayMode.Write;
+    //        um.SetUI();
+    //        um.ChangeUIText("Can you please tell me your name?"); // Asetetaan nimi SendGuess() funktiossa
+    //    } else if(!started){
+    //        GenerateNewWordsToDraw(); // Ensimmäisen sanasetin luonti
+    //        pm.playMode = PlayerManager.PlayMode.Draw;
+    //        um.textBox.text = "";
+    //        um.SetUI();
+    //        nameSet = true;
+    //        started = true;
+    //    } else{
+    //        timerTime -= Time.deltaTime; // Peruspelin looppiajastin
+    //    }
+    //    if(timerTime <= 0) {
+    //        DrawingOrGuessing(); // Peruspeli (Piirretään tai arvataan)
+    //    }
+    //    timerFill.value = timerTime; // Tiimalasin ajan kuluminen
     //}
 }

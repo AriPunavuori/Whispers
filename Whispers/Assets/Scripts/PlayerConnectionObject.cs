@@ -15,8 +15,6 @@ public class PlayerConnectionObject : NetworkBehaviour {
     public GameObject playerUIPrefab;
     public GameObject UIContainer;
 
-
-
     NetworkIdentity target;
 
     private void Awake() {
@@ -63,8 +61,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
     void CmdAddPlayer(){
         hg.numberOfPlayers++;
         RpcUpdatePlayerCount(hg.numberOfPlayers);
-        print("Hostgame #Pl: " + hg.numberOfPlayers);
-        print("Target" + target.connectionToClient);
+
         TargetSetNetworkId(target.connectionToClient, hg.numberOfPlayers - 1);
     }
 
@@ -83,23 +80,23 @@ public class PlayerConnectionObject : NetworkBehaviour {
         transform.name = "Player# " + PlayerNumber;
     }
 
-    [Command]
-    void CmdUpdateStringChainDataOnServer(/*WhateverChainData*/){
-        RpcUpdateStringChaindataOnClients(/*WhateverChainData*/);
-    }
+    //[Command]
+    //void CmdUpdateStringChainDataOnServer(/*WhateverChainData*/){
+    //    RpcUpdateStringChaindataOnClients(/*WhateverChainData*/);
+    //}
 
-    [ClientRpc]
-    void RpcUpdateStringChaindataOnClients(/*WhateverChainData*/) {
-        rdm.AddGuessToChain(rdm.guess, pm.playerData.playerID);
-    }
-    [Command]
+    //[ClientRpc]
+    //void RpcUpdateStringChaindataOnClients(/*WhateverChainData*/) {
+    //    rdm.AddGuessToChain(rdm.guess, pm.playerData.playerID);
+    //}
+    //[Command]
 
-    void CmdUpdatePicChainDataOnServer(/*WhateverChainData*/) {
-        RpcUpdatePicChaindataOnClients(/*WhateverChainData*/);
-    }
+    //void CmdUpdatePicChainDataOnServer(/*WhateverChainData*/) {
+    //    RpcUpdatePicChaindataOnClients(/*WhateverChainData*/);
+    //}
 
-    [ClientRpc]
-    void RpcUpdatePicChaindataOnClients(/*WhateverChainData*/) {
-        rdm.AddPictureToChain(dm.lines, pm.playerData.playerID);
-    }
+    //[ClientRpc]
+    //void RpcUpdatePicChaindataOnClients(/*WhateverChainData*/) {
+    //    rdm.AddPictureToChain(dm.lines, pm.playerData.playerID);
+    //}
 }

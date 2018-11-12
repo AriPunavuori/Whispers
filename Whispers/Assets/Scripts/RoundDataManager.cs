@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-using Picture = System.Collections.Generic.List<LineData>;
+
 
 public class RoundDataManager : NetworkBehaviour {
 
     [System.Serializable]
     public struct ChainData {
         // Kierroksen aikana näihin tulee piirustus- ja kirjotusdatat pelaajilta.
-        public List<List<LineData>> pictures;
+        public List<LineData[]> pictures;
         public List<string> guesses;
 
-        public ChainData(List<List<LineData>> pictures, List<string> guesses) {
+        public ChainData(List<LineData[]> pictures, List<string> guesses) {
             this.pictures = pictures;
             this.guesses = guesses;
         }
@@ -51,24 +51,25 @@ public class RoundDataManager : NetworkBehaviour {
 
     void InitGame() {
         for(int i = 0 ; i < hg.numberOfPlayers ; i++) {
-            chains.Add(new ChainData(new List<Picture>(), new List<string>()));
+            chains.Add(new ChainData(new List<LineData[]>(), new List<string>()));
         }
     }
 
-    //[Command]
-    public void /*Cmd*/AddPictureToChain(Picture picture, int playerID) {
-        print("Number of lines: " + picture.Count);
+    [Command]
+    public void CmdAddPictureToChain(LineData[] picture, int playerID) {
+        print("Number of lines: " + picture.Length);
         chains[playerID].pictures.Add(picture);
     }
 
-    [ClientRpc]
-    public void RpcDistributeChainData(){
-
-    }
-
-    public void AddGuessToChain(string text, int playerID) {
+    [Command]
+    public void CmdAddGuessToChain(string text, int playerID) {
         chains[playerID].guesses.Add(text.RemoveDiacritics());
         //print(guesses[gm.roundNumbr/2]);
+    }
+
+    [ClientRpc]
+    public void RpcDistributeChainData() {
+
     }
 
 }

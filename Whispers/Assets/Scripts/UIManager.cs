@@ -70,13 +70,13 @@ public class UIManager : NetworkBehaviour {
         writingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Write);
     }
 
-    public void ShowPictureToGuess(int playerID) { // Näytetään kuva arvattavaksi
-        var chainIdx = (gm.roundNumbr + playerID - 1) % hg.numberOfPlayers;
+    public void ShowPictureToGuess() { // Näytetään kuva arvattavaksi
+        var chainIdx = (gm.roundNumbr + pm.playerData.playerID - 1) % hg.numberOfPlayers;
         var pics = rdm.chains[chainIdx].pictures;
         ShowPicture(pics[gm.roundNumbr / 2]);
     }
 
-    public void ShowPicture(Picture picture) {
+    public void ShowPicture(LineData[] picture) {
 
         foreach(var l in picture) {
             var drawnLine = Instantiate(linePrefab);
@@ -88,7 +88,8 @@ public class UIManager : NetworkBehaviour {
     }
 
     public void ShowTextToDraw() { // Näytetään teksti piirrettäväksi
-        ChangeUIText("Draw " + rdm.guess);
+        var chainIdx = (gm.roundNumbr + pm.playerData.playerID - 1) % hg.numberOfPlayers;
+        ChangeUIText("Draw " + rdm.chains[chainIdx].guesses[gm.roundNumbr/2]);
     }
 
     public void EraseDrawnLines() {
@@ -103,18 +104,15 @@ public class UIManager : NetworkBehaviour {
         pocket = Instantiate(pocketPrefab);
     }
 
-    public void Click(){
-        CmdCreateRdmOnHost();
-    }
-
     [Command]
     public void CmdCreateRdmOnHost() {
+        startButton.gameObject.SetActive(false);
         RpcCreateRdmOnCLients();
     }
 
     [ClientRpc]
     void RpcCreateRdmOnCLients() {
         Instantiate(rdmPrefab);
-        gm.allPlayersReady = true;
+        gm.GenerateNewWordsToDraw();
     }
 }

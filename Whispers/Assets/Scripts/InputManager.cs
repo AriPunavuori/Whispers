@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.EventSystems;
 
-public class InputManager : MonoBehaviour {
+public class InputManager : NetworkBehaviour {
 
     static InputManager _instance;
     public static InputManager instance {
@@ -69,20 +70,22 @@ public class InputManager : MonoBehaviour {
 
     public void SendDrawing() { // Tallennetaan kuva
 
-        rdm.AddPictureToChain(dm.lines, pm.playerData.playerID);
+        rdm.CmdAddPictureToChain(dm.lines.ToArray(), pm.playerData.playerID);
         pm.playMode = PlayerManager.PlayMode.Wait;
         um.SetUI();
-        gm.allPlayersReady = false;
+        CmdThisClientIsReady();
+        pm.playerData.playerRDY = true;
     }
 
     public void SendGuess() { // Funktio joka kutsutaan UI-Buttonilla kirjoitus-UI:ssä
 
         rdm.guess = um.textBox.text;
         um.textBox.text = "";
-        rdm.AddGuessToChain(rdm.guess, pm.playerData.playerID);
+        rdm.CmdAddGuessToChain(rdm.guess, pm.playerData.playerID);
         pm.playMode = PlayerManager.PlayMode.Wait;
         um.SetUI();
-        gm.allPlayersReady = false;
+        CmdThisClientIsReady();
+        pm.playerData.playerRDY = true;
     }
 
     public void CreateRoom(){
@@ -103,4 +106,19 @@ public class InputManager : MonoBehaviour {
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
         return results.Count > 0;
     }
+
+    [Command]
+    void CmdThisClientIsReady(){
+        gm.playersReady++;
+        if(gm.playersReady>=hg.numberOfPlayers){
+            RpcStartNextRound();
+            gm.playersReady = 0;
+        }
+    }
+
+    [ClientRpc]
+    void RpcStartNextRound(){
+        gm.Gameplay();
+    }
+
 }
