@@ -2131,7 +2131,7 @@ MonoBehaviour:
   mySecond: 
   myWord: 
   want: 
-  SMTalk: {fileID: 1188360456}
+  SMTalk: {fileID: 0}
   aAdjectives: {fileID: 4900000, guid: 7cf3076fff5631b4c80bf1e48f916ef7, type: 3}
   anAdjectives: {fileID: 4900000, guid: d03c98b0056ff124c8f18f645061e28e, type: 3}
   adj1: {fileID: 4900000, guid: ee01da06619ded84b9376c8c52064258, type: 3}
@@ -2675,7 +2675,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 1675094507}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
