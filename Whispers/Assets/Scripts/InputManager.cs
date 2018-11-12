@@ -68,7 +68,8 @@ public class InputManager : MonoBehaviour {
     }
 
     public void SendDrawing() { // Tallennetaan kuva
-        rdm.AddPictureToChain(dm.lines, gm.playerID);
+
+        rdm.AddPictureToChain(dm.lines, pm.playerData.playerID);
     }
 
     public void SendGuess() { // Funktio joka kutsutaan UI-Buttonilla kirjoitus-UI:ssä
@@ -78,7 +79,7 @@ public class InputManager : MonoBehaviour {
         } else{
             rdm.guess = um.textBox.text;
             um.textBox.text = "";
-            rdm.AddGuessToChain(rdm.guess, gm.playerID);
+            rdm.AddGuessToChain(rdm.guess, pm.playerData.playerID);
         }
     }
 

@@ -33,18 +33,18 @@ public class PlayerConnectionObject : NetworkBehaviour {
             return; 
         }
         if(pm.playerData.playerIsHost){
-            //um.uiText.text = "Room #" + hg.roomCode;
+            um.uiText.text = "Room #" + hg.roomCode;
         } else
             um.uiText.text = "Wait a second";
 
-        CmdAddPlayer();
+
         SetNetworkId();
+        CmdAddPlayer();
         CmdChangeName(pm.playerData.playerID);
         var PlayerInfo = Instantiate(playerUIPrefab);
         UIContainer = GameObject.Find("PlayerInfoContainer");
-        PlayerInfo.transform.parent = UIContainer.transform;
-        PlayerInfo.transform.localScale = Vector3.one;
-
+        //PlayerInfo.transform.parent = UIContainer.transform;
+        //PlayerInfo.transform.localScale = Vector3.one;
     }
 
     void Update () {
@@ -54,9 +54,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
         }
     }
 
-
     void SetNetworkId(){
-       
         pm.playerData.playerID = hg.numberOfPlayers;
     }
 
@@ -80,8 +78,6 @@ public class PlayerConnectionObject : NetworkBehaviour {
     void RpcChangeName(int PlayerNumber) {
         transform.name = "Player# " + PlayerNumber;
     }
-
-
 
     [Command]
     void CmdUpdateStringChainDataOnServer(/*WhateverChainData*/){

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 
 public class WordGenerator : MonoBehaviour {
@@ -63,7 +64,7 @@ public class WordGenerator : MonoBehaviour {
     string[] stateList;
     string[] wantList;
 
-    public Text SMTalk;
+    public TextMeshProUGUI SMTalk;
 
     public TextAsset aAdjectives;
     public TextAsset anAdjectives;

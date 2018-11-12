@@ -20,8 +20,10 @@ public class GameManager : NetworkBehaviour {
 
 
     public bool nameSet = false;
+    bool allPlayersReady = true;
     bool started = false;
     bool drawingNotGuessing = true;
+
 
     public int playerCount = 1;
     public int playerID = 0;
@@ -61,7 +63,42 @@ public class GameManager : NetworkBehaviour {
     }
     void Update () {
 
-
+        if(allPlayersReady){
+            if(roundNumbr == 1){
+                // Show first words to draw
+                pm.playMode = PlayerManager.PlayMode.Draw;
+                um.SetUI();
+                PlayerNotReady();
+                roundNumbr++;
+                GenerateNewWordsToDraw(); // Ensimmäisen sanasetin luonti
+                //um.textBox.text = "";
+            } else if (roundNumbr < hg.numberOfPlayers){
+                // See if roundnumber is odd or even and then draw or guess
+                if(roundNumbr % 2 == 0){
+                    um.PocketReset();
+                    um.ShowPictureToGuess(pm.playerData.playerID);
+                    pm.playMode = PlayerManager.PlayMode.Write;
+                    um.SetUI();
+                    um.ChangeUIText("What on earth is this?");
+                    SetTimer(timeToWrite);
+                    PlayerNotReady();
+                    roundNumbr++;
+                } else {
+                    um.EraseDrawnLines();
+                    um.ShowTextToDraw();
+                    pm.playMode = PlayerManager.PlayMode.Draw;
+                    um.SetUI();
+                    SetTimer(timeToDraw);
+                    PlayerNotReady();
+                    roundNumbr++;
+                }
+            } else{
+                // Show chains
+                pm.playMode = PlayerManager.PlayMode.Watch;
+                um.SetUI();
+            }
+            // if isServer: check if all players are ready and set roundnumbr++ and allPlayersReady bool to true
+        }
 
 
 
@@ -88,6 +125,10 @@ public class GameManager : NetworkBehaviour {
         //    timerFill.value = timerTime; // Tiimalasin ajan kuluminen
         //}
     }
+    public void PlayerNotReady(){
+        allPlayersReady = false;
+        pm.playerData.playerRDY = false;
+    }
 
     public void Ads() {
         //Advertisement.Show();
@@ -95,7 +136,11 @@ public class GameManager : NetworkBehaviour {
 
     void GenerateNewWordsToDraw(){ // Sanageneraattorikutsu
         wg.WordG();
-        rdm.AddGuessToChain(wg.myWord, 0);
+        print(wg.myWord);
+        print("PlayerIDSlotInChain: " + playerID);
+
+        //rdm.AddGuessToChain(wg.myWord, pm.playerData.playerID);
+
         um.PocketReset();
     }
 

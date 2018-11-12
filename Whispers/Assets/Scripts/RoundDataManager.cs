@@ -1,9 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using Picture = System.Collections.Generic.List<LineData>;
 
-public class RoundDataManager : MonoBehaviour {
+public class RoundDataManager : NetworkBehaviour {
 
     [System.Serializable]
     public struct ChainData {
@@ -38,29 +39,37 @@ public class RoundDataManager : MonoBehaviour {
     //WordGenerator wg;
     //InputManager im;
     GameManager gm;
+    HostGame hg;
 
     void Awake() {
         //pm = PlayerManager.instance;
         //dm = DrawingMachine.instance;
         //wg = WordGenerator.instance;
         //im = InputManager.instance;
+        hg = HostGame.instance;
         gm = GameManager.instance;
         InitGame();
     }
 
     void InitGame() {
-        for(int i = 0 ; i < gm.playerCount ; i++) {
+        for(int i = 0 ; i < hg.numberOfPlayers ; i++) {
             chains.Add(new ChainData(new List<Picture>(), new List<string>()));
         }
     }
 
-    public void AddPictureToChain(Picture picture, int playerID) {
-        //print("Player ID: " + playerID);
+    //[Command]
+    public void /*Cmd*/AddPictureToChain(Picture picture, int playerID) {
         print("Number of lines: " + picture.Count);
         chains[playerID].pictures.Add(picture);
     }
 
+    [ClientRpc]
+    public void RpcDistributeChainData(){
+
+    }
+
     public void AddGuessToChain(string text, int playerID) {
+
         chains[playerID].guesses.Add(text.RemoveDiacritics());
         //print(guesses[gm.roundNumbr/2]);
         
