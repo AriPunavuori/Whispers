@@ -51,3 +51,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67d01b7241da644039f6f1dbe16bc4af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiText: {fileID: 0}
+  drawingUI: {fileID: 0}
+  waitingUI: {fileID: 0}
+  watchingUI: {fileID: 0}
+  writingUI: {fileID: 0}
+  pocket: {fileID: 0}
+  pocketPrefab: {fileID: 1562480790772770, guid: adbc33536c7484628bb5b9b367414c00,
+    type: 2}
+  linePrefab: {fileID: 1787983711274094, guid: 97e401520dd6f43efa74cfa8574b2562, type: 2}
+  startButton: {fileID: 0}
+  rdmPrefab: {fileID: 1119851096804822, guid: 87d700a20dd95bd48bcec89ad9066c81, type: 2}
+  textBox: {fileID: 0}

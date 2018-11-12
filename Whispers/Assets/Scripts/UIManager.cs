@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 using UnityEngine.UI;
 using TMPro;
 using Picture = System.Collections.Generic.List<LineData>;
 
-public class UIManager : MonoBehaviour {
+public class UIManager : NetworkBehaviour {
 
     static UIManager _instance;
     public static UIManager instance{
@@ -22,7 +23,7 @@ public class UIManager : MonoBehaviour {
     RoundDataManager rdm;
     PlayerManager pm;
     DrawingMachine dm;
-    //WordGenerator wg;
+    HostGame hg;
     //InputManager im;
     GameManager gm;
 
@@ -35,7 +36,8 @@ public class UIManager : MonoBehaviour {
     public GameObject pocketPrefab;
 
     public GameObject linePrefab;
-
+    public GameObject startButton;
+    public GameObject rdmPrefab;
     public InputField textBox;
 
     private void Awake() {
@@ -43,10 +45,19 @@ public class UIManager : MonoBehaviour {
         gm = GameManager.instance;
         pm = PlayerManager.instance;
         dm = DrawingMachine.instance;
+        hg = HostGame.instance;
+
         //wg = WordGenerator.instance;
         //im = InputManager.instance;
     }
 
+    private void Start() {
+        if(pm.playerData.playerIsHost) {
+            startButton.gameObject.SetActive(true);
+        } else {
+            startButton.gameObject.SetActive(false);
+        }
+    }
 
     public void ChangeUIText(string text) { // UI-Tekstin vaihto
         uiText.text = text;
@@ -60,7 +71,7 @@ public class UIManager : MonoBehaviour {
     }
 
     public void ShowPictureToGuess(int playerID) { // Näytetään kuva arvattavaksi
-        var chainIdx = (gm.roundNumbr + playerID - 1) % gm.playerCount;
+        var chainIdx = (gm.roundNumbr + playerID - 1) % hg.numberOfPlayers;
         var pics = rdm.chains[chainIdx].pictures;
         ShowPicture(pics[gm.roundNumbr / 2]);
     }
@@ -90,5 +101,20 @@ public class UIManager : MonoBehaviour {
     public void PocketReset() { // Piirrettyjen viivojen(Peliobjektien) poisto 
         Destroy(pocket);
         pocket = Instantiate(pocketPrefab);
+    }
+
+    public void Click(){
+        CmdCreateRdmOnHost();
+    }
+
+    [Command]
+    public void CmdCreateRdmOnHost() {
+        RpcCreateRdmOnCLients();
+    }
+
+    [ClientRpc]
+    void RpcCreateRdmOnCLients() {
+        Instantiate(rdmPrefab);
+        gm.allPlayersReady = true;
     }
 }

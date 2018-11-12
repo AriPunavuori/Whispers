@@ -32,6 +32,7 @@ public class PlayerManager : MonoBehaviour {
             this.playerID = playerID;
         }
     }
+
     bool created;
     public PlayerData playerData;
 
@@ -40,7 +41,6 @@ public class PlayerManager : MonoBehaviour {
     //InputManager im;
     //DrawingMachine dm;
     //GameManager gm;
-
 
     private void Awake() {
         if(!created) {

@@ -52,10 +52,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83674c4bd998e534bbfc0b46a7f0d768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerID: 0
   playerUIPrefab: {fileID: 1685058775530274, guid: b097bafea7216ce4ea9e51778259b225,
     type: 2}
   UIContainer: {fileID: 0}
+  startButton: {fileID: 0}
+  rdmPrefab: {fileID: 0}
 --- !u!114 &114598175511197952
 MonoBehaviour:
   m_ObjectHideFlags: 1

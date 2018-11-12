@@ -14,6 +14,9 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
     public GameObject playerUIPrefab;
     public GameObject UIContainer;
+
+
+
     NetworkIdentity target;
 
     private void Awake() {
@@ -32,20 +35,15 @@ public class PlayerConnectionObject : NetworkBehaviour {
             // this object belong to another player.
             return; 
         }
-        if(pm.playerData.playerIsHost){
-            um.uiText.text = "Room #" + hg.roomCode;
-        } else
-            um.uiText.text = "Wait a second";
 
 
-        //SetNetworkId();
+        um.uiText.text = "Room #" + hg.roomCode;
         CmdAddPlayer();
-        //CmdChangeName(pm.playerData.playerID);
         var PlayerInfo = Instantiate(playerUIPrefab);
         UIContainer = GameObject.Find("PlayerInfoContainer");
+
         //PlayerInfo.transform.parent = UIContainer.transform;
         //PlayerInfo.transform.localScale = Vector3.one;
-
     }
 
     void Update () {
@@ -58,7 +56,6 @@ public class PlayerConnectionObject : NetworkBehaviour {
     [TargetRpc]
     void TargetSetNetworkId(NetworkConnection _target, int id){
         pm.playerData.playerID = id;
-        gm.playerID = id;
         CmdChangeName(pm.playerData.playerID);
     }
 
@@ -66,6 +63,8 @@ public class PlayerConnectionObject : NetworkBehaviour {
     void CmdAddPlayer(){
         hg.numberOfPlayers++;
         RpcUpdatePlayerCount(hg.numberOfPlayers);
+        print("Hostgame #Pl: " + hg.numberOfPlayers);
+        print("Target" + target.connectionToClient);
         TargetSetNetworkId(target.connectionToClient, hg.numberOfPlayers - 1);
     }
 

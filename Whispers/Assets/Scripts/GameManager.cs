@@ -17,23 +17,17 @@ public class GameManager : NetworkBehaviour {
         }
     }
 
-
-
     public bool nameSet = false;
-    bool allPlayersReady = true;
-    bool started = false;
-    bool drawingNotGuessing = true;
-
-
-    public int playerCount = 1;
-    public int playerID = 0;
+    public bool allPlayersReady = false;
+    //bool started = false;
+    //bool drawingNotGuessing = true;
 
     public float timeToDraw = 60f;
     public float timeToWrite = 30f;
 
     public int roundNumbr = 0;
 
-    float startTime = 1;
+    //float startTime = 1;
     public float roundTimer;
     public Slider timerFill;
 
@@ -137,8 +131,8 @@ public class GameManager : NetworkBehaviour {
     void GenerateNewWordsToDraw(){ // Sanageneraattorikutsu
         wg.WordG();
         print(wg.myWord);
-        print("PlayerIDSlotInChain: " + playerID);
-        //rdm.AddGuessToChain(wg.myWord, pm.playerData.playerID);
+        print("PlayerIDSlotInChain: " + pm.playerData.playerID);
+        rdm.AddGuessToChain(wg.myWord, pm.playerData.playerID);
         um.PocketReset();
     }
 

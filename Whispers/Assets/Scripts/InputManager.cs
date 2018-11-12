@@ -70,17 +70,19 @@ public class InputManager : MonoBehaviour {
     public void SendDrawing() { // Tallennetaan kuva
 
         rdm.AddPictureToChain(dm.lines, pm.playerData.playerID);
+        pm.playMode = PlayerManager.PlayMode.Wait;
+        um.SetUI();
+        gm.allPlayersReady = false;
     }
 
     public void SendGuess() { // Funktio joka kutsutaan UI-Buttonilla kirjoitus-UI:ssä
-        if(!gm.nameSet){
-            pm.SetPlayerName(um.textBox.text);
-            wg.Jones = um.textBox.text;
-        } else{
-            rdm.guess = um.textBox.text;
-            um.textBox.text = "";
-            rdm.AddGuessToChain(rdm.guess, pm.playerData.playerID);
-        }
+
+        rdm.guess = um.textBox.text;
+        um.textBox.text = "";
+        rdm.AddGuessToChain(rdm.guess, pm.playerData.playerID);
+        pm.playMode = PlayerManager.PlayMode.Wait;
+        um.SetUI();
+        gm.allPlayersReady = false;
     }
 
     public void CreateRoom(){

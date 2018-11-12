@@ -27,8 +27,6 @@ public class RoundDataManager : NetworkBehaviour {
         }
     }
 
-
-
     public string guess;
     [SerializeField]
     public List<ChainData> chains;
@@ -69,10 +67,8 @@ public class RoundDataManager : NetworkBehaviour {
     }
 
     public void AddGuessToChain(string text, int playerID) {
-
         chains[playerID].guesses.Add(text.RemoveDiacritics());
         //print(guesses[gm.roundNumbr/2]);
-        
     }
 
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-
 public class WordGenerator : MonoBehaviour {
     static WordGenerator _instance;
     public static WordGenerator instance
