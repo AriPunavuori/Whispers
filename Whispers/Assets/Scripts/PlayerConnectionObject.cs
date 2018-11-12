@@ -14,6 +14,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
     public GameObject playerUIPrefab;
     public GameObject UIContainer;
+    NetworkIdentity target;
 
     private void Awake() {
         um = UIManager.instance;
@@ -25,6 +26,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
     }
 
     void Start () {
+        target = GetComponent<NetworkIdentity>();
         // Is this actually my own local PlayerConnectionObject?
         if (isLocalPlayer == false) {
             // this object belong to another player.
@@ -53,8 +55,9 @@ public class PlayerConnectionObject : NetworkBehaviour {
         }
     }
 
-    void SetNetworkId(){
-        pm.playerData.playerID = hg.numberOfPlayers - 1;
+    [TargetRpc]
+    void TargetSetNetworkId(NetworkConnection _target, int id){
+        pm.playerData.playerID = id;
         CmdChangeName(pm.playerData.playerID);
     }
 
@@ -62,12 +65,12 @@ public class PlayerConnectionObject : NetworkBehaviour {
     void CmdAddPlayer(){
         hg.numberOfPlayers++;
         RpcUpdatePlayerCount(hg.numberOfPlayers);
+        TargetSetNetworkId(target.connectionToClient, hg.numberOfPlayers - 1);
     }
 
     [ClientRpc]
     void RpcUpdatePlayerCount(int newPlayerCount){
         hg.numberOfPlayers = newPlayerCount;
-        SetNetworkId();
     }
 
     [Command]
