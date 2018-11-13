@@ -326,7 +326,7 @@ AudioListener:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 314354074}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &314354076
 Camera:
   m_ObjectHideFlags: 0
@@ -1545,6 +1545,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -20, y: -20}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1570175377 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1754631658504496, guid: 8d19cbfbacab1ae4e85de2daa841092d,
+    type: 2}
+  m_PrefabInternal: {fileID: 2001688249}
+--- !u!114 &1570175378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1570175377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -98529514, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Texture: {fileID: 0}
+  m_UVRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
 --- !u!1 &1653881208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,7 +1604,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nameSet: 0
-  allPlayersReady: 0
+  playersReady: 0
   timeToDraw: 60
   timeToWrite: 30
   roundNumbr: 1
@@ -1859,7 +1890,7 @@ AudioListener:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1812903897}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1812903899
 Camera:
   m_ObjectHideFlags: 0
@@ -1885,12 +1916,12 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   m_RenderingPath: -1
-  m_TargetTexture: {fileID: 0}
+  m_TargetTexture: {fileID: 8400000, guid: 290a88c5d2e4bd64c807323cfaa63fca, type: 2}
   m_TargetDisplay: 0
   m_TargetEye: 3
   m_HDR: 1
@@ -1907,11 +1938,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1812903897}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 937, y: 243.83679, z: 1047.8452}
+  m_LocalPosition: {x: 1451, y: 243.83679, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1865490057
 GameObject:
@@ -1992,11 +2023,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1865490057}
   m_LocalRotation: {x: 0.46429068, y: -0.2676646, z: 0.04286262, w: 0.84318006}
-  m_LocalPosition: {x: 955, y: 212, z: 0}
+  m_LocalPosition: {x: 1469, y: 212, z: 0}
   m_LocalScale: {x: 150, y: 150, z: 150}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 53.698, y: -44.042004, z: -17.321001}
 --- !u!1 &1886453246
 GameObject:
@@ -2226,7 +2257,8 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114818812044947952, guid: 8d19cbfbacab1ae4e85de2daa841092d, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 8d19cbfbacab1ae4e85de2daa841092d, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &2042929804
@@ -2276,9 +2308,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eCam: {fileID: 1812903899}
-  picPrefab: {fileID: 1918296003995246, guid: 8d19cbfbacab1ae4e85de2daa841092d, type: 2}
-  origPic: {fileID: 0}
-  SMTalk: {fileID: 1188360456}
+  picPrefab: {fileID: 1754631658504496, guid: 8d19cbfbacab1ae4e85de2daa841092d, type: 2}
+  camImage: {fileID: 8400000, guid: 290a88c5d2e4bd64c807323cfaa63fca, type: 2}
+  GuessText: {fileID: 0}
+  origPic: {fileID: 1163952651}
   picPos: {x: 0, y: 0, z: 0}
 --- !u!1 &2058231399
 GameObject:
