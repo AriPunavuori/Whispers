@@ -71,6 +71,7 @@ public class UIManager : NetworkBehaviour {
     }
 
     public void ShowPictureToGuess() { // Näytetään kuva arvattavaksi
+        rdm = FindObjectOfType<RoundDataManager>();
         var chainIdx = (gm.roundNumbr + pm.playerData.playerID - 1) % hg.numberOfPlayers;
         var pics = rdm.chains[chainIdx].pictures;
         ShowPicture(pics[gm.roundNumbr / 2]);

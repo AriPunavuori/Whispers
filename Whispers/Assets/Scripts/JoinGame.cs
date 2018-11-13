@@ -37,7 +37,7 @@ public class JoinGame : NetworkBehaviour {
             return;
         }
         if(matchList.Count == 0){
-            statusText.text = "No rooms found";
+            statusText.text = "No rooms found.";
             return;
         }
         print(matchList.Count);
@@ -50,7 +50,7 @@ public class JoinGame : NetworkBehaviour {
     }
 
     public void JoinRoom(MatchInfoSnapshot _match) {
-        statusText.text = "Trying to join found match.";
+        statusText.text = "Match found! \nJoining...";
         networkManager.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, networkManager.OnMatchJoined);
     }
 }

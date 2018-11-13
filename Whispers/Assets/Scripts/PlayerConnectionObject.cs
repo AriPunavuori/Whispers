@@ -33,14 +33,15 @@ public class PlayerConnectionObject : NetworkBehaviour {
             // this object belong to another player.
             return; 
         }
-
-
-        um.uiText.text = "Room #" + hg.roomCode;
+        if (isServer) {
+            um.uiText.text = "Room #" + hg.roomCode;
+        }
         CmdAddPlayer();
+        CmdShowRoomCode();
+
         //var PlayerInfo = Instantiate(playerUIPrefab);
         //UIContainer = GameObject.Find("PlayerInfoContainer");
-
-        //PlayerInfo.transform.parent = UIContainer.transform;
+        //PlayerInfo.transform.SetParent(UIContainer.transform);
         //PlayerInfo.transform.localScale = Vector3.one;
     }
 
@@ -63,11 +64,28 @@ public class PlayerConnectionObject : NetworkBehaviour {
         RpcUpdatePlayerCount(hg.numberOfPlayers);
 
         TargetSetNetworkId(target.connectionToClient, hg.numberOfPlayers - 1);
+
     }
 
     [ClientRpc]
     void RpcUpdatePlayerCount(int newPlayerCount){
         hg.numberOfPlayers = newPlayerCount;
+
+        var PlayerInfo = Instantiate(playerUIPrefab);
+        UIContainer = GameObject.Find("PlayerInfoContainer");
+        PlayerInfo.transform.SetParent(UIContainer.transform);
+        PlayerInfo.transform.localScale = Vector3.one;
+    }
+
+    [Command]
+    void CmdShowRoomCode() {
+        RpcUpdateRoomCode(hg.roomCode);
+        TargetSetNetworkId(target.connectionToClient, hg.numberOfPlayers - 1);
+    }
+    [ClientRpc]
+    void RpcUpdateRoomCode(int roomCode) {
+        um.uiText.text = "Room# is: " + roomCode;
+
     }
 
     [Command]
