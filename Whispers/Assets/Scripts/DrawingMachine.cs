@@ -15,7 +15,6 @@ public struct LineData {
 
 public class DrawingMachine : MonoBehaviour {
 
-    public enum Drawmode { Blue, Red };
     static DrawingMachine _instance;
     public static DrawingMachine instance {
         get {
@@ -34,7 +33,6 @@ public class DrawingMachine : MonoBehaviour {
     public GameObject linePrefab;
     public int lineNumber = 0;
     float lineDotThreshold = 0.01f;
-    public Drawmode mode;
     public GameObject pocket;
 
     //RoundDataManager rdm;
@@ -53,7 +51,6 @@ public class DrawingMachine : MonoBehaviour {
         //gm = GameManager.instance;
         lines = new List<LineData>();
         drawnLines = new List<GameObject>();
-        mode = Drawmode.Blue;
     }
 
     public void PrintLines() {

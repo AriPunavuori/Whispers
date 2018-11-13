@@ -359,7 +359,7 @@ MonoBehaviour:
   roomSize: 6
   roomCode: 0
   numberOfPlayers: 0
-  statusText: {fileID: 0}
+  statusText: {fileID: 192998560}
 --- !u!114 &694783448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,8 +371,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d495a0760d34f524eb7c32c134e9a0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textBox: {fileID: 0}
-  statusText: {fileID: 0}
+  textBox: {fileID: 2107226719}
+  statusText: {fileID: 192998560}
 --- !u!114 &694783449
 MonoBehaviour:
   m_ObjectHideFlags: 0
