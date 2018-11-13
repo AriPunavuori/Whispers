@@ -8,7 +8,7 @@ public class EndScreen : MonoBehaviour {
     public Camera eCam;
     public GameObject picPrefab;
     public RenderTexture camImage;
-    public Text GuessText;
+   // public Text GuessText;
     public Transform origPic;
     public Vector3 picPos;
 
