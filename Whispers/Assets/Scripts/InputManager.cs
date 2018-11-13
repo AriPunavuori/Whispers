@@ -69,7 +69,7 @@ public class InputManager : NetworkBehaviour {
     }
 
     public void SendDrawing() { // Tallennetaan kuva
-
+        rdm = FindObjectOfType<RoundDataManager>();
         rdm.CmdAddPictureToChain(dm.lines.ToArray(), pm.playerData.playerID);
         pm.playMode = PlayerManager.PlayMode.Wait;
         um.SetUI();

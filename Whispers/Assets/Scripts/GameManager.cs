@@ -31,9 +31,9 @@ public class GameManager : NetworkBehaviour {
     public float roundTimer;
     public Slider timerFill;
 
-    RoundDataManager rdm;
+    //RoundDataManager rdm;
     PlayerManager pm;
-    DrawingMachine dm;
+    //DrawingMachine dm;
     WordGenerator wg;
     //InputManager im;
     GameManager gm;
@@ -41,9 +41,9 @@ public class GameManager : NetworkBehaviour {
     HostGame hg;
 
     private void Awake() {
-        rdm = RoundDataManager.instance;
+        //rdm = RoundDataManager.instance;
         pm = PlayerManager.instance;
-        dm = DrawingMachine.instance;
+        //dm = DrawingMachine.instance;
         wg = WordGenerator.instance;
         um = UIManager.instance;
         hg = HostGame.instance;

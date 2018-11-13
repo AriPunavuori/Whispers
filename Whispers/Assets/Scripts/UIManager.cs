@@ -82,8 +82,8 @@ public class UIManager : NetworkBehaviour {
             var drawnLine = Instantiate(linePrefab);
             drawnLine.transform.parent = pocket.transform;
             var lineToDraw = drawnLine.GetComponent<LineRenderer>();
-            lineToDraw.positionCount = l.points.Count;
-            lineToDraw.SetPositions(l.points.ToArray());
+            lineToDraw.positionCount = l.points.Length;
+            lineToDraw.SetPositions(l.points);
         }
     }
 

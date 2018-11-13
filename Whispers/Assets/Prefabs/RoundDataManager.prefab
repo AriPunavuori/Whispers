@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4128934809264000}
   - component: {fileID: 114389712422025680}
+  - component: {fileID: 114772932827650864}
   m_Layer: 0
   m_Name: RoundDataManager
   m_TagString: Untagged
@@ -54,3 +55,35 @@ MonoBehaviour:
   guess: 
   chains: []
   bluePrefab: {fileID: 1787983711274094, guid: 97e401520dd6f43efa74cfa8574b2562, type: 2}
+--- !u!114 &114772932827650864
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1119851096804822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 135
+    i1: 215
+    i2: 0
+    i3: 162
+    i4: 13
+    i5: 217
+    i6: 91
+    i7: 212
+    i8: 139
+    i9: 206
+    i10: 200
+    i11: 154
+    i12: 217
+    i13: 6
+    i14: 108
+    i15: 129
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1

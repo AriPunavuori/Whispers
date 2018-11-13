@@ -37,8 +37,8 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
         um.uiText.text = "Room #" + hg.roomCode;
         CmdAddPlayer();
-        var PlayerInfo = Instantiate(playerUIPrefab);
-        UIContainer = GameObject.Find("PlayerInfoContainer");
+        //var PlayerInfo = Instantiate(playerUIPrefab);
+        //UIContainer = GameObject.Find("PlayerInfoContainer");
 
         //PlayerInfo.transform.parent = UIContainer.transform;
         //PlayerInfo.transform.localScale = Vector3.one;

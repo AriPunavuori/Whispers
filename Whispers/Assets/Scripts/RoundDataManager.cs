@@ -57,7 +57,6 @@ public class RoundDataManager : NetworkBehaviour {
 
     [Command]
     public void CmdAddPictureToChain(LineData[] picture, int playerID) {
-        print("Number of lines: " + picture.Length);
         chains[playerID].pictures.Add(picture);
     }
 

@@ -5,11 +5,10 @@ using Picture = System.Collections.Generic.List<LineData>;
 
 [System.Serializable]
 public struct LineData {
-    public bool isBlue;
-    public List<Vector3> points;
 
-    public LineData(bool isBlue, List<Vector3> points) {
-        this.isBlue = isBlue;
+    public Vector3[] points;
+
+    public LineData(Vector3[] points) {
         this.points = points;
     }
 }
@@ -30,7 +29,7 @@ public class DrawingMachine : MonoBehaviour {
     public List<LineData> lines;
     public List<GameObject> drawnLines;
     public Vector3 drawPos;
-    LineData line;
+    List<Vector3> line;
     LineRenderer currentLine;
     public GameObject linePrefab;
     public int lineNumber = 0;
@@ -69,13 +68,13 @@ public class DrawingMachine : MonoBehaviour {
 
     public void LineStart(Vector3 curPos) {
         drawPos = curPos;
-        line = new LineData(true, new List<Vector3>());
+        line = new List<Vector3>();
         GameObject newLine = Instantiate(linePrefab);
         newLine.transform.parent = um.pocket.transform;
         currentLine = newLine.GetComponent<LineRenderer>();
         drawnLines.Add(newLine);
-        line.points.Clear();
-        line.points.Add(drawPos);
+        line.Clear();
+        line.Add(drawPos);
         currentLine.sortingOrder = lineNumber;
         lineNumber++;
         currentLine.positionCount = 0;
@@ -84,9 +83,9 @@ public class DrawingMachine : MonoBehaviour {
     public void LineContinued(Vector3 curPos) {
         if(Vector3.Distance(curPos, drawPos) > lineDotThreshold) {
             drawPos = curPos;
-            line.points.Add(drawPos);
-            currentLine.positionCount = line.points.Count;
-            currentLine.SetPositions(line.points.ToArray());
+            line.Add(drawPos);
+            currentLine.positionCount = line.Count;
+            currentLine.SetPositions(line.ToArray());
         }
     }
 
@@ -94,10 +93,10 @@ public class DrawingMachine : MonoBehaviour {
         if(Vector3.Distance(curPos, drawPos) > lineDotThreshold) {
             drawPos = curPos;
         }
-        line.points.Add(drawPos);
-        currentLine.positionCount = line.points.Count;
-        currentLine.SetPositions(line.points.ToArray());
-        lines.Add(line);
+        line.Add(drawPos);
+        currentLine.positionCount = line.Count;
+        currentLine.SetPositions(line.ToArray());
+        lines.Add(new LineData(line.ToArray()));
         //PrintLines();
     }
 
