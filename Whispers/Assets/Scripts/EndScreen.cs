@@ -14,16 +14,19 @@ public class EndScreen : MonoBehaviour {
 
     RoundDataManager rdm;
 
+    public int round = 0;
+
 
     // Use this for initialization
     void Start() {
         rdm = GameObject.FindObjectOfType<RoundDataManager>();
+        ThreadDisplay();
     }
 
 
     void ThreadDisplay() {
         var ch = rdm.chains[0];
-        int round = 0;
+        //int round = 0;
         picPos = new Vector3(origPic.position.x, (origPic.position.y - (650 * round)), origPic.position.z);
         while (true) {
             if (ch.guesses.Count <= round) {
@@ -35,7 +38,7 @@ public class EndScreen : MonoBehaviour {
                 break;
             }
 
-            if (ch.pictures.Count <= round) {
+            if (/*ch.pictures.Count <= round*/ round == 0) {
                 var pac = Instantiate(picPrefab, picPos, Quaternion.identity, origPic);
                 var pacImage = pac.GetComponent<RawImage>().texture;
                 pacImage = camImage;
@@ -45,8 +48,5 @@ public class EndScreen : MonoBehaviour {
                 break;
             }
         }
-
     }
-
-
 }
