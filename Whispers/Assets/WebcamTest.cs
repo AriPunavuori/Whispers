@@ -44,9 +44,9 @@ public class WebcamTest : MonoBehaviour {
             TakeSnapshot();
         }
 
-    //    if (GUI.Button(new Rect(100, 70, 50, 30), "Cam")) {
-    //        ChangeCam();
-    //    }
+        if (GUI.Button(new Rect(100, 70, 50, 30), "Cam")) {
+            ChangeCam();
+        }
 
     }
 
@@ -54,14 +54,9 @@ public class WebcamTest : MonoBehaviour {
     private string _SavePath = "C:/Users/oskari.hermunen/Desktop/WCPICS"; //Change the path here!
     int _CaptureCounter = 0;
 
-    //void ChangeCam() {
-    //    devices = WebCamTexture.devices;
-    //    deviceName = devices[Random.Range(0,1)].name;
-    //    wc = new WebCamTexture(deviceName, 300, 580, 60);
-    //    RI.texture = wc;
-    //    RI.material.mainTexture = wc;
-    //    wc.Play();
-    //}
+    void ChangeCam() {
+        
+    }
 
     void TakeSnapshot() {
         Texture2D snap = new Texture2D(wc.width, wc.height);

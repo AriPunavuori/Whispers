@@ -8,7 +8,6 @@ public class EndScreen : MonoBehaviour {
     public Camera eCam;
     public GameObject picPrefab;
     public RenderTexture camImage;
-   // public Text GuessText;
     public Transform origPic;
     public Vector3 picPos;
 
@@ -24,11 +23,12 @@ public class EndScreen : MonoBehaviour {
     }
 
 
-    void ThreadDisplay() {
+    public void ThreadDisplay() {
         var ch = rdm.chains[0];
         //int round = 0;
         picPos = new Vector3(origPic.position.x, (origPic.position.y - (650 * round)), origPic.position.z);
         while (true) {
+            
             if (ch.guesses.Count <= round) {
                 var pic = Instantiate(picPrefab, picPos, Quaternion.identity, origPic);
                 var picText = pic.GetComponentInChildren<Text>();
@@ -38,7 +38,7 @@ public class EndScreen : MonoBehaviour {
                 break;
             }
 
-            if (/*ch.pictures.Count <= round*/ round == 0) {
+            if (ch.pictures.Count <= round) {
                 var pac = Instantiate(picPrefab, picPos, Quaternion.identity, origPic);
                 var pacImage = pac.GetComponent<RawImage>().texture;
                 pacImage = camImage;
