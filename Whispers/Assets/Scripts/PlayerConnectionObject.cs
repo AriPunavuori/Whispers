@@ -98,6 +98,19 @@ public class PlayerConnectionObject : NetworkBehaviour {
         transform.name = "Player# " + PlayerNumber;
     }
 
+    [Command]
+    public void CmdAddGuessToChain(string text, int chainID) {
+        rdm = FindObjectOfType<RoundDataManager>();
+        rdm.chains[chainID].guesses.Add(text.RemoveDiacritics());
+        //print(guesses[gm.roundNumbr/2]);
+    }
+
+    [Command]
+    public void CmdAddPictureToChain(LineData[] picture, int chainID) {
+        rdm = FindObjectOfType<RoundDataManager>();
+        rdm.chains[chainID].pictures.Add(picture);
+    }
+
     //[Command]
     //void CmdUpdateStringChainDataOnServer(/*WhateverChainData*/){
     //    RpcUpdateStringChaindataOnClients(/*WhateverChainData*/);

@@ -31,7 +31,7 @@ public class GameManager : NetworkBehaviour {
     public float roundTimer;
     public Slider timerFill;
 
-    //RoundDataManager rdm;
+    RoundDataManager rdm;
     PlayerManager pm;
     //DrawingMachine dm;
     WordGenerator wg;
@@ -41,7 +41,7 @@ public class GameManager : NetworkBehaviour {
     HostGame hg;
 
     private void Awake() {
-        //rdm = RoundDataManager.instance;
+        rdm = RoundDataManager.instance;
         pm = PlayerManager.instance;
         //dm = DrawingMachine.instance;
         wg = WordGenerator.instance;
@@ -68,16 +68,18 @@ public class GameManager : NetworkBehaviour {
     }
 
     public void GenerateNewWordsToDraw(){ // Sanageneraattorikutsu
+        var pco = FindObjectOfType<PlayerConnectionObject>();
         pm.playMode = PlayerManager.PlayMode.Draw;
         um.SetUI();
         PlayerNotReady();
         wg.WordG();
-        //rdm.AddGuessToChain(wg.myWord, pm.playerData.playerID);
+        pco.CmdAddGuessToChain(wg.myWord, pm.playerData.playerID + roundNumbr);
+        roundNumbr++;
         um.PocketReset();
     }
 
     public void Gameplay(){
-        if(roundNumbr < hg.numberOfPlayers) {
+        if(roundNumbr < 5) {
             // See if roundnumber is odd or even and then draw or guess
             if(roundNumbr % 2 == 0) { // if is even, 
                 um.PocketReset();
@@ -87,7 +89,6 @@ public class GameManager : NetworkBehaviour {
                 um.ChangeUIText("What on earth is this?");
                 SetTimer(timeToWrite);
                 PlayerNotReady();
-                roundNumbr++;
             } else { // odd
                 um.EraseDrawnLines();
                 um.ShowTextToDraw();
@@ -95,7 +96,6 @@ public class GameManager : NetworkBehaviour {
                 um.SetUI();
                 SetTimer(timeToDraw);
                 PlayerNotReady();
-                roundNumbr++;
             }
         } else {
             // Show chains
