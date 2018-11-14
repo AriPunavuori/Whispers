@@ -55,16 +55,16 @@ public class RoundDataManager : NetworkBehaviour {
         }
     }
 
-    [Command]
-    public void CmdAddPictureToChain(LineData[] picture, int playerID) {
-        chains[playerID].pictures.Add(picture);
-    }
+    //[Command]
+    //public void CmdAddPictureToChain(LineData[] picture, int chainID) {
+    //    chains[chainID].pictures.Add(picture);
+    //}
 
-    [Command]
-    public void CmdAddGuessToChain(string text, int playerID) {
-        chains[playerID].guesses.Add(text.RemoveDiacritics());
-        //print(guesses[gm.roundNumbr/2]);
-    }
+    //[Command]
+    //public void CmdAddGuessToChain(string text, int chainID) {
+    //    chains[chainID].guesses.Add(text.RemoveDiacritics());
+    //    //print(guesses[gm.roundNumbr/2]);
+    //}
 
     [ClientRpc]
     public void RpcDistributeChainData() {

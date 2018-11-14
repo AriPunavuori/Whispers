@@ -72,9 +72,10 @@ public class UIManager : NetworkBehaviour {
 
     public void ShowPictureToGuess() { // Näytetään kuva arvattavaksi
         rdm = FindObjectOfType<RoundDataManager>();
-        var chainIdx = (gm.roundNumbr + pm.playerData.playerID - 1) % hg.numberOfPlayers;
+        var chainIdx = (gm.roundNumbr + pm.playerData.playerID) % hg.numberOfPlayers;
         var pics = rdm.chains[chainIdx].pictures;
-        ShowPicture(pics[gm.roundNumbr / 2]);
+        print(gm.roundNumbr);
+        ShowPicture(pics[(gm.roundNumbr - 1) / 2]);
     }
 
     public void ShowPicture(LineData[] picture) {
@@ -89,8 +90,9 @@ public class UIManager : NetworkBehaviour {
     }
 
     public void ShowTextToDraw() { // Näytetään teksti piirrettäväksi
-        var chainIdx = (gm.roundNumbr + pm.playerData.playerID - 1) % hg.numberOfPlayers;
-        ChangeUIText("Draw " + rdm.chains[chainIdx].guesses[gm.roundNumbr/2]);
+        rdm = FindObjectOfType<RoundDataManager>();
+        var chainIdx = (gm.roundNumbr + pm.playerData.playerID) % hg.numberOfPlayers;
+        ChangeUIText("Draw " + rdm.chains[chainIdx].guesses[(gm.roundNumbr - 1) / 2]);
     }
 
     public void EraseDrawnLines() {

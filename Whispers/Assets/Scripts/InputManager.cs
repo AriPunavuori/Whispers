@@ -69,8 +69,8 @@ public class InputManager : NetworkBehaviour {
     }
 
     public void SendDrawing() { // Tallennetaan kuva
-        rdm = FindObjectOfType<RoundDataManager>();
-        rdm.CmdAddPictureToChain(dm.lines.ToArray(), pm.playerData.playerID);
+        var pco = FindObjectOfType<PlayerConnectionObject>();
+        pco.CmdAddPictureToChain(dm.lines.ToArray(), pm.playerData.playerID + gm.roundNumbr % hg.numberOfPlayers);
         pm.playMode = PlayerManager.PlayMode.Wait;
         um.SetUI();
         CmdThisClientIsReady();
@@ -78,10 +78,11 @@ public class InputManager : NetworkBehaviour {
     }
 
     public void SendGuess() { // Funktio joka kutsutaan UI-Buttonilla kirjoitus-UI:ssä
-
+        var pco = FindObjectOfType<PlayerConnectionObject>();
+        var rdm = FindObjectOfType<RoundDataManager>();
         rdm.guess = um.textBox.text;
         um.textBox.text = "";
-        rdm.CmdAddGuessToChain(rdm.guess, pm.playerData.playerID);
+        pco.CmdAddGuessToChain(rdm.guess, pm.playerData.playerID + gm.roundNumbr % hg.numberOfPlayers);
         pm.playMode = PlayerManager.PlayMode.Wait;
         um.SetUI();
         CmdThisClientIsReady();
@@ -118,6 +119,7 @@ public class InputManager : NetworkBehaviour {
 
     [ClientRpc]
     void RpcStartNextRound(){
+        gm.roundNumbr++;
         gm.Gameplay();
     }
 
