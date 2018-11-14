@@ -111,6 +111,22 @@ public class PlayerConnectionObject : NetworkBehaviour {
         rdm.chains[chainID].pictures.Add(picture);
     }
 
+    [Command]
+    public void CmdThisClientIsReady() {
+        gm.playersReady++;
+        if (gm.playersReady >= hg.numberOfPlayers) {
+            RpcStartNextRound();
+            gm.playersReady = 0;
+        }
+    }
+
+    [ClientRpc]
+    public void RpcStartNextRound() {
+        gm.roundNumbr++;
+        gm.Gameplay();
+    }
+
+
     //[Command]
     //void CmdUpdateStringChainDataOnServer(/*WhateverChainData*/){
     //    RpcUpdateStringChaindataOnClients(/*WhateverChainData*/);
