@@ -7,15 +7,15 @@ using UnityEngine.Networking;
 
 public class GameManager : NetworkBehaviour {
 
-    static GameManager _instance;
-    public static GameManager instance{
-        get{
-            if(!_instance){
-                _instance = FindObjectOfType<GameManager>();
-            }
-            return _instance;
-        }
-    }
+    //static GameManager _instance;
+    //public static GameManager instance{
+    //    get{
+    //        if(!_instance){
+    //            _instance = FindObjectOfType<GameManager>();
+    //        }
+    //        return _instance;
+    //    }
+    //}
 
     public bool nameSet = false;
     public int playersReady;
@@ -41,12 +41,12 @@ public class GameManager : NetworkBehaviour {
     HostGame hg;
 
     private void Awake() {
-        rdm = RoundDataManager.instance;
-        pm = PlayerManager.instance;
+        //rdm = RoundDataManager.instance;
+        //pm = PlayerManager.instance;
         //dm = DrawingMachine.instance;
-        wg = WordGenerator.instance;
-        um = UIManager.instance;
-        hg = HostGame.instance;
+        //wg = WordGenerator.instance;
+        //um = UIManager.instance;
+        //hg = HostGame.instance;
         //im = InputManager.instance;
         roundTimer = timeToDraw;
         timerFill.maxValue = timeToDraw; 
@@ -60,6 +60,7 @@ public class GameManager : NetworkBehaviour {
     }
 
     public void PlayerNotReady(){
+        var pm = FindObjectOfType<PlayerManager>();
         pm.playerData.playerRDY = false;
     }
 
@@ -69,6 +70,9 @@ public class GameManager : NetworkBehaviour {
 
     public void GenerateNewWordsToDraw(){ // Sanageneraattorikutsu
         var pco = FindObjectOfType<PlayerConnectionObject>();
+        var pm = FindObjectOfType<PlayerManager>();
+        var um = FindObjectOfType<UIManager>();
+        var wg = FindObjectOfType<WordGenerator>();
         pm.playMode = PlayerManager.PlayMode.Draw;
         um.SetUI();
         PlayerNotReady();
@@ -79,6 +83,9 @@ public class GameManager : NetworkBehaviour {
     }
 
     public void Gameplay(){
+        var um = FindObjectOfType<UIManager>();
+        var pm = FindObjectOfType<PlayerManager>();
+
         if(roundNumbr < 5) {
             // See if roundnumber is odd or even and then draw or guess
             if(roundNumbr % 2 == 0) { // if is even, 

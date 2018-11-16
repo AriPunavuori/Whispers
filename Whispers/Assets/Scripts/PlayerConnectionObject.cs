@@ -18,12 +18,12 @@ public class PlayerConnectionObject : NetworkBehaviour {
     NetworkIdentity target;
 
     private void Awake() {
-        um = UIManager.instance;
-        hg = HostGame.instance;
-        pm = PlayerManager.instance;
-        dm = DrawingMachine.instance;
-        gm = GameManager.instance;
-        rdm = RoundDataManager.instance;
+        //um = UIManager.instance;
+        //hg = HostGame.instance;
+        //pm = PlayerManager.instance;
+        //dm = DrawingMachine.instance;
+        //gm = GameManager.instance;
+        //rdm = RoundDataManager.instance;
     }
 
     void Start () {
@@ -34,6 +34,8 @@ public class PlayerConnectionObject : NetworkBehaviour {
             return; 
         }
         if (isServer) {
+            var um = FindObjectOfType<UIManager>();
+            var hg = FindObjectOfType<HostGame>();
             um.uiText.text = "Room #" + hg.roomCode;
         }
         CmdAddPlayer();
@@ -54,12 +56,14 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
     [TargetRpc]
     void TargetSetNetworkId(NetworkConnection _target, int id){
+        var pm = FindObjectOfType<PlayerManager>();
         pm.playerData.playerID = id;
         CmdChangeName(pm.playerData.playerID);
     }
 
     [Command]
     void CmdAddPlayer(){
+        var hg = FindObjectOfType<HostGame>();
         hg.numberOfPlayers++;
         RpcUpdatePlayerCount(hg.numberOfPlayers);
 
@@ -69,6 +73,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
     [ClientRpc]
     void RpcUpdatePlayerCount(int newPlayerCount){
+        var hg = FindObjectOfType<HostGame>();
         hg.numberOfPlayers = newPlayerCount;
 
         var PlayerInfo = Instantiate(playerUIPrefab);
@@ -79,11 +84,13 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
     [Command]
     void CmdShowRoomCode() {
+        var hg = FindObjectOfType<HostGame>();
         RpcUpdateRoomCode(hg.roomCode);
         TargetSetNetworkId(target.connectionToClient, hg.numberOfPlayers - 1);
     }
     [ClientRpc]
     void RpcUpdateRoomCode(int roomCode) {
+        var um = FindObjectOfType<UIManager>();
         um.uiText.text = "Room# is: " + roomCode;
 
     }
@@ -113,6 +120,8 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
     [Command]
     public void CmdThisClientIsReady() {
+        var gm = FindObjectOfType<GameManager>();
+        var hg = FindObjectOfType<HostGame>();
         gm.playersReady++;
         if (gm.playersReady >= hg.numberOfPlayers) {
             RpcStartNextRound();
@@ -122,6 +131,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcStartNextRound() {
+        var gm = FindObjectOfType<GameManager>();
         gm.roundNumbr++;
         gm.Gameplay();
     }

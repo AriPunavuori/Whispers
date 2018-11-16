@@ -15,15 +15,15 @@ public struct LineData {
 
 public class DrawingMachine : MonoBehaviour {
 
-    static DrawingMachine _instance;
-    public static DrawingMachine instance {
-        get {
-            if(!_instance) {
-                _instance = FindObjectOfType<DrawingMachine>();
-            }
-            return _instance;
-        }
-    }
+    //static DrawingMachine _instance;
+    //public static DrawingMachine instance {
+    //    get {
+    //        if(!_instance) {
+    //            _instance = FindObjectOfType<DrawingMachine>();
+    //        }
+    //        return _instance;
+    //    }
+    //}
 
     public List<LineData> lines;
     public List<GameObject> drawnLines;
@@ -47,7 +47,7 @@ public class DrawingMachine : MonoBehaviour {
         //wg = WordGenerator.instance;
         //rdm = RoundDataManager.instance;
         //im = InputManager.instance;
-        um = UIManager.instance;
+        //um = UIManager.instance;
         //gm = GameManager.instance;
         lines = new List<LineData>();
         drawnLines = new List<GameObject>();
@@ -64,6 +64,7 @@ public class DrawingMachine : MonoBehaviour {
     }
 
     public void LineStart(Vector3 curPos) {
+        var um = FindObjectOfType<UIManager>();
         drawPos = curPos;
         line = new List<Vector3>();
         GameObject newLine = Instantiate(linePrefab);

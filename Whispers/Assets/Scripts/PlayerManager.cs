@@ -6,15 +6,15 @@ public class PlayerManager : MonoBehaviour {
     public enum PlayMode { Draw, Write, Wait, Watch, Menu };
     public PlayMode playMode;
 
-    static PlayerManager _instance;
-    public static PlayerManager instance{
-        get{
-            if(!_instance){
-                _instance = FindObjectOfType<PlayerManager>();
-            }
-            return _instance;
-        }
-    }
+    //static PlayerManager _instance;
+    //public static PlayerManager instance{
+    //    get{
+    //        if(!_instance){
+    //            _instance = FindObjectOfType<PlayerManager>();
+    //        }
+    //        return _instance;
+    //    }
+    //}
 
     [System.Serializable]
 	public struct PlayerData { 

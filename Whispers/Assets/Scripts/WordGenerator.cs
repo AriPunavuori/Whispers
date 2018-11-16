@@ -95,9 +95,9 @@ public class WordGenerator : MonoBehaviour {
 
 
     private void Awake() {
-        pm = PlayerManager.instance;
-        rdm = RoundDataManager.instance;
-        um = UIManager.instance;
+        //pm = PlayerManager.instance;
+        //rdm = RoundDataManager.instance;
+        //um = UIManager.instance;
         //gm = GameManager.instance;
         //dm = DrawingMachine.instance;
         //rdm = RoundDataManager.instance;
@@ -119,6 +119,7 @@ public class WordGenerator : MonoBehaviour {
         askList = asking.text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
         quesList = question.text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
         stateList = statement.text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
+        var pm = FindObjectOfType<PlayerManager>();
         Jones = pm.playerData.playerName;
     }
 

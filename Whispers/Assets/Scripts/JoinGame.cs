@@ -15,8 +15,8 @@ public class JoinGame : NetworkBehaviour {
     MatchInfoSnapshot foundGame;
     public Text statusText;
     private void Awake() {
-        um = UIManager.instance;
-        hg = HostGame.instance;
+        //um = UIManager.instance;
+        //hg = HostGame.instance;
     }
 
     private void Start() {

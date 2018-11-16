@@ -15,9 +15,9 @@ public class InputTest : NetworkBehaviour {
     PlayerManager pm;
 
     private void Awake() {
-        hg = HostGame.instance;
-        um = UIManager.instance;
-        pm = PlayerManager.instance;
+        //hg = HostGame.instance;
+        //um = UIManager.instance;
+        //pm = PlayerManager.instance;
     }
 
     private void Start() {

@@ -11,7 +11,7 @@ public class GetPlayerInfo : MonoBehaviour {
     Image playerIcon;
 
     private void Awake() {
-        pm = PlayerManager.instance;
+        //pm = PlayerManager.instance;
         playerIcon = GetComponentInChildren<Image>();
 
     }
@@ -23,6 +23,7 @@ public class GetPlayerInfo : MonoBehaviour {
 	
 
     void GetPlayerName() {
+        var pm = FindObjectOfType<PlayerManager>();
         nameText.text = pm.playerData.playerName; 
     }
 

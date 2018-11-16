@@ -8,15 +8,15 @@ using UnityEngine.Networking.Match;
 public class HostGame : NetworkBehaviour {
 
 
-    static HostGame _instance;
-    public static HostGame instance {
-        get {
-            if(!_instance) {
-                _instance = FindObjectOfType<HostGame>();
-            }
-            return _instance;
-        }
-    }
+    //static HostGame _instance;
+    //public static HostGame instance {
+    //    get {
+    //        if(!_instance) {
+    //            _instance = FindObjectOfType<HostGame>();
+    //        }
+    //        return _instance;
+    //    }
+    //}
 
     [SerializeField]
     uint roomSize = 6;
@@ -30,8 +30,8 @@ public class HostGame : NetworkBehaviour {
 
 
     private void Awake() {
-        um = UIManager.instance;
-        pm = PlayerManager.instance;
+        //um = UIManager.instance;
+        //pm = PlayerManager.instance;
     }
     private void Start() {
         networkManager = NetworkManager.singleton;
@@ -48,6 +48,7 @@ public class HostGame : NetworkBehaviour {
         GenerateRoomCode();
         networkManager.matchMaker.CreateMatch(roomCode.ToString(), roomSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
         print("RoomCode: " + roomCode);
+        var pm = FindObjectOfType<PlayerManager>();
         pm.playerData.playerIsHost = true;
         //statusText.text = "room called " + roomCode + " created";
     }

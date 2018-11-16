@@ -18,14 +18,14 @@ public class RoundDataManager : NetworkBehaviour {
         }
     }
 
-    static RoundDataManager _instance;
-    public static RoundDataManager instance {
-        get {
-            if(!_instance)
-                _instance = FindObjectOfType<RoundDataManager>();
-            return _instance;
-        }
-    }
+    //static RoundDataManager _instance;
+    //public static RoundDataManager instance {
+    //    get {
+    //        if(!_instance)
+    //            _instance = FindObjectOfType<RoundDataManager>();
+    //        return _instance;
+    //    }
+    //}
 
     public string guess;
     [SerializeField]
@@ -44,12 +44,13 @@ public class RoundDataManager : NetworkBehaviour {
         //dm = DrawingMachine.instance;
         //wg = WordGenerator.instance;
         //im = InputManager.instance;
-        hg = HostGame.instance;
-        gm = GameManager.instance;
+        //hg = HostGame.instance;
+        //gm = GameManager.instance;
         InitGame();
     }
 
     void InitGame() {
+        var hg = FindObjectOfType<HostGame>();
         for(int i = 0 ; i < hg.numberOfPlayers ; i++) {
             chains.Add(new ChainData(new List<LineData[]>(), new List<string>()));
         }
