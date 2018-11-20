@@ -100,7 +100,7 @@ public class UIManager : NetworkBehaviour {
         var gm = FindObjectOfType<GameManager>();
         var hg = FindObjectOfType<HostGame>();
         var pm = FindObjectOfType<PlayerManager>();
-        var chainIdx = (gm.roundNumbr - 1 + pm.playerData.playerID) % hg.numberOfPlayers;
+        var chainIdx = (gm.roundNumbr + pm.playerData.playerID) % hg.numberOfPlayers;
         print("Näytetään teksti ketjusta: " + chainIdx);
         ChangeUIText("Draw " + rdm.chains[chainIdx].guesses[(gm.roundNumbr - 1) / 2]);
     }
