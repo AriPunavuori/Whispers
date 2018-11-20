@@ -55,6 +55,7 @@ public class GameManager : NetworkBehaviour {
     private void Start() {
 
     }
+
     void Update () {
         // if isServer: check if all players are ready and set roundnumbr++ and allPlayers Ready bool to true
     }
@@ -77,7 +78,8 @@ public class GameManager : NetworkBehaviour {
         um.SetUI();
         PlayerNotReady();
         wg.WordG();
-        pco.CmdAddGuessToChain(wg.myWord, pm.playerData.playerID + roundNumbr);
+        print("Lisätään ensimmäinen teksti: " + wg.myWord + " ketjuun: " + pm.playerData.playerID);
+        pco.CmdAddGuessToChain(wg.myWord, pm.playerData.playerID);
         roundNumbr++;
         um.PocketReset();
     }
