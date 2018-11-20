@@ -103,6 +103,9 @@ public class UIManager : NetworkBehaviour {
         var chainIdx = (gm.roundNumbr + pm.playerData.playerID) % hg.numberOfPlayers;
         print("Näytetään teksti ketjusta: " + chainIdx);
         var temp = gm.roundNumbr - 1;
+        print(uiText);
+        print(rdm);
+        print(rdm.chains[chainIdx].guesses[0]);
         if (temp == 0)
             ChangeUIText("Draw " + rdm.chains[chainIdx].guesses[0]);
         else
