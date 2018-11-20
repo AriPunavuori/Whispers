@@ -79,7 +79,7 @@ public class InputManager : NetworkBehaviour {
         var dm = FindObjectOfType<DrawingMachine>();
         var hg = FindObjectOfType<HostGame>();
         var um = FindObjectOfType<UIManager>();
-        pco.CmdAddPictureToChain(dm.lines.ToArray(), pm.playerData.playerID + gm.roundNumbr % hg.numberOfPlayers);
+        pco.CmdAddPictureToChain(dm.lines.ToArray(), (pm.playerData.playerID + gm.roundNumbr) % hg.numberOfPlayers);
         pm.playMode = PlayerManager.PlayMode.Wait;
         um.SetUI();
         pco.CmdThisClientIsReady();
@@ -97,7 +97,7 @@ public class InputManager : NetworkBehaviour {
 
         rdm.guess = um.textBox.text;
         um.textBox.text = "";
-        pco.CmdAddGuessToChain(rdm.guess, pm.playerData.playerID + gm.roundNumbr % hg.numberOfPlayers);
+        pco.CmdAddGuessToChain(rdm.guess, (pm.playerData.playerID + gm.roundNumbr) % hg.numberOfPlayers);
         pm.playMode = PlayerManager.PlayMode.Wait;
         um.SetUI();
         pco.CmdThisClientIsReady();
@@ -128,6 +128,4 @@ public class InputManager : NetworkBehaviour {
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
         return results.Count > 0;
     }
-
-
 }
