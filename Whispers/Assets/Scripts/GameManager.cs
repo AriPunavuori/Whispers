@@ -85,7 +85,7 @@ public class GameManager : NetworkBehaviour {
     public void Gameplay(){
         var um = FindObjectOfType<UIManager>();
         var pm = FindObjectOfType<PlayerManager>();
-
+        print("RoundNumber: " + roundNumbr);
         if(roundNumbr < 5) {
             // See if roundnumber is odd or even and then draw or guess
             if(roundNumbr % 2 == 0) { // if is even, 

@@ -124,17 +124,17 @@ public class WordGenerator : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.W)) {
+        if (Input.GetKeyDown(KeyCode.F1)) {
             WordG();
         }
-        if (Input.GetKeyDown(KeyCode.E)) {
+        if (Input.GetKeyDown(KeyCode.F2)) {
             GuessG();
         }
-        if (Input.GetKeyDown(KeyCode.D)) {
+        if (Input.GetKeyDown(KeyCode.F3)) {
             DrawG();
         }
 
-        if (Input.GetKeyDown(KeyCode.G)) {
+        if (Input.GetKeyDown(KeyCode.F4)) {
             TalkG();
         }
 

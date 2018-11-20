@@ -66,9 +66,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
         var hg = FindObjectOfType<HostGame>();
         hg.numberOfPlayers++;
         RpcUpdatePlayerCount(hg.numberOfPlayers);
-
         TargetSetNetworkId(target.connectionToClient, hg.numberOfPlayers - 1);
-
     }
 
     [ClientRpc]

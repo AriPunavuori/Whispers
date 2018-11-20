@@ -115,7 +115,6 @@ public class UIManager : NetworkBehaviour {
     public void PocketReset() { // Piirrettyjen viivojen(Peliobjektien) poisto 
         Destroy(pocket);
         pocket = Instantiate(pocketPrefab);
-
     }
 
     [Command]
