@@ -107,13 +107,14 @@ public class PlayerConnectionObject : NetworkBehaviour {
     public void CmdAddGuessToChain(string text, int chainID) {
         rdm = FindObjectOfType<RoundDataManager>();
         rdm.chains[chainID].guesses.Add(text.RemoveDiacritics());
-        //print(guesses[gm.roundNumbr/2]);
+
     }
 
     [Command]
     public void CmdAddPictureToChain(LineData[] picture, int chainID) {
         rdm = FindObjectOfType<RoundDataManager>();
         rdm.chains[chainID].pictures.Add(picture);
+
     }
 
     [Command]
@@ -122,8 +123,9 @@ public class PlayerConnectionObject : NetworkBehaviour {
         var hg = FindObjectOfType<HostGame>();
         gm.playersReady++;
         if (gm.playersReady >= hg.numberOfPlayers) {
-            RpcStartNextRound();
-            gm.playersReady = 0;
+            StartCoroutine(WaitDelay());
+            //RpcStartNextRound();
+            //gm.playersReady = 0;
         }
     }
 
@@ -132,6 +134,14 @@ public class PlayerConnectionObject : NetworkBehaviour {
         var gm = FindObjectOfType<GameManager>();
         gm.roundNumbr++;
         gm.Gameplay();
+    }
+
+    IEnumerator WaitDelay() {
+        var gm = FindObjectOfType<GameManager>();
+        yield return new WaitForSeconds(0.4f);
+        RpcStartNextRound();
+        gm.playersReady = 0;
+
     }
 
 
