@@ -102,7 +102,12 @@ public class UIManager : NetworkBehaviour {
         var pm = FindObjectOfType<PlayerManager>();
         var chainIdx = (gm.roundNumbr + pm.playerData.playerID) % hg.numberOfPlayers;
         print("Näytetään teksti ketjusta: " + chainIdx);
-        ChangeUIText("Draw " + rdm.chains[chainIdx].guesses[(gm.roundNumbr - 1) / 2]);
+        var temp = gm.roundNumbr - 1;
+        if (temp == 0)
+            ChangeUIText("Draw " + rdm.chains[chainIdx].guesses[0]);
+        else
+            ChangeUIText("Draw " + rdm.chains[chainIdx].guesses[(gm.roundNumbr - 1) / 2]);
+
     }
 
     public void EraseDrawnLines() {
