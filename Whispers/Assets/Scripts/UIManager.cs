@@ -78,7 +78,7 @@ public class UIManager : NetworkBehaviour {
         var gm = FindObjectOfType<GameManager>();
         var pm = FindObjectOfType<PlayerManager>();
         var hg = FindObjectOfType<HostGame>();
-        var chainIdx = ((gm.roundNumbr - 1) + pm.playerData.playerID) % hg.numberOfPlayers;
+        var chainIdx = (gm.roundNumbr + pm.playerData.playerID) % hg.numberOfPlayers;
         var pics = rdm.chains[chainIdx].pictures;
         print("Näytetään kuva ketjusta:" + chainIdx);
         ShowPicture(pics[(gm.roundNumbr - 1) / 2]);
@@ -105,7 +105,7 @@ public class UIManager : NetworkBehaviour {
         var temp = gm.roundNumbr - 1;
         print(uiText);
         print(rdm);
-        print(rdm.chains[chainIdx].guesses[0]);
+        //print(rdm.chains[chainIdx].guesses[0]);
         if (temp == 0)
             ChangeUIText("Draw " + rdm.chains[chainIdx].guesses[0]);
         else

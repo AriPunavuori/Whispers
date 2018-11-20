@@ -107,15 +107,27 @@ public class PlayerConnectionObject : NetworkBehaviour {
     public void CmdAddGuessToChain(string text, int chainID) {
         rdm = FindObjectOfType<RoundDataManager>();
         rdm.chains[chainID].guesses.Add(text.RemoveDiacritics());
+        RpcUpdateStringChaindataOnClients(text, chainID);
+    }
 
+    [ClientRpc]
+    void RpcUpdateStringChaindataOnClients(string text, int chainID) {
+        rdm = FindObjectOfType<RoundDataManager>();
+        rdm.chains[chainID].guesses.Add(text.RemoveDiacritics());
     }
 
     [Command]
     public void CmdAddPictureToChain(LineData[] picture, int chainID) {
         rdm = FindObjectOfType<RoundDataManager>();
         rdm.chains[chainID].pictures.Add(picture);
-
+        RpcUpdatePicChaindataOnClients(picture, chainID);
     }
+
+    [ClientRpc]
+    void RpcUpdatePicChaindataOnClients(LineData[] picture, int chainID) {
+        rdm.chains[chainID].pictures.Add(picture);
+    }
+
 
     [Command]
     public void CmdThisClientIsReady() {
@@ -139,29 +151,8 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
     IEnumerator WaitDelay() {
         var gm = FindObjectOfType<GameManager>();
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(0.4f);
         RpcStartNextRound();
         gm.playersReady = 0;
     }
-
-
-    //[Command]
-    //void CmdUpdateStringChainDataOnServer(/*WhateverChainData*/){
-    //    RpcUpdateStringChaindataOnClients(/*WhateverChainData*/);
-    //}
-
-    //[ClientRpc]
-    //void RpcUpdateStringChaindataOnClients(/*WhateverChainData*/) {
-    //    rdm.AddGuessToChain(rdm.guess, pm.playerData.playerID);
-    //}
-    //[Command]
-
-    //void CmdUpdatePicChainDataOnServer(/*WhateverChainData*/) {
-    //    RpcUpdatePicChaindataOnClients(/*WhateverChainData*/);
-    //}
-
-    //[ClientRpc]
-    //void RpcUpdatePicChaindataOnClients(/*WhateverChainData*/) {
-    //    rdm.AddPictureToChain(dm.lines, pm.playerData.playerID);
-    //}
 }

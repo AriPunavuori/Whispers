@@ -50,7 +50,7 @@ public class GameManager : NetworkBehaviour {
         //im = InputManager.instance;
         roundTimer = timeToDraw;
         timerFill.maxValue = timeToDraw; 
-        Fabric.EventManager.Instance.PostEvent("tune");
+        //Fabric.EventManager.Instance.PostEvent("tune");
     }
     private void Start() {
 
