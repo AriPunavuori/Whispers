@@ -80,8 +80,10 @@ public class GameManager : NetworkBehaviour {
         wg.WordG();
         print("Lisätään ensimmäinen teksti: " + wg.myWord + " ketjuun: " + pm.playerData.playerID);
         pco.CmdAddGuessToChain(wg.myWord, pm.playerData.playerID);
-        roundNumbr++;
+        //roundNumbr++;
+        print("RoundNumber ekat: " + roundNumbr);
         um.PocketReset();
+        pco.CmdThisClientIsReady();
     }
 
     public void Gameplay(){

@@ -132,6 +132,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
     [ClientRpc]
     public void RpcStartNextRound() {
         var gm = FindObjectOfType<GameManager>();
+        print("Clienttien round number kasvaa: " + gm.roundNumbr);
         gm.roundNumbr++;
         gm.Gameplay();
     }
@@ -141,7 +142,6 @@ public class PlayerConnectionObject : NetworkBehaviour {
         yield return new WaitForSeconds(4f);
         RpcStartNextRound();
         gm.playersReady = 0;
-
     }
 
 

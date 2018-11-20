@@ -173,7 +173,7 @@ public class WordGenerator : MonoBehaviour {
         }
 
         //um.ChangeUIText("Hi " + Jones + ",\n" + "Can you draw\n" + myWord + "?");
-        SMTalk.text = ("Hi " + Jones + ",\n" + "Can you draw\n" + myWord + "?");
+        //SMTalk.text = ("Hi " + Jones + ",\n" + "Can you draw\n" + myWord + "?");
     }
 
     public void GuessG() { // Sanageneraattori
