@@ -89,7 +89,7 @@ public class GameManager : NetworkBehaviour {
         if(roundNumbr < 10) {
             // See if roundnumber is odd or even and then draw or guess
             if(roundNumbr % 2 == 0) { // if is even, 
-                um.PocketReset();
+                //um.PocketReset();
                 pm.playMode = PlayerManager.PlayMode.Write;
                 um.SetUI();
                 um.ShowPictureToGuess();
@@ -97,10 +97,10 @@ public class GameManager : NetworkBehaviour {
                 SetTimer(timeToWrite);
                 PlayerNotReady();
             } else { // odd
-                um.EraseDrawnLines();
-                um.ShowTextToDraw();
+                //um.EraseDrawnLines();
                 pm.playMode = PlayerManager.PlayMode.Draw;
                 um.SetUI();
+                um.ShowTextToDraw();
                 SetTimer(timeToDraw);
                 PlayerNotReady();
             }

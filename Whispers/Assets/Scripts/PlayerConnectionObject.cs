@@ -138,7 +138,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
     IEnumerator WaitDelay() {
         var gm = FindObjectOfType<GameManager>();
-        yield return new WaitForSeconds(0.4f);
+        yield return new WaitForSeconds(4f);
         RpcStartNextRound();
         gm.playersReady = 0;
 

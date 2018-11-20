@@ -82,6 +82,8 @@ public class InputManager : NetworkBehaviour {
         pco.CmdAddPictureToChain(dm.lines.ToArray(), (pm.playerData.playerID + gm.roundNumbr) % hg.numberOfPlayers);
         pm.playMode = PlayerManager.PlayMode.Wait;
         um.SetUI();
+        um.EraseDrawnLines();
+        um.ChangeUIText("");
         pco.CmdThisClientIsReady();
         pm.playerData.playerRDY = true;
     }
@@ -100,6 +102,8 @@ public class InputManager : NetworkBehaviour {
         pco.CmdAddGuessToChain(rdm.guess, (pm.playerData.playerID + gm.roundNumbr) % hg.numberOfPlayers);
         pm.playMode = PlayerManager.PlayMode.Wait;
         um.SetUI();
+        um.PocketReset();
+        um.ChangeUIText("");
         pco.CmdThisClientIsReady();
         pm.playerData.playerRDY = true;
     }
