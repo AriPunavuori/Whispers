@@ -80,7 +80,7 @@ public class UIManager : NetworkBehaviour {
         var hg = FindObjectOfType<HostGame>();
         var chainIdx = ((gm.roundNumbr - 1) + pm.playerData.playerID) % hg.numberOfPlayers;
         var pics = rdm.chains[chainIdx].pictures;
-        print("CHAININDX: " + chainIdx);
+        print("Näytetään kuva ketjusta:" + chainIdx);
         ShowPicture(pics[(gm.roundNumbr - 1) / 2]);
     }
 
