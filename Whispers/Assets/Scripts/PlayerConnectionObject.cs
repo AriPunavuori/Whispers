@@ -58,6 +58,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
     void TargetSetNetworkId(NetworkConnection _target, int id){
         var pm = FindObjectOfType<PlayerManager>();
         pm.playerData.playerID = id;
+        pm.playerData.playerName = "Player " + (id + 1);
         CmdChangeName(pm.playerData.playerID);
     }
 
