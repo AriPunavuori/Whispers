@@ -105,8 +105,8 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
     [Command]
     public void CmdAddGuessToChain(string text, int chainID) {
-        rdm = FindObjectOfType<RoundDataManager>();
-        rdm.chains[chainID].guesses.Add(text.RemoveDiacritics());
+        //rdm = FindObjectOfType<RoundDataManager>();
+        //rdm.chains[chainID].guesses.Add(text.RemoveDiacritics());
         RpcUpdateStringChaindataOnClients(text, chainID);
     }
 
@@ -118,8 +118,8 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
     [Command]
     public void CmdAddPictureToChain(LineData[] picture, int chainID) {
-        rdm = FindObjectOfType<RoundDataManager>();
-        rdm.chains[chainID].pictures.Add(picture);
+        //rdm = FindObjectOfType<RoundDataManager>();
+        //rdm.chains[chainID].pictures.Add(picture);
         RpcUpdatePicChaindataOnClients(picture, chainID);
     }
 
