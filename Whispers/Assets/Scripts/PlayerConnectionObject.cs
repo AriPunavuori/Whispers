@@ -5,12 +5,12 @@ using UnityEngine.Networking;
 using Picture = System.Collections.Generic.List<LineData>;
 
 public class PlayerConnectionObject : NetworkBehaviour {
-    UIManager um;
-    HostGame hg;
-    PlayerManager pm;
+    //UIManager um;
+    //HostGame hg;
+    //PlayerManager pm;
     RoundDataManager rdm;
-    DrawingMachine dm;
-    GameManager gm;
+    //DrawingMachine dm;
+    //GameManager gm;
 
     public GameObject playerUIPrefab;
     public GameObject UIContainer;

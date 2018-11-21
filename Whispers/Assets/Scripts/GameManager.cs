@@ -21,7 +21,6 @@ public class GameManager : NetworkBehaviour {
     public int playersReady;
     //bool started = false;
     //bool drawingNotGuessing = true;
-
     public float timeToDraw = 60f;
     public float timeToWrite = 30f;
 
@@ -70,8 +69,8 @@ public class GameManager : NetworkBehaviour {
     }
 
     public void GenerateNewWordsToDraw(){ // Sanageneraattorikutsu
-        var pco = FindObjectOfType<PlayerConnectionObject>();
         var pm = FindObjectOfType<PlayerManager>();
+        var pco = GameObject.Find("Player# " + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
         var um = FindObjectOfType<UIManager>();
         var wg = FindObjectOfType<WordGenerator>();
         pm.playMode = PlayerManager.PlayMode.Draw;
