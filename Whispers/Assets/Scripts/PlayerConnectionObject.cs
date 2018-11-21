@@ -36,7 +36,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
         if (isServer) {
             var um = FindObjectOfType<UIManager>();
             var hg = FindObjectOfType<HostGame>();
-            um.uiText.text = "Room #" + hg.roomCode;
+            um.roomCodeTxt.text = "Room #" + hg.roomCode;
         }
         CmdAddPlayer();
         CmdShowRoomCode();
@@ -89,7 +89,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
     [ClientRpc]
     void RpcUpdateRoomCode(int roomCode) {
         var um = FindObjectOfType<UIManager>();
-        um.uiText.text = "Room# is: " + roomCode;
+        um.roomCodeTxt.text = "Room# is: " + roomCode;
 
     }
 

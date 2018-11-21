@@ -19,6 +19,7 @@ public class UIManager : NetworkBehaviour {
     //}
 
     public TextMeshProUGUI uiText;
+    public TextMeshProUGUI roomCodeTxt;
 
     //RoundDataManager rdm;
     //PlayerManager pm;
@@ -39,6 +40,8 @@ public class UIManager : NetworkBehaviour {
     public GameObject startButton;
     public GameObject rdmPrefab;
     public InputField textBox;
+
+    public GameObject paperBCG;
 
     private void Awake() {
         //rdm = RoundDataManager.instance;
@@ -71,7 +74,14 @@ public class UIManager : NetworkBehaviour {
         waitingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Wait);
         watchingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Watch);
         writingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Write);
+        if (pm.playMode == PlayerManager.PlayMode.Draw || pm.playMode == PlayerManager.PlayMode.Write) {
+            paperBCG.SetActive(true);
+        } else {
+            paperBCG.SetActive(false);
+        }
     }
+
+    
 
     public void ShowPictureToGuess() { // Näytetään kuva arvattavaksi
         var rdm = FindObjectOfType<RoundDataManager>();
