@@ -7,11 +7,13 @@ public class EndScreen : MonoBehaviour {
 
     public Camera eCam;
     public GameObject picPrefab;
-    public RenderTexture camImage;
+    //public RenderTexture camImage;
     public Transform origPic;
     public Vector3 picPos;
     public GameObject LinePrefab;
     public GameObject pocket;
+
+
 
     RoundDataManager rdm;
 
@@ -51,6 +53,7 @@ public class EndScreen : MonoBehaviour {
                     lineToDraw.positionCount = l.points.Length;
                     lineToDraw.SetPositions(l.points);
                 }
+                
                 round++;
                 // do something - ch.pictures[round]
 
