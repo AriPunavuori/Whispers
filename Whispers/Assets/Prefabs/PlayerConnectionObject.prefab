@@ -54,7 +54,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerUIPrefab: {fileID: 1685058775530274, guid: b097bafea7216ce4ea9e51778259b225,
     type: 2}
-  UIContainer: {fileID: 0}
+  UIContainerPrefab: {fileID: 1952959580110424, guid: 7bba7dbee11205f4bb98c3a47e9a5010,
+    type: 2}
 --- !u!114 &114598175511197952
 MonoBehaviour:
   m_ObjectHideFlags: 1

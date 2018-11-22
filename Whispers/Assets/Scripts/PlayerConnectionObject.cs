@@ -13,8 +13,10 @@ public class PlayerConnectionObject : NetworkBehaviour {
     //GameManager gm;
 
     public GameObject playerUIPrefab;
-    public GameObject UIContainer;
+    public GameObject UIContainerPrefab;
+    GameObject UIContainer;
 
+    
     NetworkIdentity target;
 
     private void Awake() {
@@ -82,10 +84,10 @@ public class PlayerConnectionObject : NetworkBehaviour {
         var hg = FindObjectOfType<HostGame>();
         hg.numberOfPlayers = newPlayerCount;
 
-        var PlayerInfo = Instantiate(playerUIPrefab);
-        UIContainer = GameObject.Find("PlayerInfoContainer");
-        PlayerInfo.transform.SetParent(UIContainer.transform);
-        PlayerInfo.transform.localScale = Vector3.one;
+        //var PlayerInfo = Instantiate(playerUIPrefab);
+        //UIContainer = GameObject.Find("PlayerInfoContainer");
+        //PlayerInfo.transform.SetParent(UIContainer.transform);
+        //PlayerInfo.transform.localScale = Vector3.one;
     }
 
     [ClientRpc]
@@ -98,6 +100,26 @@ public class PlayerConnectionObject : NetworkBehaviour {
     void RpcUpdatePlayerNameList(PlayerData[] pd){
         var pm = FindObjectOfType<PlayerManager>();
         pm.playerDataList = new List<PlayerData>(pd);
+        UIContainer = GameObject.Find("PlayerInfoContainer");
+        if(GameObject.Find("PlayerInfoContainer") == null){
+            UIContainer = GameObject.Find("PlayerInfoContainer(Clone)");
+        }
+        print(UIContainer);
+        Destroy(UIContainer);
+        UIContainer = Instantiate(UIContainerPrefab);
+        var wUI = GameObject.Find("WaitingUI");
+        UIContainer.transform.SetParent(wUI.transform);
+        UIContainer.transform.localScale = Vector3.one;
+        for(int i = 0 ; i < pm.playerDataList.Count ;i++){
+            var PlayerInfo = Instantiate(playerUIPrefab);
+            print("luodaan Player info: " + PlayerInfo);
+            PlayerInfo.GetComponent<GetPlayerInfo>().nameText.text = pd[i].playerName;
+            //UIContainer = GameObject.Find("PlayerInfoContainer(Clone)");
+            print(UIContainer);
+            PlayerInfo.transform.SetParent(UIContainer.transform);
+            PlayerInfo.transform.localScale = Vector3.one;
+            print(pm.playerDataList[i].playerName);
+        }
     }
 
     [Command]
