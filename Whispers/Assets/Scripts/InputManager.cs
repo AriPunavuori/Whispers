@@ -73,23 +73,29 @@ public class InputManager : NetworkBehaviour {
     }
 
     public void SendDrawing() { // Tallennetaan kuva
-        var pco = FindObjectOfType<PlayerConnectionObject>();
+
         var pm = FindObjectOfType<PlayerManager>();
+        var pco = GameObject.Find("Player# " + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
         var gm = FindObjectOfType<GameManager>();
         var dm = FindObjectOfType<DrawingMachine>();
         var hg = FindObjectOfType<HostGame>();
         var um = FindObjectOfType<UIManager>();
+        print("Lisätään kuva ketjuun: " + (pm.playerData.playerID + gm.roundNumbr) % hg.numberOfPlayers);
         pco.CmdAddPictureToChain(dm.lines.ToArray(), (pm.playerData.playerID + gm.roundNumbr) % hg.numberOfPlayers);
         pm.playMode = PlayerManager.PlayMode.Wait;
         um.SetUI();
+        um.EraseDrawnLines();
+        um.ChangeUIText("");
         pco.CmdThisClientIsReady();
         pm.playerData.playerRDY = true;
     }
 
     public void SendGuess() { // Funktio joka kutsutaan UI-Buttonilla kirjoitus-UI:ssä
-        var pco = FindObjectOfType<PlayerConnectionObject>();
-        var rdm = FindObjectOfType<RoundDataManager>();
         var pm = FindObjectOfType<PlayerManager>();
+        var pco = GameObject.Find("Player# " + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
+
+        var rdm = FindObjectOfType<RoundDataManager>();
+
         var gm = FindObjectOfType<GameManager>();
         var dm = FindObjectOfType<DrawingMachine>();
         var hg = FindObjectOfType<HostGame>();
@@ -97,9 +103,12 @@ public class InputManager : NetworkBehaviour {
 
         rdm.guess = um.textBox.text;
         um.textBox.text = "";
+        print("Lisätään teksti ketjuun: " + (pm.playerData.playerID + gm.roundNumbr) % hg.numberOfPlayers);
         pco.CmdAddGuessToChain(rdm.guess, (pm.playerData.playerID + gm.roundNumbr) % hg.numberOfPlayers);
         pm.playMode = PlayerManager.PlayMode.Wait;
         um.SetUI();
+        um.PocketReset();
+        um.ChangeUIText("");
         pco.CmdThisClientIsReady();
         pm.playerData.playerRDY = true;
     }

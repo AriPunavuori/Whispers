@@ -5,12 +5,12 @@ using UnityEngine.Networking;
 using Picture = System.Collections.Generic.List<LineData>;
 
 public class PlayerConnectionObject : NetworkBehaviour {
-    UIManager um;
-    HostGame hg;
-    PlayerManager pm;
+    //UIManager um;
+    //HostGame hg;
+    //PlayerManager pm;
     RoundDataManager rdm;
-    DrawingMachine dm;
-    GameManager gm;
+    //DrawingMachine dm;
+    //GameManager gm;
 
     public GameObject playerUIPrefab;
     public GameObject UIContainer;
@@ -36,7 +36,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
         if (isServer) {
             var um = FindObjectOfType<UIManager>();
             var hg = FindObjectOfType<HostGame>();
-            um.uiText.text = "Room #" + hg.roomCode;
+            um.roomCodeTxt.text = "Room #" + hg.roomCode;
         }
         CmdAddPlayer();
         CmdShowRoomCode();
@@ -58,6 +58,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
     void TargetSetNetworkId(NetworkConnection _target, int id){
         var pm = FindObjectOfType<PlayerManager>();
         pm.playerData.playerID = id;
+        pm.playerData.playerName = "Player " + (id + 1);
         CmdChangeName(pm.playerData.playerID);
     }
 
@@ -89,7 +90,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
     [ClientRpc]
     void RpcUpdateRoomCode(int roomCode) {
         var um = FindObjectOfType<UIManager>();
-        um.uiText.text = "Room# is: " + roomCode;
+        um.roomCodeTxt.text = "Room# is: " + roomCode;
 
     }
 
@@ -105,16 +106,29 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
     [Command]
     public void CmdAddGuessToChain(string text, int chainID) {
+        //rdm = FindObjectOfType<RoundDataManager>();
+        //rdm.chains[chainID].guesses.Add(text.RemoveDiacritics());
+        RpcUpdateStringChaindataOnClients(text, chainID);
+    }
+
+    [ClientRpc]
+    void RpcUpdateStringChaindataOnClients(string text, int chainID) {
         rdm = FindObjectOfType<RoundDataManager>();
         rdm.chains[chainID].guesses.Add(text.RemoveDiacritics());
-        //print(guesses[gm.roundNumbr/2]);
     }
 
     [Command]
     public void CmdAddPictureToChain(LineData[] picture, int chainID) {
-        rdm = FindObjectOfType<RoundDataManager>();
+        //rdm = FindObjectOfType<RoundDataManager>();
+        //rdm.chains[chainID].pictures.Add(picture);
+        RpcUpdatePicChaindataOnClients(picture, chainID);
+    }
+
+    [ClientRpc]
+    void RpcUpdatePicChaindataOnClients(LineData[] picture, int chainID) {
         rdm.chains[chainID].pictures.Add(picture);
     }
+
 
     [Command]
     public void CmdThisClientIsReady() {
@@ -122,36 +136,24 @@ public class PlayerConnectionObject : NetworkBehaviour {
         var hg = FindObjectOfType<HostGame>();
         gm.playersReady++;
         if (gm.playersReady >= hg.numberOfPlayers) {
-            RpcStartNextRound();
-            gm.playersReady = 0;
+            StartCoroutine(WaitDelay());
+            //RpcStartNextRound();
+            //gm.playersReady = 0;
         }
     }
 
     [ClientRpc]
     public void RpcStartNextRound() {
         var gm = FindObjectOfType<GameManager>();
+        print("Clienttien round number kasvaa: " + gm.roundNumbr);
         gm.roundNumbr++;
         gm.Gameplay();
     }
 
-
-    //[Command]
-    //void CmdUpdateStringChainDataOnServer(/*WhateverChainData*/){
-    //    RpcUpdateStringChaindataOnClients(/*WhateverChainData*/);
-    //}
-
-    //[ClientRpc]
-    //void RpcUpdateStringChaindataOnClients(/*WhateverChainData*/) {
-    //    rdm.AddGuessToChain(rdm.guess, pm.playerData.playerID);
-    //}
-    //[Command]
-
-    //void CmdUpdatePicChainDataOnServer(/*WhateverChainData*/) {
-    //    RpcUpdatePicChaindataOnClients(/*WhateverChainData*/);
-    //}
-
-    //[ClientRpc]
-    //void RpcUpdatePicChaindataOnClients(/*WhateverChainData*/) {
-    //    rdm.AddPictureToChain(dm.lines, pm.playerData.playerID);
-    //}
+    IEnumerator WaitDelay() {
+        var gm = FindObjectOfType<GameManager>();
+        yield return new WaitForSeconds(0.4f);
+        RpcStartNextRound();
+        gm.playersReady = 0;
+    }
 }

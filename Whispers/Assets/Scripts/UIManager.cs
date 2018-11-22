@@ -19,6 +19,7 @@ public class UIManager : NetworkBehaviour {
     //}
 
     public TextMeshProUGUI uiText;
+    public TextMeshProUGUI roomCodeTxt;
 
     //RoundDataManager rdm;
     //PlayerManager pm;
@@ -39,6 +40,9 @@ public class UIManager : NetworkBehaviour {
     public GameObject startButton;
     public GameObject rdmPrefab;
     public InputField textBox;
+
+    public GameObject paperBCG;
+    public GameObject timerBar;
 
     private void Awake() {
         //rdm = RoundDataManager.instance;
@@ -71,7 +75,16 @@ public class UIManager : NetworkBehaviour {
         waitingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Wait);
         watchingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Watch);
         writingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Write);
+        if (pm.playMode == PlayerManager.PlayMode.Draw || pm.playMode == PlayerManager.PlayMode.Write) {
+            paperBCG.SetActive(true);
+            timerBar.SetActive(true);
+        } else {
+            paperBCG.SetActive(false);
+            timerBar.SetActive(false);
+        }
     }
+
+    
 
     public void ShowPictureToGuess() { // Näytetään kuva arvattavaksi
         var rdm = FindObjectOfType<RoundDataManager>();
@@ -80,7 +93,7 @@ public class UIManager : NetworkBehaviour {
         var hg = FindObjectOfType<HostGame>();
         var chainIdx = (gm.roundNumbr + pm.playerData.playerID) % hg.numberOfPlayers;
         var pics = rdm.chains[chainIdx].pictures;
-        print(gm.roundNumbr);
+        print("Näytetään kuva ketjusta:" + chainIdx);
         ShowPicture(pics[(gm.roundNumbr - 1) / 2]);
     }
 
@@ -101,7 +114,16 @@ public class UIManager : NetworkBehaviour {
         var hg = FindObjectOfType<HostGame>();
         var pm = FindObjectOfType<PlayerManager>();
         var chainIdx = (gm.roundNumbr + pm.playerData.playerID) % hg.numberOfPlayers;
-        ChangeUIText("Draw " + rdm.chains[chainIdx].guesses[(gm.roundNumbr - 1) / 2]);
+        print("Näytetään teksti ketjusta: " + chainIdx);
+        var temp = gm.roundNumbr - 1;
+        print(uiText);
+        print(rdm);
+        //print(rdm.chains[chainIdx].guesses[0]);
+        if (temp == 0)
+            ChangeUIText("Draw " + rdm.chains[chainIdx].guesses[0]);
+        else
+            ChangeUIText("Draw " + rdm.chains[chainIdx].guesses[(gm.roundNumbr - 1) / 2]);
+
     }
 
     public void EraseDrawnLines() {
