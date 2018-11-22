@@ -55,7 +55,10 @@ public class WebcamTest : MonoBehaviour {
     int _CaptureCounter = 0;
 
     void ChangeCam() {
-        
+        if (deviceName != devices[0].name) {
+            deviceName = devices[1].name;
+        }
+
     }
 
     void TakeSnapshot() {
