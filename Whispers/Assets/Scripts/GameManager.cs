@@ -52,15 +52,25 @@ public class GameManager : NetworkBehaviour {
         //Fabric.EventManager.Instance.PostEvent("tune");
     }
     private void Start() {
-
+        pm = FindObjectOfType<PlayerManager>();
     }
 
     void Update () {
-        // if isServer: check if all players are ready and set roundnumbr++ and allPlayers Ready bool to true
+        if(pm.playMode == PlayerManager.PlayMode.Draw || pm.playMode == PlayerManager.PlayMode.Write){
+            roundTimer -= Time.deltaTime; // Peruspelin ajastin
+            timerFill.value = roundTimer;
+            if(roundTimer < 0) {
+                var im = FindObjectOfType<InputManager>();
+                if(pm.playMode == PlayerManager.PlayMode.Draw) {
+                    im.SendDrawing();
+                } else {
+                    im.SendGuess();
+                }
+            }
+        }
     }
 
     public void PlayerNotReady(){
-        var pm = FindObjectOfType<PlayerManager>();
         pm.playerData.playerRDY = false;
     }
 
@@ -69,7 +79,6 @@ public class GameManager : NetworkBehaviour {
     }
 
     public void GenerateNewWordsToDraw(){ // Sanageneraattorikutsu
-        var pm = FindObjectOfType<PlayerManager>();
         var pco = GameObject.Find("Player# " + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
         var um = FindObjectOfType<UIManager>();
         var wg = FindObjectOfType<WordGenerator>();
@@ -87,7 +96,6 @@ public class GameManager : NetworkBehaviour {
 
     public void Gameplay(){
         var um = FindObjectOfType<UIManager>();
-        var pm = FindObjectOfType<PlayerManager>();
         print("RoundNumber: " + roundNumbr);
         if(roundNumbr < 10) {
             // See if roundnumber is odd or even and then draw or guess
@@ -95,6 +103,7 @@ public class GameManager : NetworkBehaviour {
                 //um.PocketReset();
                 pm.playMode = PlayerManager.PlayMode.Write;
                 um.SetUI();
+                timerFill.maxValue = timeToWrite;
                 um.ShowPictureToGuess();
                 um.ChangeUIText("What on earth is this?");
                 SetTimer(timeToWrite);
@@ -103,6 +112,7 @@ public class GameManager : NetworkBehaviour {
                 //um.EraseDrawnLines();
                 pm.playMode = PlayerManager.PlayMode.Draw;
                 um.SetUI();
+                timerFill.maxValue = timeToDraw;
                 um.ShowTextToDraw();
                 SetTimer(timeToDraw);
                 PlayerNotReady();

@@ -42,6 +42,7 @@ public class UIManager : NetworkBehaviour {
     public InputField textBox;
 
     public GameObject paperBCG;
+    public GameObject timerBar;
 
     private void Awake() {
         //rdm = RoundDataManager.instance;
@@ -76,8 +77,10 @@ public class UIManager : NetworkBehaviour {
         writingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Write);
         if (pm.playMode == PlayerManager.PlayMode.Draw || pm.playMode == PlayerManager.PlayMode.Write) {
             paperBCG.SetActive(true);
+            timerBar.SetActive(true);
         } else {
             paperBCG.SetActive(false);
+            timerBar.SetActive(false);
         }
     }
 
