@@ -2,6 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public struct PlayerData {
+    public string playerName;
+    public bool playerRDY;
+    public List<float> playerIMG;
+    public bool playerIsHost;
+    public int playerID;
+
+    public PlayerData(string playerName, bool playerRDY, List<float> playerIMG, bool playerIsHost, int playerID) {
+        this.playerName = playerName;
+        this.playerRDY = playerRDY;
+        this.playerIMG = playerIMG;
+        this.playerIsHost = playerIsHost;
+        this.playerID = playerID;
+    }
+}
+
 public class PlayerManager : MonoBehaviour {
     public enum PlayMode { Draw, Write, Wait, Watch, Menu };
     public PlayMode playMode;
@@ -16,26 +33,11 @@ public class PlayerManager : MonoBehaviour {
     //    }
     //}
 
-    [System.Serializable]
-	public struct PlayerData { 
-        public string playerName;
-        public bool playerRDY;
-        public List<float> playerIMG;
-        public bool playerIsHost;
-        public int playerID;
 
-        public PlayerData(string playerName, bool playerRDY, List<float> playerIMG, bool playerIsHost, int playerID) {
-            this.playerName = playerName;
-            this.playerRDY = playerRDY;
-            this.playerIMG = playerIMG;
-            this.playerIsHost = playerIsHost;
-            this.playerID = playerID;
-        }
-    }
 
     bool created;
     public PlayerData playerData;
-
+    public List<PlayerData> playerDataList;
     //RoundDataManager rdm;
     //WordGenerator wg;
     //InputManager im;
