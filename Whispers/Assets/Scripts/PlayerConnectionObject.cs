@@ -38,7 +38,8 @@ public class PlayerConnectionObject : NetworkBehaviour {
             var hg = FindObjectOfType<HostGame>();
             um.roomCodeTxt.text = "Room #" + hg.roomCode;
         }
-        CmdAddPlayer();
+        var pm = FindObjectOfType<PlayerManager>();
+        CmdAddPlayer(pm.playerData.playerName);
         CmdShowRoomCode();
         //pm = FindObjectOfType<PlayerManager>();
         //var PlayerInfo = Instantiate(playerUIPrefab);
@@ -61,14 +62,18 @@ public class PlayerConnectionObject : NetworkBehaviour {
     }
 
     [Command]
-    void CmdAddPlayer(){
+    void CmdAddPlayer(string name){
         var hg = FindObjectOfType<HostGame>();
         var pm = FindObjectOfType<PlayerManager>();
-
         hg.numberOfPlayers++;
+        var pd = new PlayerData();
+        pd.playerName = name;
+        pd.playerID = hg.numberOfPlayers - 1;
+        pm.ServersPlayerDataList.Add(pd);
         RpcUpdatePlayerCount(hg.numberOfPlayers);
-        RpcUpdatePlayerNameList(pm.playerDataList.ToArray());
-        //TargetSetNetworkId(target.connectionToClient, hg.numberOfPlayers - 1);
+        RpcClearPlayerNameList();
+        RpcUpdatePlayerNameList(pm.ServersPlayerDataList.ToArray());
+        TargetSetNetworkId(target.connectionToClient, pd.playerID);
     }
 
     [ClientRpc]
@@ -80,6 +85,12 @@ public class PlayerConnectionObject : NetworkBehaviour {
         UIContainer = GameObject.Find("PlayerInfoContainer");
         PlayerInfo.transform.SetParent(UIContainer.transform);
         PlayerInfo.transform.localScale = Vector3.one;
+    }
+
+    [ClientRpc]
+    void RpcClearPlayerNameList(){
+        var pm = FindObjectOfType<PlayerManager>();
+        pm.playerDataList.Clear();
     }
 
     [ClientRpc]

@@ -40,6 +40,7 @@ public class PlayerManager : MonoBehaviour {
 
     bool created;
     public PlayerData playerData;
+    public List<PlayerData> ServersPlayerDataList;
     public List<PlayerData> playerDataList;
     //RoundDataManager rdm;
     //WordGenerator wg;
