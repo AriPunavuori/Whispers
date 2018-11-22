@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public struct PlayerData {
     public string playerName;
     public bool playerRDY;
-    public List<float> playerIMG;
+    public float playerIMG;
     public bool playerIsHost;
     public int playerID;
 
-    public PlayerData(string playerName, bool playerRDY, List<float> playerIMG, bool playerIsHost, int playerID) {
+    public PlayerData(string playerName, bool playerRDY, float playerIMG, bool playerIsHost, int playerID) {
         this.playerName = playerName;
         this.playerRDY = playerRDY;
         this.playerIMG = playerIMG;
