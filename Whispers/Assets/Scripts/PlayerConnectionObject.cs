@@ -40,7 +40,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
         }
         CmdAddPlayer();
         CmdShowRoomCode();
-
+        //pm = FindObjectOfType<PlayerManager>();
         //var PlayerInfo = Instantiate(playerUIPrefab);
         //UIContainer = GameObject.Find("PlayerInfoContainer");
         //PlayerInfo.transform.SetParent(UIContainer.transform);
@@ -58,16 +58,17 @@ public class PlayerConnectionObject : NetworkBehaviour {
     void TargetSetNetworkId(NetworkConnection _target, int id){
         var pm = FindObjectOfType<PlayerManager>();
         pm.playerData.playerID = id;
-        pm.playerData.playerName = "Player " + (id + 1);
-        CmdChangeName(pm.playerData.playerID);
     }
 
     [Command]
     void CmdAddPlayer(){
         var hg = FindObjectOfType<HostGame>();
+        var pm = FindObjectOfType<PlayerManager>();
+
         hg.numberOfPlayers++;
         RpcUpdatePlayerCount(hg.numberOfPlayers);
-        TargetSetNetworkId(target.connectionToClient, hg.numberOfPlayers - 1);
+        RpcUpdatePlayerNameList(pm.playerDataList.ToArray());
+        //TargetSetNetworkId(target.connectionToClient, hg.numberOfPlayers - 1);
     }
 
     [ClientRpc]
@@ -81,28 +82,34 @@ public class PlayerConnectionObject : NetworkBehaviour {
         PlayerInfo.transform.localScale = Vector3.one;
     }
 
+    [ClientRpc]
+    void RpcUpdatePlayerNameList(PlayerData[] pd){
+        var pm = FindObjectOfType<PlayerManager>();
+        pm.playerDataList = new List<PlayerData>(pd);
+    }
+
     [Command]
     void CmdShowRoomCode() {
         var hg = FindObjectOfType<HostGame>();
         RpcUpdateRoomCode(hg.roomCode);
         TargetSetNetworkId(target.connectionToClient, hg.numberOfPlayers - 1);
     }
+
     [ClientRpc]
     void RpcUpdateRoomCode(int roomCode) {
         var um = FindObjectOfType<UIManager>();
         um.roomCodeTxt.text = "Room# is: " + roomCode;
-
     }
 
-    [Command]
-    void CmdChangeName(int PlayerNumber){
-        RpcChangeName(PlayerNumber);
-    }
+    //[Command]
+    //void CmdChangeName(int PlayerNumber){
+    //    RpcChangeName(PlayerNumber);
+    //}
 
-    [ClientRpc]
-    void RpcChangeName(int PlayerNumber) {
-        transform.name = "Player# " + PlayerNumber;
-    }
+    //[ClientRpc]
+    //void RpcChangeName(int PlayerNumber) {
+    //    transform.name = "Player# " + PlayerNumber;
+    //}
 
     [Command]
     public void CmdAddGuessToChain(string text, int chainID) {
