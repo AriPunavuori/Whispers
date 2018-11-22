@@ -7,9 +7,13 @@ public class EndScreen : MonoBehaviour {
 
     public Camera eCam;
     public GameObject picPrefab;
-    public RenderTexture camImage;
+    //public RenderTexture camImage;
     public Transform origPic;
     public Vector3 picPos;
+    public GameObject LinePrefab;
+    public GameObject pocket;
+
+
 
     RoundDataManager rdm;
 
@@ -40,10 +44,19 @@ public class EndScreen : MonoBehaviour {
 
             if (ch.pictures.Count <= round) {
                 var pac = Instantiate(picPrefab, picPos, Quaternion.identity, origPic);
-                var pacImage = pac.GetComponent<RawImage>().texture;
-                pacImage = camImage;
+                //var pacImage = pac.GetComponent<RawImage>().texture;
+                //pacImage = camImage;
+                foreach (var l in ch.pictures[round]) {
+                    var drawnLine = Instantiate(LinePrefab);
+                    drawnLine.transform.parent = picPrefab.transform;
+                    var lineToDraw = drawnLine.GetComponent<LineRenderer>();
+                    lineToDraw.positionCount = l.points.Length;
+                    lineToDraw.SetPositions(l.points);
+                }
+                
                 round++;
                 // do something - ch.pictures[round]
+
             } else {
                 break;
             }

@@ -59,7 +59,11 @@ public class PlayerConnectionObject : NetworkBehaviour {
         var pm = FindObjectOfType<PlayerManager>();
         pm.playerData.playerID = id;
         //pm.playerData.playerName = "Player " + (id + 1);
+<<<<<<< HEAD
         //CmdChangeName(pm.playerData.playerID);
+=======
+        //CmdChangeName(pm.playerData.playerName);
+>>>>>>> 83bf0fd09dc7fd0a750f238dc036ce17db086040
     }
 
     [Command]
