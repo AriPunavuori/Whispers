@@ -20,7 +20,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
     private void Awake() {
         //um = UIManager.instance;
         //hg = HostGame.instance;
-        pm = PlayerManager.instance;
+        //pm = PlayerManager.instance;
         //dm = DrawingMachine.instance;
         //gm = GameManager.instance;
         //rdm = RoundDataManager.instance;
@@ -40,7 +40,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
         }
         CmdAddPlayer();
         CmdShowRoomCode();
-        pm = FindObjectOfType<PlayerManager>();
+        //pm = FindObjectOfType<PlayerManager>();
         //var PlayerInfo = Instantiate(playerUIPrefab);
         //UIContainer = GameObject.Find("PlayerInfoContainer");
         //PlayerInfo.transform.SetParent(UIContainer.transform);
