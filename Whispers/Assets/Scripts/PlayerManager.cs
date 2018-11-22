@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour {
     public enum PlayMode { Draw, Write, Wait, Watch, Menu };
     public PlayMode playMode;
+
+    public InputField nameInput;
 
     //static PlayerManager _instance;
     //public static PlayerManager instance{
@@ -48,11 +51,13 @@ public class PlayerManager : MonoBehaviour {
             created = true;
         }
         //PlayerPrefs.SetString("Name", ""); // Tällä voi nollata nimen
-        if(PlayerPrefs.GetString("Name") == null){
-            playerData.playerName = "";
-        } else {
-            playerData.playerName = PlayerPrefs.GetString("Name");
-        }
+        //if(PlayerPrefs.GetString("Name") == null){
+        //    playerData.playerName = "";
+        //} else {
+        //    playerData.playerName = PlayerPrefs.GetString("Name");
+        //}
+
+
         //rdm = RoundDataManager.instance;
         //wg = WordGenerator.instance;
         //im = InputManager.instance;
@@ -61,8 +66,7 @@ public class PlayerManager : MonoBehaviour {
         playMode = PlayMode.Menu;
     }
 
-    public void SetPlayerName(string name){ // Asetetaan nimi
-        playerData.playerName = name.RemoveDiacritics();
-        PlayerPrefs.SetString("Name", name.RemoveDiacritics());
+    public void SetName() {
+        playerData.playerName = nameInput.text.RemoveDiacritics();
     }
 }
