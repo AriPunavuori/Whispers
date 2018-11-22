@@ -23,12 +23,13 @@ public class EndScreen : MonoBehaviour {
 
     // Use this for initialization
     void Start() {
-        rdm = GameObject.FindObjectOfType<RoundDataManager>();
-        ThreadDisplay();
+        rdm = FindObjectOfType<RoundDataManager>();
+        //ThreadDisplay();
     }
 
 
     public void ThreadDisplay() {
+        rdm = FindObjectOfType<RoundDataManager>();
         var ch = rdm.chains[0];
         //int round = 0;
         picPos = new Vector3(origPic.position.x, (origPic.position.y - (650 * round)), origPic.position.z);

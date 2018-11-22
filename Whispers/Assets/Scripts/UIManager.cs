@@ -75,7 +75,8 @@ public class UIManager : NetworkBehaviour {
         waitingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Wait);
         watchingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Watch);
         writingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Write);
-        if (pm.playMode == PlayerManager.PlayMode.Draw || pm.playMode == PlayerManager.PlayMode.Write) {
+
+        if(pm.playMode == PlayerManager.PlayMode.Draw || pm.playMode == PlayerManager.PlayMode.Write) {
             paperBCG.SetActive(true);
             timerBar.SetActive(true);
         } else {

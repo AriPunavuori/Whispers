@@ -79,7 +79,7 @@ public class GameManager : NetworkBehaviour {
     }
 
     public void GenerateNewWordsToDraw(){ // Sanageneraattorikutsu
-        var pco = GameObject.Find("Player# " + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
+        var pco = GameObject.Find("" + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
         var um = FindObjectOfType<UIManager>();
         var wg = FindObjectOfType<WordGenerator>();
         pm.playMode = PlayerManager.PlayMode.Draw;
@@ -97,7 +97,7 @@ public class GameManager : NetworkBehaviour {
     public void Gameplay(){
         var um = FindObjectOfType<UIManager>();
         print("RoundNumber: " + roundNumbr);
-        if(roundNumbr < 10) {
+        if(roundNumbr < 5) {
             // See if roundnumber is odd or even and then draw or guess
             if(roundNumbr % 2 == 0) { // if is even, 
                 //um.PocketReset();
@@ -121,6 +121,8 @@ public class GameManager : NetworkBehaviour {
             // Show chains
             pm.playMode = PlayerManager.PlayMode.Watch;
             um.SetUI();
+            var es = FindObjectOfType<EndScreen>();
+            es.ThreadDisplay();
         }
     }
 

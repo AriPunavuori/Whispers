@@ -59,6 +59,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
     void TargetSetNetworkId(NetworkConnection _target, int id){
         var pm = FindObjectOfType<PlayerManager>();
         pm.playerData.playerID = id;
+        transform.name = "" + id;
     }
 
     [Command]
@@ -103,7 +104,6 @@ public class PlayerConnectionObject : NetworkBehaviour {
     void CmdShowRoomCode() {
         var hg = FindObjectOfType<HostGame>();
         RpcUpdateRoomCode(hg.roomCode);
-        TargetSetNetworkId(target.connectionToClient, hg.numberOfPlayers - 1);
     }
 
     [ClientRpc]

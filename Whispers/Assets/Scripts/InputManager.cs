@@ -75,7 +75,7 @@ public class InputManager : NetworkBehaviour {
     public void SendDrawing() { // Tallennetaan kuva
 
         var pm = FindObjectOfType<PlayerManager>();
-        var pco = GameObject.Find("Player# " + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
+        var pco = GameObject.Find("" + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
         var gm = FindObjectOfType<GameManager>();
         var dm = FindObjectOfType<DrawingMachine>();
         var hg = FindObjectOfType<HostGame>();
@@ -92,7 +92,7 @@ public class InputManager : NetworkBehaviour {
 
     public void SendGuess() { // Funktio joka kutsutaan UI-Buttonilla kirjoitus-UI:ssä
         var pm = FindObjectOfType<PlayerManager>();
-        var pco = GameObject.Find("Player# " + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
+        var pco = GameObject.Find("" + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
 
         var rdm = FindObjectOfType<RoundDataManager>();
 
