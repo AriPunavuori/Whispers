@@ -99,7 +99,7 @@ public class GameManager : NetworkBehaviour {
         var um = FindObjectOfType<UIManager>();
         var hg = FindObjectOfType<HostGame>();
         print("RoundNumber: " + roundNumbr);
-        if(roundNumbr < hg.numberOfPlayers) {
+        if(roundNumbr < hg.numberOfPlayers + 1) {
             // See if roundnumber is odd or even and then draw or guess
             if(roundNumbr % 2 == 0) { // if is even, 
                 //um.PocketReset();

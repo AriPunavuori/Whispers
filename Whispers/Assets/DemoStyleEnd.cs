@@ -33,15 +33,19 @@ public class DemoStyleEnd : MonoBehaviour {
 
     public void Next() {
         um.PocketReset();
-        
-        if (round >= hg.numberOfPlayers) {
+        //guessText.text = "";
+        if (hg.numberOfPlayers < round) {
             chain++;
             round = 0;
+            guessText.text = "Next chain of events looks like this:";
+            print("Ketju vaihtuu");
         }
         if (chain >= hg.numberOfPlayers) {
             chain = 0;
         }
+
         var ch = rdm.chains[chain];
+
         if (round % 2 == 0) {
             if (ch.guesses.Count > round) {
                 if (round == 0) {
@@ -49,8 +53,10 @@ public class DemoStyleEnd : MonoBehaviour {
                 } else {
                     guessText.text = ch.guesses[round / 2];
                 }
+                print("teksti ja Rundi: "+ round);
             }
         } else {
+            print("Kuva ja roundinumero: " + round);
             var pics = rdm.chains[chain].pictures;
             if (round - 1 == 0) {
                 um.ShowPicture(pics[0]);
