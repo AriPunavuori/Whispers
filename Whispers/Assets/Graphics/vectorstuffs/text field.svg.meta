@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 970b6dc640443554e81a5e6cd573786b
+guid: 0f7caf3210404984db085fd06514e17d
 ScriptedImporter:
   fileIDToRecycleName:
-    100000: gameObject/betalogo for game night
-    400000: gameObject/betalogo for game night/Transform
-    21200000: gameObject/betalogo for game night/SpriteRenderer
+    100000: gameObject/text field
+    400000: gameObject/text field/Transform
+    21200000: gameObject/text field/SpriteRenderer
     21300000: sprite
     100100000: gameObject
   externalObjects: {}
@@ -51,5 +51,5 @@ ScriptedImporter:
         y: 0
         width: 0
         height: 0
-      spriteID: a97ac07b9a0ef1a48b9302d1deb8d283
+      spriteID: 3445153431c5af54a87f9489b18e5f84
     PhysicsOutlines: []
