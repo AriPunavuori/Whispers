@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using UnityEngine.UI;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
 
 public class GameManager : NetworkBehaviour {
 
@@ -130,6 +131,16 @@ public class GameManager : NetworkBehaviour {
     void SetTimer(float time){ // Asetetaan ajastin sekä ajastimen koko
         roundTimer = time;
     }
+
+    public void LeaveGame() {
+        var networkM = FindObjectOfType<NetworkManager>();
+        if (isServer) {
+            networkM.StopHost();
+        } else {
+            networkM.StopClient();
+        }
+        SceneManager.LoadScene(0);
+        }
 
 
     //void DrawingOrGuessing(){ // Peruspelin vaihtelu
