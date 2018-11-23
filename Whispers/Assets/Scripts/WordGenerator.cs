@@ -212,4 +212,16 @@ public class WordGenerator : MonoBehaviour {
             SMTalk.text = (a + " " + aOrAn + " " + art + " like \n" + Jones + "\n" + coul + " " + endA);
         }
     }
+
+    //public void EndGuess() {
+    //    SMTalk.text = ("which looked like " + ch.guess[0] + " to " + player);
+    //    SMTalk.text = ("that reminded " + player + " of " + ch.guess[0]);
+    //    SMTalk.text = ("which  " + player + " interpreted as " + ch.guess[0]);
+    //    SMTalk.text = ("that seemed to be " + ch.guess[0] + " to " + player);
+
+    //    SMTalk.text = ("which looked like this to " + player);
+    //    SMTalk.text = ("and " + player + " came up with something like this");
+    //    SMTalk.text = (player + " thought it looked a little something like this");
+
+    //}
 }
