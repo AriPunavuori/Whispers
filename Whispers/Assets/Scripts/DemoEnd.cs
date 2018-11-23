@@ -127,29 +127,29 @@ public class Demoend : MonoBehaviour {
         var ch = rdm.chains[dse.chain];
     }
 
-    public void EndGuess() {
-        var rnd = Random.Range(0, 3);
-        //float a = Random.value;
-        //float b = Random.value;
-        //float c = Random.value;
-        //float d = Random.value;
-        //var values = new List<float>() { a, b, c, d };
-        //var max = values.Max();
-        //var idx = values.IndexOf(max);
+    //public void EndGuess() {
+    //    var rnd = Random.Range(0, 3);
+    //    //float a = Random.value;
+    //    //float b = Random.value;
+    //    //float c = Random.value;
+    //    //float d = Random.value;
+    //    //var values = new List<float>() { a, b, c, d };
+    //    //var max = values.Max();
+    //    //var idx = values.IndexOf(max);
 
-        if (dse.round == 0) {
-            SMTalk.text = (Jones3 + " wanted " + Jones2 + " to draw " + rdm.guess.RemoveDiacritics());
+    //    if (dse.round == 0) {
+    //        SMTalk.text = (Jones3 + " wanted " + Jones2 + " to draw " + rdm.guess.RemoveDiacritics());
 
-        } else {
-            if (rnd == 0) {
-                SMTalk.text = ("which looked like " + ch.guess[0] + " to " + Jones2);
-            } else if (rnd == 1) {
-                SMTalk.text = ("which reminded " + Jones2 + " of " + +ch.guess[0]);
-            } else if (rnd == 2) {
-                SMTalk.text = ("which  " + Jones2 + " interpreted as " + ch.guess[0]);
-            }
-        }
-    }
+    //    } else {
+    //        if (rnd == 0) {
+    //            SMTalk.text = ("which looked like " + ch.guess[0] + " to " + Jones2);
+    //        } else if (rnd == 1) {
+    //            SMTalk.text = ("which reminded " + Jones2 + " of " + +ch.guess[0]);
+    //        } else if (rnd == 2) {
+    //            SMTalk.text = ("which  " + Jones2 + " interpreted as " + ch.guess[0]);
+    //        }
+    //    }
+    //}
 
     public void EndPic() {
         aProb = Random.Range(0f, 1f);
