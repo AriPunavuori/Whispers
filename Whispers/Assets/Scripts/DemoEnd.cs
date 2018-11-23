@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class Demoend : MonoBehaviour {
     static Demoend _instance;
@@ -92,6 +93,7 @@ public class Demoend : MonoBehaviour {
     RoundDataManager rdm;
     UIManager um;
     PlayerManager pm;
+    DemoStyleEnd dse;
 
 
     private void Awake() {
@@ -120,23 +122,32 @@ public class Demoend : MonoBehaviour {
         quesList = question.text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
         stateList = statement.text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
         var pm = FindObjectOfType<PlayerManager>();
+        dse = FindObjectOfType<DemoStyleEnd>();
         Jones = pm.playerData.playerName;
+        var ch = rdm.chains[dse.chain];
     }
 
     public void EndGuess() {
-        aProb = Random.Range(0f, 1f);
-        anProb = Random.Range(0f, 1f);
-        firstProb = Random.Range(0f, 1f);
-        secondProb = Random.Range(0f, 1f);
+        var rnd = Random.Range(0, 3);
+        //float a = Random.value;
+        //float b = Random.value;
+        //float c = Random.value;
+        //float d = Random.value;
+        //var values = new List<float>() { a, b, c, d };
+        //var max = values.Max();
+        //var idx = values.IndexOf(max);
 
-        if (aProb > anProb || firstProb || secondProb) {
-            SMTalk.text = (Jones + " wanted " + Jones2 + " to draw " + rdm.guess.RemoveDiacritics());
-        } else if (anProb > aProb && firstProb && secondProb) {
-            SMTalk.text = ("which looked like " + ch.guess[0] + " to " + player);
-        } else if (firstProb > anProb && anProb && secondProb) {
-            SMTalk.text = ("that reminded " + player + " of " + ch.guess[0]);
-        } else if (secondProb > anProb && firstProb && anProb) {
-            SMTalk.text = ("which  " + player + " interpreted as " + ch.guess[0]);
+        if (dse.round == 0) {
+            SMTalk.text = (Jones3 + " wanted " + Jones2 + " to draw " + rdm.guess.RemoveDiacritics());
+
+        } else {
+            if (rnd == 0) {
+                SMTalk.text = ("which looked like " + ch.guess[0] + " to " + Jones2);
+            } else if (rnd == 1) {
+                SMTalk.text = ("which reminded " + Jones2 + " of " + +ch.guess[0]);
+            } else if (rnd == 2) {
+                SMTalk.text = ("which  " + Jones2 + " interpreted as " + ch.guess[0]);
+            }
         }
     }
 
