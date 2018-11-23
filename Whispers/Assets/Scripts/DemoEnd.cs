@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class WordGenerator : MonoBehaviour {
-    static WordGenerator _instance;
-    public static WordGenerator instance
+public class Demoend : MonoBehaviour {
+    static Demoend _instance;
+    public static Demoend instance
     {
         get
         {
             if (!_instance) {
-                _instance = FindObjectOfType<WordGenerator>();
+                _instance = FindObjectOfType<Demoend>();
             }
             return _instance;
         }
@@ -129,7 +129,7 @@ public class WordGenerator : MonoBehaviour {
         firstProb = Random.Range(0f, 1f);
         secondProb = Random.Range(0f, 1f);
 
-        if (aProb > anProb && firstProb && secondProb) {
+        if (aProb > anProb || firstProb || secondProb) {
             SMTalk.text = (Jones + " wanted " + Jones2 + " to draw " + rdm.guess.RemoveDiacritics());
         } else if (anProb > aProb && firstProb && secondProb) {
             SMTalk.text = ("which looked like " + ch.guess[0] + " to " + player);
