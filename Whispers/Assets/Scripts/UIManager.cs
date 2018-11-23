@@ -83,6 +83,10 @@ public class UIManager : NetworkBehaviour {
             paperBCG.SetActive(false);
             timerBar.SetActive(false);
         }
+
+        if (pm.playMode == PlayerManager.PlayMode.Watch){
+            paperBCG.SetActive(true);
+        }
     }
 
     
