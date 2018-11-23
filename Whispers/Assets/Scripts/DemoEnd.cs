@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class WordGenerator : MonoBehaviour {
-    static WordGenerator _instance;
-    public static WordGenerator instance
+public class Demoend : MonoBehaviour {
+    static Demoend _instance;
+    public static Demoend instance
     {
         get
         {
             if (!_instance) {
-                _instance = FindObjectOfType<WordGenerator>();
+                _instance = FindObjectOfType<Demoend>();
             }
             return _instance;
         }
@@ -123,84 +123,33 @@ public class WordGenerator : MonoBehaviour {
         Jones = pm.playerData.playerName;
     }
 
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.F1)) {
-            WordG();
-        }
-        if (Input.GetKeyDown(KeyCode.F2)) {
-            GuessG();
-        }
-        if (Input.GetKeyDown(KeyCode.F3)) {
-            DrawG();
-        }
-
-        if (Input.GetKeyDown(KeyCode.F4)) {
-            TalkG();
-        }
-
-    }
-
-    public void TalkG() { // Sanageneraattori
-        decProb = Random.Range(0f, 1f);
-        askProb = Random.Range(0f, 1f);
-        Dec = (decList[Random.Range(0, decList.Length)]);
-        Ask = (askList[Random.Range(0, askList.Length)]);
-        Ques = (quesList[Random.Range(0, quesList.Length)]);
-        State = (stateList[Random.Range(0, stateList.Length)]);
-        if (decProb > askProb) {
-            myFirst = Dec;
-        } else myFirst = Ask;
-
-        if (myFirst == Dec) {
-            mySecond = State;
-        } else mySecond = Ques;
-
-        //um.ChangeUIText(myFirst + "\n" + Jones + "\n" + mySecond);
-        SMTalk.text = (myFirst + "\n" + Jones + "\n" + mySecond);
-    }
-
-    public void WordG() { // Sanageneraattori
-        aProb = (Random.Range(0f, 1f));
-        anProb = (Random.Range(0f, 1f));
-        Adj1 = (adj1List[Random.Range(0, adj1List.Length)]);
-        Adj2 = (adj2List[Random.Range(0, adj2List.Length)]);
-        Noun = (nounList[Random.Range(0, nounList.Length)]);
-
-        if (aProb > anProb) {
-            myWord = "an " + Adj1 + " " + Noun;
-        } else {
-            myWord = "a " + Adj2 + " " + Noun;
-        }
-
-        //um.ChangeUIText("Hi " + Jones + ",\n" + "Can you draw\n" + myWord + "?");
-        //SMTalk.text = ("Hi " + Jones + ",\n" + "Can you draw\n" + myWord + "?");
-    }
-
-    public void GuessG() { // Sanageneraattori
-        want = (wantList[Random.Range(0, wantList.Length)]);
-
-        //um.ChangeUIText(Jones + " " + want + " you to draw " + rdm.guess.RemoveDiacritics());
-        SMTalk.text = (Jones + " " + want + " you to draw " + rdm.guess.RemoveDiacritics());
-    }
-
-    public void DrawG() { // Sanageneraattori
+    public void EndGuess() {
         aProb = Random.Range(0f, 1f);
         anProb = Random.Range(0f, 1f);
         firstProb = Random.Range(0f, 1f);
         secondProb = Random.Range(0f, 1f);
-        aA = (aAList[Random.Range(0, aAList.Length)]);
-        anA = (anAList[Random.Range(0, anAList.Length)]);
-        art = (artList[Random.Range(0, artList.Length)]);
-        endA = (endAList[Random.Range(0, endAList.Length)]);
-        coul = (couldList[Random.Range(0, couldList.Length)]);
-        snoun = (snounList[Random.Range(0, snounList.Length)]);
-        
+
+        if (aProb > anProb || firstProb || secondProb) {
+            SMTalk.text = (Jones + " wanted " + Jones2 + " to draw " + rdm.guess.RemoveDiacritics());
+        } else if (anProb > aProb && firstProb && secondProb) {
+            SMTalk.text = ("which looked like " + ch.guess[0] + " to " + player);
+        } else if (firstProb > anProb && anProb && secondProb) {
+            SMTalk.text = ("that reminded " + player + " of " + ch.guess[0]);
+        } else if (secondProb > anProb && firstProb && anProb) {
+            SMTalk.text = ("which  " + player + " interpreted as " + ch.guess[0]);
+        }
+    }
+
+    public void EndPic() {
+        aProb = Random.Range(0f, 1f);
+        anProb = Random.Range(0f, 1f);
+        firstProb = Random.Range(0f, 1f);
+        secondProb = Random.Range(0f, 1f);
 
         if (firstProb > secondProb) {
-            //um.ChangeUIText("This " + snoun + "\n" + "was drawn by " + "\n" + Jones);
             SMTalk.text = ("This " + snoun + "\n" + "was drawn by " + "\n" + Jones);
-        } else {
 
+        } else {
             if (aProb > anProb) {
                 a = "Only a";
                 aOrAn = aA;
@@ -212,16 +161,4 @@ public class WordGenerator : MonoBehaviour {
             SMTalk.text = (a + " " + aOrAn + " " + art + " like \n" + Jones + "\n" + coul + " " + endA);
         }
     }
-
-    //public void EndGuess() {
-    //    SMTalk.text = ("which looked like " + ch.guess[0] + " to " + player);
-    //    SMTalk.text = ("that reminded " + player + " of " + ch.guess[0]);
-    //    SMTalk.text = ("which  " + player + " interpreted as " + ch.guess[0]);
-    //    SMTalk.text = ("that seemed to be " + ch.guess[0] + " to " + player);
-
-    //    SMTalk.text = ("which looked like this to " + player);
-    //    SMTalk.text = ("and " + player + " came up with something like this");
-    //    SMTalk.text = (player + " thought it looked a little something like this");
-
-    //}
 }
