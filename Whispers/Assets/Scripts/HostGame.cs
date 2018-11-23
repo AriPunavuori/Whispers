@@ -47,7 +47,7 @@ public class HostGame : NetworkBehaviour {
     public void CreateRoom() {
         GenerateRoomCode();
         networkManager.matchMaker.CreateMatch(roomCode.ToString(), roomSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
-        print("RoomCode: " + roomCode);
+        print("WAITING LOBBY \n\nRoomCode: " + roomCode);
         var pm = FindObjectOfType<PlayerManager>();
         pm.playerData.playerIsHost = true;
         //statusText.text = "room called " + roomCode + " created";

@@ -86,6 +86,7 @@ public class UIManager : NetworkBehaviour {
 
         if (pm.playMode == PlayerManager.PlayMode.Watch){
             paperBCG.SetActive(true);
+            uiText.text = "And this is what people did!";
         }
     }
 
