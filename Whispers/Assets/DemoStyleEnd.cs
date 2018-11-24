@@ -32,30 +32,35 @@ public class DemoStyleEnd : MonoBehaviour {
 
 
     public void Next() {
+        print("nappi painettu");
         um.PocketReset();
         //guessText.text = "";
         if (hg.numberOfPlayers < round) {
             chain++;
+            print("Ketju vaihtuu");
             round = 0;
             guessText.text = "Next chain of events looks like this:";
-            print("Ketju vaihtuu");
+            if(chain >= hg.numberOfPlayers) {
+                chain = 0;
+            }
         }
-        if (chain >= hg.numberOfPlayers) {
-            chain = 0;
-        }
+        print("Cahin: " + chain);
+        print("ROund#" + round);
 
         var ch = rdm.chains[chain];
 
         if (round % 2 == 0) {
-            if (ch.guesses.Count > round) {
-                if (round == 0) {
-                    guessText.text = ch.guesses[0];
-                } else {
-                    guessText.text = ch.guesses[round / 2];
-                }
-                print("teksti ja Rundi: "+ round);
+            print("Parillinen");
+            print("teksti ja Rundi: " + round);
+            if (round == 0) {
+                guessText.text = "The chain began with:\n" + ch.guesses[0];
+            } else {
+                guessText.text = "Which was deciphered as:\n " + ch.guesses[round / 2];
             }
+               
+            
         } else {
+            print("Pariton");
             print("Kuva ja roundinumero: " + round);
             var pics = rdm.chains[chain].pictures;
             if (round - 1 == 0) {
