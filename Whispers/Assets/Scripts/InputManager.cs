@@ -86,7 +86,7 @@ public class InputManager : NetworkBehaviour {
         um.SetUI();
         um.EraseDrawnLines();
         um.ChangeUIText("");
-        pco.CmdThisClientIsReady();
+        //pco.CmdThisClientIsReady();
         pm.playerData.playerRDY = true;
     }
 
@@ -109,7 +109,7 @@ public class InputManager : NetworkBehaviour {
         um.SetUI();
         um.PocketReset();
         um.ChangeUIText("");
-        pco.CmdThisClientIsReady();
+        //pco.CmdThisClientIsReady();
         pm.playerData.playerRDY = true;
     }
 

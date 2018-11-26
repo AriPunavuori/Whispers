@@ -15,6 +15,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
     public GameObject playerUIPrefab;
     public GameObject UIContainerPrefab;
+    bool rdmCreated;
     GameObject UIContainer;
 
     
@@ -180,6 +181,13 @@ public class PlayerConnectionObject : NetworkBehaviour {
         gm.playersReady++;
         if (gm.playersReady >= hg.numberOfPlayers) {
             StartCoroutine(WaitDelay());
+            if (isServer){
+                var um = FindObjectOfType<UIManager>();
+                if(!rdmCreated){
+                    um.CmdCreateRdmOnHost();
+                    rdmCreated = true;
+                }
+            }
             //RpcStartNextRound();
             //gm.playersReady = 0;
         }
@@ -195,7 +203,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
     IEnumerator WaitDelay() {
         var gm = FindObjectOfType<GameManager>();
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(0.4f);
         RpcStartNextRound();
         gm.playersReady = 0;
     }

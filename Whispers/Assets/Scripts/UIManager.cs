@@ -57,12 +57,12 @@ public class UIManager : NetworkBehaviour {
 
     private void Start() {
         PocketReset();
-        var pm = FindObjectOfType<PlayerManager>();
-        if(pm.playerData.playerIsHost) {
-            startButton.gameObject.SetActive(true);
-        } else {
-            startButton.gameObject.SetActive(false);
-        }
+        //var pm = FindObjectOfType<PlayerManager>();
+        //if(pm.playerData.playerIsHost) {
+        //    startButton.gameObject.SetActive(true);
+        //} else {
+        //    startButton.gameObject.SetActive(false);
+        //}
     }
 
     public void ChangeUIText(string text) { // UI-Tekstin vaihto
