@@ -24,6 +24,7 @@ public class HostGame : NetworkBehaviour {
     public int numberOfPlayers;
 
     NetworkManager networkManager;
+    public GameObject textCont;
     public Text statusText;
     UIManager um;
     PlayerManager pm;
@@ -46,10 +47,10 @@ public class HostGame : NetworkBehaviour {
 
     public void CreateRoom() {
         GenerateRoomCode();
+        textCont.SetActive(true);
+        statusText.text = "Creating room!";
         networkManager.matchMaker.CreateMatch(roomCode.ToString(), roomSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
-        print("WAITING LOBBY \n\nRoomCode: " + roomCode);
         var pm = FindObjectOfType<PlayerManager>();
         pm.playerData.playerIsHost = true;
-        //statusText.text = "room called " + roomCode + " created";
     }
 }
