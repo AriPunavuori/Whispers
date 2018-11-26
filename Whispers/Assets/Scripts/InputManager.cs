@@ -86,7 +86,7 @@ public class InputManager : NetworkBehaviour {
         um.SetUI();
         um.EraseDrawnLines();
         um.ChangeUIText("");
-        //pco.CmdThisClientIsReady();
+        pco.CmdThisClientIsReady();
         pm.playerData.playerRDY = true;
     }
 
@@ -109,7 +109,7 @@ public class InputManager : NetworkBehaviour {
         um.SetUI();
         um.PocketReset();
         um.ChangeUIText("");
-        //pco.CmdThisClientIsReady();
+        pco.CmdThisClientIsReady();
         pm.playerData.playerRDY = true;
     }
 
@@ -124,12 +124,6 @@ public class InputManager : NetworkBehaviour {
         pm.playMode = PlayerManager.PlayMode.Wait;
         um.SetUI();
         //um.uiText.text = "Lobby:\nAsk ppl to join room #: " + hg.roomCode;
-    }
-
-    public void PlayerReadyPressed(){
-        var pm = FindObjectOfType<PlayerManager>();
-        var pco = GameObject.Find("" + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
-        pco.CmdThisClientIsReady();
     }
 
     private bool IsPointerOverUIObject(Vector2 position) { // Onko input UI-Elementtien päällä?
