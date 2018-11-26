@@ -84,6 +84,11 @@ public class UIManager : NetworkBehaviour {
             timerBar.SetActive(false);
         }
 
+        if (pm.playMode == PlayerManager.PlayMode.Wait) {
+            paperBCG.SetActive(true);
+        }
+
+
         if (pm.playMode == PlayerManager.PlayMode.Watch){
             paperBCG.SetActive(true);
             uiText.text = "And this is what people did!";
