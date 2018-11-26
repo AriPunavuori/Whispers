@@ -41,7 +41,7 @@ public class DemoStyleEnd : MonoBehaviour {
             round = 0;
             guessText.text = "Next chain of events looks like this:";
             if(chain >= hg.numberOfPlayers) {
-                chain = 0;
+                chain = 0; //Teksti thats it folks ja nappi play again?
             }
         }
         print("Cahin: " + chain);

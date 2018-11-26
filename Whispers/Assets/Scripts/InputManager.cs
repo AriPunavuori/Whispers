@@ -127,7 +127,8 @@ public class InputManager : NetworkBehaviour {
     }
 
     public void PlayerReadyPressed(){
-        var pco = FindObjectOfType<PlayerConnectionObject>();
+        var pm = FindObjectOfType<PlayerManager>();
+        var pco = GameObject.Find("" + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
         pco.CmdThisClientIsReady();
     }
 
