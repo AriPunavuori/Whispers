@@ -53,19 +53,22 @@ public class DemoStyleEnd : MonoBehaviour {
             print("Parillinen");
             print("teksti ja Rundi: " + round);
             if (round == 0) {
-                guessText.text = "The chain began with:\n" + ch.guesses[0];
+                guessText.text = pm.playerDataList[((chain - 1 + hg.numberOfPlayers) % hg.numberOfPlayers)].playerName + " was asked to draw " + ch.guesses[0];
             } else {
-                guessText.text = "Which was deciphered as:\n " + ch.guesses[round / 2];
+                guessText.text = "Which " + pm.playerDataList[((chain - 1 + hg.numberOfPlayers) % hg.numberOfPlayers)].playerName + " deciphered as:\n " + ch.guesses[round / 2];
             }
-               
-            
+               // (chain % hg.numberOfPlayers - 1)
+
+
         } else {
             print("Pariton");
             print("Kuva ja roundinumero: " + round);
             var pics = rdm.chains[chain].pictures;
             if (round - 1 == 0) {
+                guessText.text = "to which this " + pm.playerDataList[((chain - 1 + hg.numberOfPlayers) % hg.numberOfPlayers)].playerName + " drew as";
                 um.ShowPicture(pics[0]);
             } else {
+                guessText.text = "which " + pm.playerDataList[((chain - 1 + hg.numberOfPlayers) % hg.numberOfPlayers)].playerName + " drew as";
                 um.ShowPicture(pics[(round - 1) / 2]);
             }
         }
