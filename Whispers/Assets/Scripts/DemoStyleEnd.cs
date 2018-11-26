@@ -55,7 +55,7 @@ public class DemoStyleEnd : MonoBehaviour {
             if (round == 0) {
                 guessText.text = pm.playerDataList[((chain - 1 + hg.numberOfPlayers) % hg.numberOfPlayers)].playerName + " was asked to draw " + ch.guesses[0];
             } else {
-                guessText.text = "Which " + pm.playerDataList[((chain - 1 + hg.numberOfPlayers) % hg.numberOfPlayers)].playerName + " deciphered as:\n " + ch.guesses[round / 2];
+                guessText.text = "Which " + pm.playerDataList[(chain - round + hg.numberOfPlayers) % hg.numberOfPlayers].playerName + " deciphered as:\n " + ch.guesses[round / 2];
             }
                // (chain % hg.numberOfPlayers - 1)
 
@@ -68,7 +68,7 @@ public class DemoStyleEnd : MonoBehaviour {
                 guessText.text = "to which this " + pm.playerDataList[((chain - 1 + hg.numberOfPlayers) % hg.numberOfPlayers)].playerName + " drew as";
                 um.ShowPicture(pics[0]);
             } else {
-                guessText.text = "which " + pm.playerDataList[((chain - 1 + hg.numberOfPlayers) % hg.numberOfPlayers)].playerName + " drew as";
+                guessText.text = "which " + pm.playerDataList[(chain - round + hg.numberOfPlayers) % hg.numberOfPlayers].playerName + " drew as";
                 um.ShowPicture(pics[(round - 1) / 2]);
             }
         }
