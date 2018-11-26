@@ -19,7 +19,7 @@ public class HostGame : NetworkBehaviour {
     //}
 
     [SerializeField]
-    uint roomSize = 6;
+    uint roomSize = 10;
     public int roomCode;
     public int numberOfPlayers;
 

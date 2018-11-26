@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using Picture = System.Collections.Generic.List<LineData>;
+using UnityEngine.UI;
 
 public class PlayerConnectionObject : NetworkBehaviour {
     //UIManager um;
@@ -99,23 +100,25 @@ public class PlayerConnectionObject : NetworkBehaviour {
     [ClientRpc]
     void RpcUpdatePlayerNameList(PlayerData[] pd){
         var pm = FindObjectOfType<PlayerManager>();
+
         pm.playerDataList = new List<PlayerData>(pd);
-        UIContainer = GameObject.Find("PlayerInfoContainer");
-        if(GameObject.Find("PlayerInfoContainer") == null){
-            UIContainer = GameObject.Find("PlayerInfoContainer(Clone)");
-        }
-        print(UIContainer);
-        Destroy(UIContainer);
+        //UIContainer = GameObject.Find("PlayerInfoContainer");
+        //if(GameObject.Find("PlayerInfoContainer") == null){
+        //    UIContainer = GameObject.Find("PlayerInfoContainer(Clone)");
+        //}
+        //print(UIContainer.transform.position);
+        //Destroy(UIContainer);
         UIContainer = Instantiate(UIContainerPrefab);
         var wUI = GameObject.Find("WaitingUI");
         UIContainer.transform.SetParent(wUI.transform);
         UIContainer.transform.localScale = Vector3.one;
-        for(int i = 0 ; i < pm.playerDataList.Count ;i++){
+        UIContainer.GetComponent<RectTransform>().localPosition = Vector3.zero;
+        //UIContainer.GetComponent<GridLayoutGroup>().spacing = new Vector2(0, 8);
+        for (int i = 0 ; i < pm.playerDataList.Count ;i++){
             var PlayerInfo = Instantiate(playerUIPrefab);
             print("luodaan Player info: " + PlayerInfo);
             PlayerInfo.GetComponent<GetPlayerInfo>().nameText.text = pd[i].playerName;
             //UIContainer = GameObject.Find("PlayerInfoContainer(Clone)");
-            print(UIContainer);
             PlayerInfo.transform.SetParent(UIContainer.transform);
             PlayerInfo.transform.localScale = Vector3.one;
             print(pm.playerDataList[i].playerName);
