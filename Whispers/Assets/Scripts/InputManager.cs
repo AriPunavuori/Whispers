@@ -126,8 +126,9 @@ public class InputManager : NetworkBehaviour {
         //um.uiText.text = "Lobby:\nAsk ppl to join room #: " + hg.roomCode;
     }
 
-    public void JoinRoom(){
-
+    public void PlayerReadyPressed(){
+        var pco = FindObjectOfType<PlayerConnectionObject>();
+        pco.CmdThisClientIsReady();
     }
 
     private bool IsPointerOverUIObject(Vector2 position) { // Onko input UI-Elementtien päällä?
