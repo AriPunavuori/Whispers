@@ -1174,6 +1174,7 @@ GameObject:
   - component: {fileID: 932780649}
   - component: {fileID: 932780647}
   - component: {fileID: 932780648}
+  - component: {fileID: 932780650}
   m_Layer: 0
   m_Name: JoinButton
   m_TagString: Untagged
@@ -1239,8 +1240,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 694783448}
-        m_MethodName: JoinButton
+      - m_Target: {fileID: 932780650}
+        m_MethodName: NewJoinGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1279,6 +1280,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 932780645}
   m_CullTransparentMesh: 0
+--- !u!114 &932780650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 932780645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90c73226359034ea1b2adafd2249e2b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1017499124
 GameObject:
   m_ObjectHideFlags: 0
@@ -1952,6 +1964,7 @@ GameObject:
   - component: {fileID: 1528241923}
   - component: {fileID: 1528241921}
   - component: {fileID: 1528241922}
+  - component: {fileID: 1528241924}
   m_Layer: 0
   m_Name: HostButton
   m_TagString: Untagged
@@ -2017,8 +2030,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 694783447}
-        m_MethodName: CreateRoom
+      - m_Target: {fileID: 1528241924}
+        m_MethodName: NewHostGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2057,6 +2070,17 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1528241919}
   m_CullTransparentMesh: 0
+--- !u!114 &1528241924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1528241919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19907b7035574463a92a5f1ea6652039, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1739697602
 GameObject:
   m_ObjectHideFlags: 0
