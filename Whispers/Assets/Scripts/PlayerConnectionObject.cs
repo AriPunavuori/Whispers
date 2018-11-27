@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using Picture = System.Collections.Generic.List<LineData>;
-using UnityEngine.UI;
 
 public class PlayerConnectionObject : NetworkBehaviour {
     //UIManager um;
@@ -168,4 +167,32 @@ public class PlayerConnectionObject : NetworkBehaviour {
         RpcStartNextRound();
         gm.playersReady = 0;
     }
+
+    [Command]
+    public void CmdReadyToQuit(){
+        var gm = FindObjectOfType<GameManager>();
+        var hg = FindObjectOfType<HostGame>();
+        gm.playersReadyToQuit++;
+        if(gm.playersReadyToQuit >= hg.numberOfPlayers) {
+            StartCoroutine(QuitDelay());
+        }
+    }
+
+
+    IEnumerator QuitDelay(){
+        yield return new WaitForSeconds(5);
+        RpcQuitClients();
+    }
+
+
+    [ClientRpc]
+    void RpcQuitClients(){
+        var w = FindObjectOfType<Watching>();
+        w.quitButton.gameObject.SetActive(true);
+        w.nextButton.gameObject.SetActive(false);
+        w.previousButton.gameObject.SetActive(false);
+        w.uiText.text = "Thats it motherf*ckers, GMAE Over!";
+    }
+
+
 }
