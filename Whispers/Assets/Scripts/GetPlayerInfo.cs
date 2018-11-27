@@ -18,7 +18,7 @@ public class GetPlayerInfo : MonoBehaviour {
 
     void Start () {
         //GetPlayerName();
-        RandomizeIconColor();
+        //RandomizeIconColor();
     }
 	
 
