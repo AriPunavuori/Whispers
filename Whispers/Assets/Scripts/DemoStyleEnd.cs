@@ -7,7 +7,7 @@ using TMPro;
 public class DemoStyleEnd : MonoBehaviour {
 
     int round = -1;
-    int chain = 0;
+    public int chain = 0;
 
     RoundDataManager rdm;
 
