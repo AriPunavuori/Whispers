@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Networking;
 
 public class Watching : MonoBehaviour {
 
@@ -10,6 +11,7 @@ public class Watching : MonoBehaviour {
     public int chain = 0;
     public GameObject nextButton;
     public GameObject previousButton;
+    public GameObject quitButton;
 
 
     RoundDataManager rdm;
@@ -46,6 +48,8 @@ public class Watching : MonoBehaviour {
 
             if(chain + 1 >= hg.numberOfPlayers && round + 1 >= hg.numberOfPlayers){
                 nextButton.gameObject.SetActive(false);
+                var pco = FindObjectOfType<PlayerConnectionObject>();
+                pco.CmdReadyToQuit();
             } else{
                 chain++;
                 round = 0;
@@ -118,5 +122,13 @@ public class Watching : MonoBehaviour {
                 um.ShowPicture(pics[(round - 1) / 2]);
             }
         }
+    }
+
+    public void QuitGame(){
+        var nm = FindObjectOfType<NetworkManager>();
+        var pm = FindObjectOfType<PlayerManager>();
+        Destroy(nm);
+        Destroy(pm);
+        SceneManager.LoadScene(0);
     }
 }

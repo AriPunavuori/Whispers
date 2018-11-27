@@ -186,6 +186,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114081971404975590, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 224325711763487372, guid: d124e81a6b8edb2419d780e5aefdc5e9,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -276,12 +281,12 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114642977913430508, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+    - target: {fileID: 114846847571540086, guid: d124e81a6b8edb2419d780e5aefdc5e9,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 337328788}
-    - target: {fileID: 114781891634215126, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+      objectReference: {fileID: 594374649}
+    - target: {fileID: 114606622555446762, guid: d124e81a6b8edb2419d780e5aefdc5e9,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -291,22 +296,22 @@ Prefab:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1297084493}
-    - target: {fileID: 114606622555446762, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+    - target: {fileID: 114781891634215126, guid: d124e81a6b8edb2419d780e5aefdc5e9,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 594374649}
-    - target: {fileID: 114846847571540086, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+    - target: {fileID: 114642977913430508, guid: d124e81a6b8edb2419d780e5aefdc5e9,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 594374649}
-    - target: {fileID: 114898294799179626, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+      objectReference: {fileID: 337328788}
+    - target: {fileID: 114588457823665930, guid: d124e81a6b8edb2419d780e5aefdc5e9,
         type: 2}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114898294799179626, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+    - target: {fileID: 114588457823665930, guid: d124e81a6b8edb2419d780e5aefdc5e9,
         type: 2}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -321,23 +326,54 @@ Prefab:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114588457823665930, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+    - target: {fileID: 114081971404975590, guid: d124e81a6b8edb2419d780e5aefdc5e9,
         type: 2}
-      propertyPath: m_havePropertiesChanged
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 31245009}
+    - target: {fileID: 114081971404975590, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 114081971404975590, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 114588457823665930, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+    - target: {fileID: 114081971404975590, guid: d124e81a6b8edb2419d780e5aefdc5e9,
         type: 2}
-      propertyPath: m_isInputParsingRequired
-      value: 1
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 1863779969309786, guid: d124e81a6b8edb2419d780e5aefdc5e9, type: 2}
+    - target: {fileID: 114081971404975590, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1275000876500280, guid: d124e81a6b8edb2419d780e5aefdc5e9, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114020401776830572, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+        type: 2}
+      propertyPath: quitButton
+      value: 
+      objectReference: {fileID: 31245008}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d124e81a6b8edb2419d780e5aefdc5e9, type: 2}
   m_IsPrefabAsset: 0
+--- !u!1 &31245008 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1040249798523956, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+    type: 2}
+  m_PrefabInternal: {fileID: 31245007}
+--- !u!114 &31245009 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 114020401776830572, guid: d124e81a6b8edb2419d780e5aefdc5e9,
+    type: 2}
+  m_PrefabInternal: {fileID: 31245007}
+  m_Script: {fileID: 11500000, guid: c4bf63a3f9116784391fdeac06275dac, type: 3}
 --- !u!1 &89726947 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1861683880491882, guid: d124e81a6b8edb2419d780e5aefdc5e9,
