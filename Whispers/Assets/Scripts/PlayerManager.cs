@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 [System.Serializable]
 public struct PlayerData {
@@ -25,6 +26,9 @@ public class PlayerManager : MonoBehaviour {
     public PlayMode playMode;
 
     public InputField nameInput;
+    public GameObject textContainer;
+    public Text statusText;
+    public UnityEvent onValidName;
 
     //static PlayerManager _instance;
     //public static PlayerManager instance{
@@ -70,6 +74,16 @@ public class PlayerManager : MonoBehaviour {
     }
 
     public void SetName() {
+        if (nameInput.text == "") {
+            // show errormsg window and ask new name
+            textContainer.SetActive(true);
+            textContainer.gameObject.GetComponentInChildren<Image>().color = Color.red;
+            statusText.text = "No name set\n Please set new name";
+            return;
+        }
         playerData.playerName = nameInput.text.RemoveDiacritics();
+        onValidName.Invoke();
+        textContainer.gameObject.GetComponentInChildren<Image>().color = Color.gray;
+
     }
 }
