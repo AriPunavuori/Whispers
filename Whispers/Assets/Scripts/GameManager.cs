@@ -20,6 +20,7 @@ public class GameManager : NetworkBehaviour {
 
     public bool nameSet = false;
     public int playersReady;
+    public int playersReadyToQuit;
     //bool started = false;
     //bool drawingNotGuessing = true;
     public float timeToDraw = 60f;
