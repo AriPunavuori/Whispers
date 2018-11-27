@@ -12,7 +12,7 @@ public class Watching : MonoBehaviour {
     public GameObject nextButton;
     public GameObject previousButton;
     public GameObject quitButton;
-
+    bool readyToQuit;
 
     RoundDataManager rdm;
 
@@ -49,7 +49,10 @@ public class Watching : MonoBehaviour {
             if(chain + 1 >= hg.numberOfPlayers && round + 1 >= hg.numberOfPlayers){
                 nextButton.gameObject.SetActive(false);
                 var pco = FindObjectOfType<PlayerConnectionObject>();
-                pco.CmdReadyToQuit();
+                if(!readyToQuit){
+                    pco.CmdReadyToQuit();
+                    readyToQuit = true;
+                }
             } else{
                 chain++;
                 round = 0;
