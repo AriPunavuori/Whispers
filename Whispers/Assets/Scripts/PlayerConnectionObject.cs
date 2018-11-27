@@ -40,7 +40,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
         if (isServer) {
             var um = FindObjectOfType<UIManager>();
             var hg = FindObjectOfType<HostGame>();
-            um.roomCodeTxt.text = "Room #" + hg.roomCode;
+            um.roomCodeTxt.text = "Room# " + hg.roomCode;
         }
         var pm = FindObjectOfType<PlayerManager>();
         CmdAddPlayer(pm.playerData.playerName);
@@ -91,8 +91,12 @@ public class PlayerConnectionObject : NetworkBehaviour {
     [ClientRpc]
     void RpcUpdatePlayerNameList(PlayerData[] pd){
         var pm = FindObjectOfType<PlayerManager>();
-
         pm.playerDataList = new List<PlayerData>(pd);
+        UIContainer = GameObject.Find("PlayerInfoContainer");
+        if (UIContainer == null) {
+            UIContainer = GameObject.Find("PlayerInfoContainer(Clone)");
+        }
+        Destroy(UIContainer);
         UIContainer = Instantiate(UIContainerPrefab);
         var wUI = GameObject.Find("WaitingUI");
         UIContainer.transform.SetParent(wUI.transform);
@@ -100,7 +104,6 @@ public class PlayerConnectionObject : NetworkBehaviour {
         UIContainer.GetComponent<RectTransform>().localPosition = Vector3.zero;
         for (int i = 0 ; i < pm.playerDataList.Count ;i++){
             var PlayerInfo = Instantiate(playerUIPrefab);
-            print("luodaan Player info: " + PlayerInfo);
             PlayerInfo.GetComponent<GetPlayerInfo>().nameText.text = pd[i].playerName;
             PlayerInfo.transform.SetParent(UIContainer.transform);
             PlayerInfo.transform.localScale = Vector3.one;
@@ -117,7 +120,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
     [ClientRpc]
     void RpcUpdateRoomCode(int roomCode) {
         var um = FindObjectOfType<UIManager>();
-        um.roomCodeTxt.text = "Room# is: " + roomCode;
+        um.roomCodeTxt.text = "Room# " + roomCode;
     }
 
     [Command]
