@@ -185,7 +185,7 @@ Prefab:
     - target: {fileID: 114532710737439382, guid: 6c4bc4364fe8a484c8a517c1c429dc64,
         type: 2}
       propertyPath: _fadeInTime
-      value: 1.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 114532710737439382, guid: 6c4bc4364fe8a484c8a517c1c429dc64,
         type: 2}
@@ -205,7 +205,17 @@ Prefab:
     - target: {fileID: 114501338206114526, guid: 6c4bc4364fe8a484c8a517c1c429dc64,
         type: 2}
       propertyPath: _volume
-      value: 1
+      value: 0.1883649
+      objectReference: {fileID: 0}
+    - target: {fileID: 114178052565672246, guid: 6c4bc4364fe8a484c8a517c1c429dc64,
+        type: 2}
+      propertyPath: _volume
+      value: 0.5432503
+      objectReference: {fileID: 0}
+    - target: {fileID: 114532710737439382, guid: 6c4bc4364fe8a484c8a517c1c429dc64,
+        type: 2}
+      propertyPath: _volume
+      value: 0.30549213
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c4bc4364fe8a484c8a517c1c429dc64, type: 2}

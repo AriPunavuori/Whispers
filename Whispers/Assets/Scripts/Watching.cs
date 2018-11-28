@@ -130,6 +130,8 @@ public class Watching : MonoBehaviour {
     public void QuitGame(){
         var nm = FindObjectOfType<NetworkManager>();
         //var pm = FindObjectOfType<PlayerManager>();
+        Fabric.EventManager.Instance.PostEvent("stop");
+        Fabric.EventManager.Instance.PostEvent("stopmenu");
 
         Destroy(GameObject.Find("PlayerManager"));
 
