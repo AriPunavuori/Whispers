@@ -48,7 +48,7 @@ public class Watching : MonoBehaviour {
 
             if(chain + 1 >= hg.numberOfPlayers && round + 1 >= hg.numberOfPlayers){
                 nextButton.gameObject.SetActive(false);
-                var pco = FindObjectOfType<PlayerConnectionObject>();
+                var pco = GameObject.Find("" + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
                 if(!readyToQuit){
                     pco.CmdReadyToQuit();
                     readyToQuit = true;
