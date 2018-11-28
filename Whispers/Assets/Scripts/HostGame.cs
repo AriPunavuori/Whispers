@@ -52,5 +52,8 @@ public class HostGame : NetworkBehaviour {
         networkManager.matchMaker.CreateMatch(roomCode.ToString(), roomSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
         var pm = FindObjectOfType<PlayerManager>();
         pm.playerData.playerIsHost = true;
+        Fabric.EventManager.Instance.PostEvent("stopmenu");
+        Fabric.EventManager.Instance.PostEvent("whisptheme");
+
     }
 }
