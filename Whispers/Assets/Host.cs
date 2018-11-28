@@ -8,7 +8,7 @@ public class Host : MonoBehaviour {
     public void NewHostGame(){
         var nm = FindObjectOfType<NetworkManager>().GetComponent<HostGame>();
         nm.CreateRoom();
-        Fabric.EventManager.Instance.PostEvent("button1");
+        Fabric.EventManager.Instance.PostEvent("button2");
 
     }
 }

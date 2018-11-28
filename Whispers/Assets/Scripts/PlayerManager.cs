@@ -83,7 +83,7 @@ public class PlayerManager : MonoBehaviour {
             return;
         }
         playerData.playerName = nameInput.text.RemoveDiacritics();
-        Fabric.EventManager.Instance.PostEvent("button1");
+        Fabric.EventManager.Instance.PostEvent("button2");
         onValidName.Invoke();
         textContainer.gameObject.GetComponentInChildren<Image>().color = Color.gray;
 

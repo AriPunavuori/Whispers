@@ -70,6 +70,7 @@ public class InputManager : NetworkBehaviour {
     public void Undo(){
         var dm = FindObjectOfType<DrawingMachine>();
         dm.DeleteLastLine();
+        Fabric.EventManager.Instance.PostEvent("brush");
     }
 
     public void SendDrawing() { // Tallennetaan kuva
@@ -87,6 +88,7 @@ public class InputManager : NetworkBehaviour {
         um.EraseDrawnLines();
         um.ChangeUIText("");
         pco.CmdThisClientIsReady();
+        Fabric.EventManager.Instance.PostEvent("button1");
         pm.playerData.playerRDY = true;
     }
 
@@ -110,6 +112,7 @@ public class InputManager : NetworkBehaviour {
         um.PocketReset();
         um.ChangeUIText("");
         pco.CmdThisClientIsReady();
+        Fabric.EventManager.Instance.PostEvent("button1");
         pm.playerData.playerRDY = true;
     }
 
