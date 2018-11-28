@@ -170,17 +170,19 @@ public class PlayerConnectionObject : NetworkBehaviour {
         var qqq = pm.ServersPlayerDataList[id];
         qqq.playerRDY = true;
         pm.ServersPlayerDataList[id] = qqq;
-        RpcUpdatePlayerNameList(pm.ServersPlayerDataList.ToArray());
+
         if (gm.playersReady >= hg.numberOfPlayers) {
             um.waitStatusText.text = "Next round starting...";
             StartCoroutine(WaitDelay());
             for(int i = 0 ; i < pm.ServersPlayerDataList.Count ; i++) {
                 print("Readyplayerlist reset");
                 var temp = pm.ServersPlayerDataList[i];
-                temp.playerRDY = false;
+                temp.playerRDY = false; // ************************************************************************************** Tämä Ei päivity!!!!!!!!!!!!
+                pm.ServersPlayerDataList[i] = temp;
                 print("pelaaja " + i + ": on ready " + pm.ServersPlayerDataList[i].playerRDY);
             }
         }
+        RpcUpdatePlayerNameList(pm.ServersPlayerDataList.ToArray());
     }
 
     [ClientRpc]
