@@ -88,18 +88,15 @@ public class GameManager : NetworkBehaviour {
         um.SetUI();
         PlayerNotReady();
         wg.WordG();
-        print("Lisätään ensimmäinen teksti: " + wg.myWord + " ketjuun: " + pm.playerData.playerID);
         pco.CmdAddGuessToChain(wg.myWord, pm.playerData.playerID);
         //roundNumbr++;
-        print("RoundNumber ekat: " + roundNumbr);
         um.PocketReset();
-        pco.CmdThisClientIsReady();
+        pco.CmdThisClientIsReady(pm.playerData.playerID);
     }
 
     public void Gameplay(){
         var um = FindObjectOfType<UIManager>();
         var hg = FindObjectOfType<HostGame>();
-        print("RoundNumber: " + roundNumbr);
         if(roundNumbr < hg.numberOfPlayers + 1) {
             // See if roundnumber is odd or even and then draw or guess
             if(roundNumbr % 2 == 0) { // if is even, 
