@@ -122,6 +122,9 @@ public class GameManager : NetworkBehaviour {
             }
         } else {
             // Show chains
+            Fabric.EventManager.Instance.PostEvent("stop");
+            Fabric.EventManager.Instance.PostEvent("stopmenu");
+            Fabric.EventManager.Instance.PostEvent("Endgame");
             pm.playMode = PlayerManager.PlayMode.Watch;
             um.SetUI();
             var es = FindObjectOfType<EndScreen>();
