@@ -81,14 +81,16 @@ public class InputManager : NetworkBehaviour {
         var dm = FindObjectOfType<DrawingMachine>();
         var hg = FindObjectOfType<HostGame>();
         var um = FindObjectOfType<UIManager>();
-        print("Lisätään kuva ketjuun: " + (pm.playerData.playerID + gm.roundNumbr) % hg.numberOfPlayers);
         pco.CmdAddPictureToChain(dm.lines.ToArray(), (pm.playerData.playerID + gm.roundNumbr) % hg.numberOfPlayers);
         pm.playMode = PlayerManager.PlayMode.Wait;
         um.SetUI();
         um.EraseDrawnLines();
         um.ChangeUIText("");
-        pco.CmdThisClientIsReady();
+
+        pco.CmdThisClientIsReady(pm.playerData.playerID);
+
         Fabric.EventManager.Instance.PostEvent("button1");
+
         pm.playerData.playerRDY = true;
     }
 
@@ -105,14 +107,16 @@ public class InputManager : NetworkBehaviour {
 
         rdm.guess = um.textBox.text;
         um.textBox.text = "";
-        print("Lisätään teksti ketjuun: " + (pm.playerData.playerID + gm.roundNumbr) % hg.numberOfPlayers);
         pco.CmdAddGuessToChain(rdm.guess, (pm.playerData.playerID + gm.roundNumbr) % hg.numberOfPlayers);
         pm.playMode = PlayerManager.PlayMode.Wait;
         um.SetUI();
         um.PocketReset();
         um.ChangeUIText("");
-        pco.CmdThisClientIsReady();
+
+        pco.CmdThisClientIsReady(pm.playerData.playerID);
+
         Fabric.EventManager.Instance.PostEvent("button1");
+
         pm.playerData.playerRDY = true;
     }
 

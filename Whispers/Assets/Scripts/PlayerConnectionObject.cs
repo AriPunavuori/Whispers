@@ -70,6 +70,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
         var pd = new PlayerData();
         pd.playerName = name;
         pd.playerID = hg.numberOfPlayers - 1;
+        pd.playerRDY = true;
         pm.ServersPlayerDataList.Add(pd);
         RpcUpdatePlayerCount(hg.numberOfPlayers);
         RpcClearPlayerNameList();
@@ -89,26 +90,40 @@ public class PlayerConnectionObject : NetworkBehaviour {
         pm.playerDataList.Clear();
     }
 
+
     [ClientRpc]
     void RpcUpdatePlayerNameList(PlayerData[] pd){
+        var textToShow = "";
         var pm = FindObjectOfType<PlayerManager>();
         pm.playerDataList = new List<PlayerData>(pd);
-        UIContainer = GameObject.Find("PlayerInfoContainer");
-        if (UIContainer == null) {
-            UIContainer = GameObject.Find("PlayerInfoContainer(Clone)");
-        }
-        Destroy(UIContainer);
-        UIContainer = Instantiate(UIContainerPrefab);
-        var wUI = GameObject.Find("WaitingUI");
-        UIContainer.transform.SetParent(wUI.transform);
-        UIContainer.transform.localScale = Vector3.one;
-        UIContainer.GetComponent<RectTransform>().localPosition = Vector3.zero;
+        //UIContainer = GameObject.Find("PlayerInfoContainer");
+        //if (UIContainer == null) {
+        //    UIContainer = GameObject.Find("PlayerInfoContainer(Clone)");
+        //}
+        //Destroy(UIContainer);
+        //UIContainer = Instantiate(UIContainerPrefab);
+        //var wUI = GameObject.Find("WaitingUI");
+        //UIContainer.transform.SetParent(wUI.transform);
+        //UIContainer.transform.localScale = Vector3.one;
+        //UIContainer.GetComponent<RectTransform>().localPosition = Vector3.zero;
+        print("Lista ennen looppia: " + textToShow);
         for (int i = 0 ; i < pm.playerDataList.Count ;i++){
-            var PlayerInfo = Instantiate(playerUIPrefab);
-            PlayerInfo.GetComponent<GetPlayerInfo>().nameText.text = pd[i].playerName;
-            PlayerInfo.transform.SetParent(UIContainer.transform);
-            PlayerInfo.transform.localScale = Vector3.one;
+            if(pm.playerDataList[i].playerRDY == true){
+                textToShow += pm.playerDataList[i].playerName + "\n";
+                print("Tämä pitäisi olla listalla: " + pm.playerDataList[i].playerName);
+            } else {
+                print("Tämä taas ei: " + pm.playerDataList[i].playerName);
+            }
+            //var PlayerInfo = Instantiate(playerUIPrefab);
+            //PlayerInfo.GetComponent<GetPlayerInfo>().nameText.text = pd[i].playerName;
+            //PlayerInfo.transform.SetParent(UIContainer.transform);
+            //PlayerInfo.transform.localScale = Vector3.one;
             print(pm.playerDataList[i].playerName);
+        }
+        var um = FindObjectOfType<UIManager>();
+        print("Koko listan sisältö: " + textToShow);
+        if(pm.playMode == PlayerManager.PlayMode.Wait||pm.playMode == PlayerManager.PlayMode.Menu) {
+            um.waitText.text = textToShow;
         }
     }
 
@@ -146,21 +161,33 @@ public class PlayerConnectionObject : NetworkBehaviour {
     }
 
     [Command]
-    public void CmdThisClientIsReady() {
+    public void CmdThisClientIsReady(int id) {
         var gm = FindObjectOfType<GameManager>();
         var hg = FindObjectOfType<HostGame>();
         var um = FindObjectOfType<UIManager>();
+        var pm = FindObjectOfType<PlayerManager>();
         gm.playersReady++;
+        var qqq = pm.ServersPlayerDataList[id];
+        qqq.playerRDY = true;
+        pm.ServersPlayerDataList[id] = qqq;
+        RpcUpdatePlayerNameList(pm.ServersPlayerDataList.ToArray());
         if (gm.playersReady >= hg.numberOfPlayers) {
             um.waitStatusText.text = "Next round starting...";
             StartCoroutine(WaitDelay());
+            for(int i = 0 ; i < pm.ServersPlayerDataList.Count ; i++) {
+                print("Readyplayerlist reset");
+                var temp = pm.ServersPlayerDataList[i];
+                temp.playerRDY = false;
+                print("pelaaja " + i + ": on ready " + pm.ServersPlayerDataList[i].playerRDY);
+            }
         }
     }
 
     [ClientRpc]
     public void RpcStartNextRound() {
         var gm = FindObjectOfType<GameManager>();
-        print("Clienttien round number kasvaa: " + gm.roundNumbr);
+        var pm = FindObjectOfType<PlayerManager>();
+        //print("Clienttien round number kasvaa: " + gm.roundNumbr);
         gm.roundNumbr++;
         gm.Gameplay();
     }
@@ -168,11 +195,12 @@ public class PlayerConnectionObject : NetworkBehaviour {
     IEnumerator WaitDelay() {
         var gm = FindObjectOfType<GameManager>();
         var um = FindObjectOfType<UIManager>();
+        var pm = FindObjectOfType<PlayerManager>();
+        print("Serverdatalistcount: " + pm.ServersPlayerDataList.Count);
         yield return new WaitForSeconds(1f);
         RpcStartNextRound();
         um.waitStatusText.text = "Waiting others...";
         gm.playersReady = 0;
-
     }
 
     [Command]

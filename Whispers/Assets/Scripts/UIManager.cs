@@ -19,6 +19,7 @@ public class UIManager : NetworkBehaviour {
     //}
 
     public TextMeshProUGUI uiText;
+    public TextMeshProUGUI waitText;
     public TextMeshProUGUI roomCodeTxt;
 
     //RoundDataManager rdm;
@@ -62,8 +63,7 @@ public class UIManager : NetworkBehaviour {
         PocketReset();
         var pm = FindObjectOfType<PlayerManager>();
         if(pm.playerData.playerIsHost) {
-            waitStatusText.text = "When your ready, start the game";
-
+            waitStatusText.text = "Start if everyone's ready";
             startButton.gameObject.SetActive(true);
         } else {
             waitStatusText.text = "Waiting host to start the game...";
@@ -110,7 +110,6 @@ public class UIManager : NetworkBehaviour {
         var hg = FindObjectOfType<HostGame>();
         var chainIdx = (gm.roundNumbr + pm.playerData.playerID) % hg.numberOfPlayers;
         var pics = rdm.chains[chainIdx].pictures;
-        print("Näytetään kuva ketjusta:" + chainIdx);
         ShowPicture(pics[(gm.roundNumbr - 1) / 2]);
     }
 
@@ -131,11 +130,7 @@ public class UIManager : NetworkBehaviour {
         var hg = FindObjectOfType<HostGame>();
         var pm = FindObjectOfType<PlayerManager>();
         var chainIdx = (gm.roundNumbr + pm.playerData.playerID) % hg.numberOfPlayers;
-        print("Näytetään teksti ketjusta: " + chainIdx);
         var temp = gm.roundNumbr - 1;
-        print(uiText);
-        print(rdm);
-        //print(rdm.chains[chainIdx].guesses[0]);
         if (temp == 0)
             ChangeUIText("Draw " + rdm.chains[chainIdx].guesses[0]);
         else
