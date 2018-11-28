@@ -47,8 +47,8 @@ public class HostGame : NetworkBehaviour {
 
     public void CreateRoom() {
         GenerateRoomCode();
-        textCont.SetActive(true);
-        statusText.text = "Creating room!";
+        //textCont.SetActive(true);
+        //statusText.text = "Creating room!";
         networkManager.matchMaker.CreateMatch(roomCode.ToString(), roomSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
         var pm = FindObjectOfType<PlayerManager>();
         pm.playerData.playerIsHost = true;

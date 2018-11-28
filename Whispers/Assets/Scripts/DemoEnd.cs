@@ -93,7 +93,7 @@ public class Demoend : MonoBehaviour {
     RoundDataManager rdm;
     UIManager um;
     PlayerManager pm;
-    DemoStyleEnd dse;
+    Watching dse;
 
 
     private void Awake() {
@@ -122,7 +122,7 @@ public class Demoend : MonoBehaviour {
         quesList = question.text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
         stateList = statement.text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
         var pm = FindObjectOfType<PlayerManager>();
-        dse = FindObjectOfType<DemoStyleEnd>();
+        dse = FindObjectOfType<Watching>();
         Jones = pm.playerData.playerName;
         var ch = rdm.chains[dse.chain];
     }

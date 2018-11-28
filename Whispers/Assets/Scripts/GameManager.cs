@@ -20,6 +20,7 @@ public class GameManager : NetworkBehaviour {
 
     public bool nameSet = false;
     public int playersReady;
+    public int playersReadyToQuit;
     //bool started = false;
     //bool drawingNotGuessing = true;
     public float timeToDraw = 60f;
@@ -132,57 +133,4 @@ public class GameManager : NetworkBehaviour {
         roundTimer = time;
     }
 
-    public void LeaveGame() {
-        var networkM = FindObjectOfType<NetworkManager>();
-        if (isServer) {
-            networkM.StopHost();
-        } else {
-            networkM.StopClient();
-        }
-        SceneManager.LoadScene(0);
-        }
-
-
-    //void DrawingOrGuessing(){ // Peruspelin vaihtelu
-    //    drawingNotGuessing = !drawingNotGuessing;
-
-    //    if(drawingNotGuessing) {
-    //        um.EraseDrawnLines();
-    //        um.ShowTextToDraw();
-    //        pm.playMode = PlayerManager.PlayMode.Draw;
-    //        um.SetUI();
-    //        SetTimer(timeToDraw);
-    //    } else {
-    //        um.PocketReset();
-    //        um.ShowPictureToGuess(pm.playerData.playerID);
-    //        pm.playMode = PlayerManager.PlayMode.Write;
-    //        um.SetUI();
-    //        um.ChangeUIText("What on earth is this?");
-    //        SetTimer(timeToWrite);
-    //    }
-    //    roundNumbr++;
-    //}
-
-    //startTime -= Time.deltaTime; // Introaika
-    //if(startTime < 0){ 
-
-    //    if(pm.playerData.playerName == "") { // Onko nimi asetettu
-    //        pm.playMode = PlayerManager.PlayMode.Write;
-    //        um.SetUI();
-    //        um.ChangeUIText("Can you please tell me your name?"); // Asetetaan nimi SendGuess() funktiossa
-    //    } else if(!started){
-    //        GenerateNewWordsToDraw(); // Ensimmäisen sanasetin luonti
-    //        pm.playMode = PlayerManager.PlayMode.Draw;
-    //        um.textBox.text = "";
-    //        um.SetUI();
-    //        nameSet = true;
-    //        started = true;
-    //    } else{
-    //        timerTime -= Time.deltaTime; // Peruspelin looppiajastin
-    //    }
-    //    if(timerTime <= 0) {
-    //        DrawingOrGuessing(); // Peruspeli (Piirretään tai arvataan)
-    //    }
-    //    timerFill.value = timerTime; // Tiimalasin ajan kuluminen
-    //}
 }

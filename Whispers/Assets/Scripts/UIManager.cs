@@ -40,6 +40,8 @@ public class UIManager : NetworkBehaviour {
     public GameObject startButton;
     public GameObject rdmPrefab;
     public InputField textBox;
+    public TextMeshProUGUI waitStatusText;
+
 
     public GameObject paperBCG;
     public GameObject timerBar;
@@ -53,14 +55,18 @@ public class UIManager : NetworkBehaviour {
 
         //wg = WordGenerator.instance;
         //im = InputManager.instance;
+        waitStatusText = GameObject.Find("WaitingLobbyStatusText").GetComponent<TextMeshProUGUI>();
     }
 
     private void Start() {
         PocketReset();
         var pm = FindObjectOfType<PlayerManager>();
         if(pm.playerData.playerIsHost) {
+            waitStatusText.text = "When your ready, start the game";
+
             startButton.gameObject.SetActive(true);
         } else {
+            waitStatusText.text = "Waiting host to start the game...";
             startButton.gameObject.SetActive(false);
         }
     }
