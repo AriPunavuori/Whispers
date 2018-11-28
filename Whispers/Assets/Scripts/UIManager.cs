@@ -63,8 +63,7 @@ public class UIManager : NetworkBehaviour {
         PocketReset();
         var pm = FindObjectOfType<PlayerManager>();
         if(pm.playerData.playerIsHost) {
-            waitStatusText.text = "When your ready, start the game";
-
+            waitStatusText.text = "Start if everyone's ready";
             startButton.gameObject.SetActive(true);
         } else {
             waitStatusText.text = "Waiting host to start the game...";

@@ -8,5 +8,6 @@ public class Join : MonoBehaviour {
     public void NewJoinGame() {
         var nm = FindObjectOfType<NetworkManager>().GetComponent<JoinGame>();
         nm.JoinButton();
+        Fabric.EventManager.Instance.PostEvent("button2");
     }
 }
