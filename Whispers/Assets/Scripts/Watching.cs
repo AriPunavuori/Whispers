@@ -130,16 +130,18 @@ public class Watching : MonoBehaviour {
     public void QuitGame(){
         var nm = FindObjectOfType<NetworkManager>();
         //var pm = FindObjectOfType<PlayerManager>();
+
         Destroy(GameObject.Find("PlayerManager"));
-        //Destroy(GameObject.Find("NetworkManager"));
+
         nm.StopHost();
+        Destroy(GameObject.Find("NetworkManager"));
         //nm.StopMatchMaker();
         //NetworkManager.Shutdown();
         //SceneManager.UnloadSceneAsync(0);
         //Destroy(nm);
 
-        StartCoroutine(WaitKill());
-        //SceneManager.LoadScene(0);
+        //StartCoroutine(WaitKill());
+        SceneManager.LoadScene(0);
     }
 
     IEnumerator WaitKill(){
