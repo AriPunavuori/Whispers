@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using Picture = System.Collections.Generic.List<LineData>;
+using TMPro;
 
 public class PlayerConnectionObject : NetworkBehaviour {
     //UIManager um;
@@ -14,6 +15,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
     public GameObject playerUIPrefab;
     public GameObject UIContainerPrefab;
+    
     bool rdmCreated;
     GameObject UIContainer;
 
@@ -147,8 +149,10 @@ public class PlayerConnectionObject : NetworkBehaviour {
     public void CmdThisClientIsReady() {
         var gm = FindObjectOfType<GameManager>();
         var hg = FindObjectOfType<HostGame>();
+        var um = FindObjectOfType<UIManager>();
         gm.playersReady++;
         if (gm.playersReady >= hg.numberOfPlayers) {
+            um.waitStatusText.text = "Next round starting...";
             StartCoroutine(WaitDelay());
         }
     }
@@ -163,9 +167,12 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
     IEnumerator WaitDelay() {
         var gm = FindObjectOfType<GameManager>();
-        yield return new WaitForSeconds(0.4f);
+        var um = FindObjectOfType<UIManager>();
+        yield return new WaitForSeconds(1f);
         RpcStartNextRound();
+        um.waitStatusText.text = "Waiting others...";
         gm.playersReady = 0;
+
     }
 
     [Command]
