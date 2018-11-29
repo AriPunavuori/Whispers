@@ -76,6 +76,8 @@ public class DrawingMachine : MonoBehaviour {
         currentLine.sortingOrder = lineNumber;
         lineNumber++;
         currentLine.positionCount = 0;
+        Fabric.EventManager.Instance.PostEvent("draw");
+
     }
 
     public void LineContinued(Vector3 curPos) {
@@ -95,6 +97,8 @@ public class DrawingMachine : MonoBehaviour {
         currentLine.positionCount = line.Count;
         currentLine.SetPositions(line.ToArray());
         lines.Add(new LineData(line.ToArray()));
+        Fabric.EventManager.Instance.PostEvent("drawstop");
+
         //PrintLines();
     }
 

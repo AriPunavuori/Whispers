@@ -39,6 +39,7 @@ public class Watching : MonoBehaviour {
     public void Next() {
         um.PocketReset();
         round++;
+        Fabric.EventManager.Instance.PostEvent("next");
         //guessText.text = "";
         if(round>0){
             previousButton.gameObject.SetActive(true);
@@ -84,6 +85,7 @@ public class Watching : MonoBehaviour {
     }
 
     public void Previous() {
+        Fabric.EventManager.Instance.PostEvent("prev");
         round--;
         um.PocketReset();
         if(round<hg.numberOfPlayers){
@@ -128,6 +130,8 @@ public class Watching : MonoBehaviour {
     }
 
     public void QuitGame(){
+        Fabric.EventManager.Instance.PostEvent("del");
+
         var nm = FindObjectOfType<NetworkManager>();
         //var pm = FindObjectOfType<PlayerManager>();
         Fabric.EventManager.Instance.PostEvent("stop");
