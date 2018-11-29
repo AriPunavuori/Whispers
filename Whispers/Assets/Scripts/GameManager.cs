@@ -26,6 +26,9 @@ public class GameManager : NetworkBehaviour {
     public float timeToDraw = 60f;
     public float timeToWrite = 30f;
 
+    bool tuneplayed;
+    public bool TRO;
+
     public int roundNumbr = 0;
 
     //float startTime = 1;
@@ -59,9 +62,23 @@ public class GameManager : NetworkBehaviour {
 
     void Update () {
         if(pm.playMode == PlayerManager.PlayMode.Draw || pm.playMode == PlayerManager.PlayMode.Write){
+            if (!tuneplayed) {
+                Fabric.EventManager.Instance.PostEvent("startround");
+                tuneplayed = true;
+            }
             roundTimer -= Time.deltaTime; // Peruspelin ajastin
             timerFill.value = roundTimer;
-            if(roundTimer < 0) {
+            if (roundTimer < 6) {
+                if (!TRO) {
+                    Fabric.EventManager.Instance.PostEvent("runningout");
+                    TRO = true;
+                }
+            }
+            if (roundTimer < 0) {
+                TRO = false;
+                tuneplayed = false;
+                Fabric.EventManager.Instance.PostEvent("alarm");
+                Fabric.EventManager.Instance.PostEvent("stoprun");
                 var im = FindObjectOfType<InputManager>();
                 if(pm.playMode == PlayerManager.PlayMode.Draw) {
                     im.SendDrawing();
