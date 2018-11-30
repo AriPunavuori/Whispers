@@ -14,6 +14,12 @@ public class Watching : MonoBehaviour {
     public GameObject quitButton;
     bool readyToQuit;
 
+    string[] artNoun;
+    string[] separators = new string[] { "\r\n", "\n" };
+
+
+    public TextAsset aNoun;
+
     RoundDataManager rdm;
 
     public TextMeshProUGUI uiText;
@@ -32,6 +38,7 @@ public class Watching : MonoBehaviour {
         gm = FindObjectOfType<GameManager>();
         pm = FindObjectOfType<PlayerManager>();
         um = FindObjectOfType<UIManager>();
+        artNoun = aNoun.text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
         um.PocketReset();
     }
 
@@ -73,9 +80,10 @@ public class Watching : MonoBehaviour {
 
 
         } else {
+            var aNoun = artNoun[Random.Range(0, artNoun.Length)];
             var pics = rdm.chains[chain].pictures;
             if (round - 1 == 0) {
-                uiText.text = "to which this " + pm.playerDataList[((chain - 1 + hg.numberOfPlayers) % hg.numberOfPlayers)].playerName + " drew as";
+                uiText.text = "which this " + aNoun/*pm.playerDataList[((chain - 1 + hg.numberOfPlayers) % hg.numberOfPlayers)].playerName*/ + " drew as";
                 um.ShowPicture(pics[0]);
             } else {
                 uiText.text = "which " + pm.playerDataList[(chain - round + hg.numberOfPlayers) % hg.numberOfPlayers].playerName + " drew as";
