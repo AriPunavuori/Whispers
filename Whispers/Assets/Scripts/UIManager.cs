@@ -173,6 +173,7 @@ public class UIManager : NetworkBehaviour {
 
     [Command]
     public void CmdCreateRdmOnHost() {
+        Fabric.EventManager.Instance.PostEvent("next");
         startButton.gameObject.SetActive(false);
         RpcCreateRdmOnCLients();
     }

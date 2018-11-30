@@ -33,16 +33,19 @@ public class JoinGame : NetworkBehaviour {
         var join = GameObject.Find("JoinButton").GetComponent<Join>();
 
         if (!success) {
+            Fabric.EventManager.Instance.PostEvent("error2");
             join.TextCont.SetActive(true);
             join.statusText.text = "Room search unsuccesful.";
             return;
         }
         if (matchList == null) {
+            Fabric.EventManager.Instance.PostEvent("error2");
             join.TextCont.SetActive(true);
             join.statusText.text = "There is no list.";
             return;
         }
         if(matchList.Count == 0){
+            Fabric.EventManager.Instance.PostEvent("error2");
             join.TextCont.SetActive(true);
             join.statusText.text = "No rooms found.";
             return;
@@ -68,6 +71,7 @@ public class JoinGame : NetworkBehaviour {
         join.TextCont.SetActive(true);
         join.statusText.text = "Match found! \nJoining...";
         Fabric.EventManager.Instance.PostEvent("stopmenu");
+        Fabric.EventManager.Instance.PostEvent("next");
         Fabric.EventManager.Instance.PostEvent("whisptheme");
         networkManager.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, networkManager.OnMatchJoined);
     }
