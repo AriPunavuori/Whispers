@@ -43,6 +43,7 @@ public class UIManager : NetworkBehaviour {
     public InputField textBox;
     public TextMeshProUGUI waitStatusText;
 
+    int NRO = 0;
 
     public GameObject paperBCG;
     public GameObject timerBar;
@@ -83,6 +84,15 @@ public class UIManager : NetworkBehaviour {
         writingUI.SetActive(pm.playMode == PlayerManager.PlayMode.Write);
 
         if(pm.playMode == PlayerManager.PlayMode.Draw || pm.playMode == PlayerManager.PlayMode.Write) {
+            Fabric.EventManager.Instance.PostEvent("stop");
+            Fabric.EventManager.Instance.PostEvent("stopmenu");
+            Fabric.EventManager.Instance.PostEvent("stopdrawtheme");
+            Fabric.EventManager.Instance.PostEvent("stoprun");
+            Fabric.EventManager.Instance.PostEvent("drawtheme");
+            if (NRO >= 1) {
+                Fabric.EventManager.Instance.PostEvent("startround");
+            }
+            NRO++;
             paperBCG.SetActive(true);
             timerBar.SetActive(true);
         } else {
@@ -91,11 +101,21 @@ public class UIManager : NetworkBehaviour {
         }
 
         if (pm.playMode == PlayerManager.PlayMode.Wait) {
+            Fabric.EventManager.Instance.PostEvent("stop");
+            Fabric.EventManager.Instance.PostEvent("stoprun");
+            Fabric.EventManager.Instance.PostEvent("stopmenu");
+            Fabric.EventManager.Instance.PostEvent("stopdrawtheme");
+            Fabric.EventManager.Instance.PostEvent("whisptheme");
             paperBCG.SetActive(true);
         }
 
 
         if (pm.playMode == PlayerManager.PlayMode.Watch){
+            Fabric.EventManager.Instance.PostEvent("stop");
+            Fabric.EventManager.Instance.PostEvent("stoprun");
+            Fabric.EventManager.Instance.PostEvent("stopmenu");
+            Fabric.EventManager.Instance.PostEvent("stopdrawtheme");
+            Fabric.EventManager.Instance.PostEvent("Endgame");
             paperBCG.SetActive(true);
             uiText.text = "And this is what people did!";
         }

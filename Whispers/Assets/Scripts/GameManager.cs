@@ -63,7 +63,6 @@ public class GameManager : NetworkBehaviour {
     void Update () {
         if(pm.playMode == PlayerManager.PlayMode.Draw || pm.playMode == PlayerManager.PlayMode.Write){
             if (!tuneplayed) {
-                Fabric.EventManager.Instance.PostEvent("startround");
                 tuneplayed = true;
             }
             roundTimer -= Time.deltaTime; // Peruspelin ajastin
@@ -78,7 +77,6 @@ public class GameManager : NetworkBehaviour {
                 TRO = false;
                 tuneplayed = false;
                 Fabric.EventManager.Instance.PostEvent("alarm");
-                Fabric.EventManager.Instance.PostEvent("stoprun");
                 var im = FindObjectOfType<InputManager>();
                 if(pm.playMode == PlayerManager.PlayMode.Draw) {
                     im.SendDrawing();
@@ -137,9 +135,6 @@ public class GameManager : NetworkBehaviour {
             }
         } else {
             // Show chains
-            Fabric.EventManager.Instance.PostEvent("stop");
-            Fabric.EventManager.Instance.PostEvent("stopmenu");
-            Fabric.EventManager.Instance.PostEvent("Endgame");
             pm.playMode = PlayerManager.PlayMode.Watch;
             um.SetUI();
             var es = FindObjectOfType<EndScreen>();

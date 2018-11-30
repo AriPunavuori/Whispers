@@ -78,7 +78,7 @@ public class PlayerManager : MonoBehaviour {
             // show errormsg window and ask new name
             textContainer.SetActive(true);
             textContainer.gameObject.GetComponentInChildren<Image>().color = Color.red;
-        Fabric.EventManager.Instance.PostEvent("del");
+        Fabric.EventManager.Instance.PostEvent("error2");
             statusText.text = "No name set\n Please set new name";
             return;
         }
