@@ -40,19 +40,19 @@ public class PlayerManager : MonoBehaviour {
     //    }
     //}
 
-
-
     bool created;
     public PlayerData playerData;
     public List<PlayerData> ServersPlayerDataList;
     public List<PlayerData> playerDataList;
+
     //RoundDataManager rdm;
     //WordGenerator wg;
     //InputManager im;
     //DrawingMachine dm;
     //GameManager gm;
 
-    private void Awake() {
+    private void Awake() { 
+
         if(!created) {
             DontDestroyOnLoad(this.gameObject);
             created = true;

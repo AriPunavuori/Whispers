@@ -11,16 +11,8 @@ public class GetPlayerInfo : MonoBehaviour {
     Image playerIcon;
 
     private void Awake() {
-        //pm = PlayerManager.instance;
         playerIcon = GetComponentInChildren<Image>();
-
-    }
-
-    void Start () {
-        //GetPlayerName();
-        //RandomizeIconColor();
-    }
-	
+    }	
 
     void GetPlayerName() {
         var pm = FindObjectOfType<PlayerManager>();

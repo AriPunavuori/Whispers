@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.Networking;
+using UnityEngine.Networking.Match;
 
 public class Watching : MonoBehaviour {
 
@@ -145,24 +146,25 @@ public class Watching : MonoBehaviour {
         Fabric.EventManager.Instance.PostEvent("stop");
         Fabric.EventManager.Instance.PostEvent("stopmenu");
 
-        Destroy(GameObject.Find("PlayerManager"));
+        MatchInfo matchInfo = nm.matchInfo;
 
+        Destroy(GameObject.Find("PlayerManager"));
+        Destroy(GameObject.Find("Audio Manager"));
+
+        nm.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, nm.OnDropConnection);
         nm.StopHost();
-        Destroy(GameObject.Find("NetworkManager"));
+        StartCoroutine(WaitKill(1));
+        //SceneManager.LoadScene(0);
+
         //nm.StopMatchMaker();
         //NetworkManager.Shutdown();
         //SceneManager.UnloadSceneAsync(0);
-        //Destroy(nm);
-
         //StartCoroutine(WaitKill());
-        SceneManager.LoadScene(0);
     }
 
-    IEnumerator WaitKill(){
-        print("Time: " + Time.time);
-        yield return new WaitForSeconds(4);
+    IEnumerator WaitKill(float t){
+        yield return new WaitForSeconds(t);
         LoadScene();
-        print("Time: " + Time.time);
 
     }
 

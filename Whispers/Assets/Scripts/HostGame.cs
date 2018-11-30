@@ -35,10 +35,10 @@ public class HostGame : NetworkBehaviour {
         //pm = PlayerManager.instance;
     }
     private void Start() {
-        networkManager = NetworkManager.singleton;
-        if (networkManager.matchMaker == null) {
-            networkManager.StartMatchMaker();
-        }
+        //networkManager = NetworkManager.singleton;
+        //if (networkManager.matchMaker == null) {
+        //    networkManager.StartMatchMaker();
+        //}
     }
 
     public void GenerateRoomCode() {
@@ -47,8 +47,13 @@ public class HostGame : NetworkBehaviour {
 
     public void CreateRoom() {
         GenerateRoomCode();
-        //textCont.SetActive(true);
-        //statusText.text = "Creating room!";
+        textCont.SetActive(true);
+        statusText.text = "Creating room!";
+        var networkManager = FindObjectOfType<NetworkManager>();
+        if (networkManager.matchMaker == null) {
+            networkManager.StartMatchMaker();
+        }
+
         networkManager.matchMaker.CreateMatch(roomCode.ToString(), roomSize, true, "", "", "", 0, 0, networkManager.OnMatchCreate);
         var pm = FindObjectOfType<PlayerManager>();
         pm.playerData.playerIsHost = true;
