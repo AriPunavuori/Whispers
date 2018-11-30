@@ -156,7 +156,7 @@ public class WordGenerator : MonoBehaviour {
         } else mySecond = Ques;
 
         //um.ChangeUIText(myFirst + "\n" + Jones + "\n" + mySecond);
-        SMTalk.text = (myFirst + "\n" + Jones + "\n" + mySecond);
+        SMTalk.text = (/*myFirst +*/ "\n" + Jones + "\n" + mySecond);
     }
 
     public void WordG() { // Sanageneraattori
@@ -167,9 +167,9 @@ public class WordGenerator : MonoBehaviour {
         Noun = (nounList[Random.Range(0, nounList.Length)]);
 
         if (aProb > anProb) {
-            myWord = "an " + Adj1 + " " + Noun;
+            myWord = /*"an " + Adj1 + " " + */Noun;
         } else {
-            myWord = "a " + Adj2 + " " + Noun;
+            myWord = /*"a " + Adj2 + " " + */Noun;
         }
 
         //um.ChangeUIText("Hi " + Jones + ",\n" + "Can you draw\n" + myWord + "?");
