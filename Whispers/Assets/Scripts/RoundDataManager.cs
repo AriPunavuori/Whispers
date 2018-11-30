@@ -67,9 +67,4 @@ public class RoundDataManager : NetworkBehaviour {
     //    //print(guesses[gm.roundNumbr/2]);
     //}
 
-    [ClientRpc]
-    public void RpcDistributeChainData() {
-
-    }
-
 }

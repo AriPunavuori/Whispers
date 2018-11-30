@@ -13,8 +13,8 @@ public class JoinGame : NetworkBehaviour {
     UIManager um;
     public InputField textBox;
     MatchInfoSnapshot foundGame;
-    public GameObject TextCont;
-    public Text statusText;
+    //public GameObject TextCont;
+    //public Text statusText;
     private void Awake() {
         //um = UIManager.instance;
         //hg = HostGame.instance;
@@ -22,40 +22,51 @@ public class JoinGame : NetworkBehaviour {
 
     private void Start() {
         Fabric.EventManager.Instance.PostEvent("tune");
-        networkManager = NetworkManager.singleton;
-        if (networkManager.matchMaker == null) {
-            networkManager.StartMatchMaker();
-        }
+        //networkManager = NetworkManager.singleton;
+        //if (networkManager.matchMaker == null) {
+        //    networkManager.StartMatchMaker();
+        //}
+
     }
 
     public void OnMatchList(bool success, string extendedInfo, List<MatchInfoSnapshot> matchList) {
-        if(!success) {
-            TextCont.SetActive(true);
-            statusText.text = "Room search unsuccesful.";
+        var join = GameObject.Find("JoinButton").GetComponent<Join>();
+
+        if (!success) {
+            join.TextCont.SetActive(true);
+            join.statusText.text = "Room search unsuccesful.";
             return;
         }
         if (matchList == null) {
-            TextCont.SetActive(true);
-            statusText.text = "There is no list.";
+            join.TextCont.SetActive(true);
+            join.statusText.text = "There is no list.";
             return;
         }
         if(matchList.Count == 0){
-            TextCont.SetActive(true);
-            statusText.text = "No rooms found.";
+            join.TextCont.SetActive(true);
+            join.statusText.text = "No rooms found.";
             return;
         }
-        print("huoneita olemassa nyt" + matchList.Count);
         foundGame = matchList[0];
         JoinRoom(foundGame);
     }
 
     public void JoinButton() {
+        var networkManager = FindObjectOfType<NetworkManager>();
+        if (networkManager.matchMaker == null) {
+            networkManager.StartMatchMaker();
+        }
         networkManager.matchMaker.ListMatches(0, 20, textBox.text, true, 0, 0, OnMatchList);
     }
 
     public void JoinRoom(MatchInfoSnapshot _match) {
-        TextCont.SetActive(true);
-        statusText.text = "Match found! \nJoining...";
+        var networkManager = FindObjectOfType<NetworkManager>();
+        if (networkManager.matchMaker == null) {
+            networkManager.StartMatchMaker();
+        }
+        var join = GameObject.Find("JoinButton").GetComponent<Join>();
+        join.TextCont.SetActive(true);
+        join.statusText.text = "Match found! \nJoining...";
         Fabric.EventManager.Instance.PostEvent("stopmenu");
         Fabric.EventManager.Instance.PostEvent("whisptheme");
         networkManager.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, networkManager.OnMatchJoined);

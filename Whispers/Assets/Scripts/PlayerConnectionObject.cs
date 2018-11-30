@@ -182,6 +182,8 @@ public class PlayerConnectionObject : NetworkBehaviour {
         var gm = FindObjectOfType<GameManager>();
         var pm = FindObjectOfType<PlayerManager>();
         var um = FindObjectOfType<UIManager>();
+        //var animator = FindObjectOfType<Animator>();
+        //animator.SetBool("Start", false);
         um.waitStatusText.text = "Next round starting...";
         // timer ennen ku pelin flow jatkuu
         StartCoroutine(ExtraWait());
@@ -192,6 +194,9 @@ public class PlayerConnectionObject : NetworkBehaviour {
     [ClientRpc]
     public void RpcWaitTextState() {
         var um = FindObjectOfType<UIManager>();
+        //var animator = FindObjectOfType<Animator>();
+        // joku textflash kun joutuu odottamaan waitlobbyssa?
+        //animator.SetBool("Start", true);
         um.waitStatusText.text = "Waiting others...";
     }
 
@@ -202,7 +207,6 @@ public class PlayerConnectionObject : NetworkBehaviour {
         print("Serverdatalistcount: " + pm.ServersPlayerDataList.Count);
         yield return new WaitForSeconds(1f);
         RpcStartNextRound();
-        //um.waitStatusText.text = "Waiting others...";
         gm.playersReady = 0;
     }
 

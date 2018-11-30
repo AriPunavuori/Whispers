@@ -899,8 +899,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textBox: {fileID: 202984732}
-  TextCont: {fileID: 222244509}
-  statusText: {fileID: 192998560}
 --- !u!114 &694783449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1291,6 +1289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90c73226359034ea1b2adafd2249e2b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TextCont: {fileID: 222244509}
+  statusText: {fileID: 192998560}
 --- !u!1 &1017499124
 GameObject:
   m_ObjectHideFlags: 0
