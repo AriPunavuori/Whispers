@@ -170,17 +170,9 @@ public class PlayerConnectionObject : NetworkBehaviour {
         var qqq = pm.ServersPlayerDataList[id];
         qqq.playerRDY = true;
         pm.ServersPlayerDataList[id] = qqq;
-
+        RpcWaitTextState();
         if (gm.playersReady >= hg.numberOfPlayers) {
-            um.waitStatusText.text = "Next round starting...";
             StartCoroutine(WaitDelay());
-            for(int i = 0 ; i < pm.ServersPlayerDataList.Count ; i++) {
-                print("Readyplayerlist reset");
-                var temp = pm.ServersPlayerDataList[i];
-                temp.playerRDY = false; // ************************************************************************************** Tämä Ei päivity!!!!!!!!!!!!
-                pm.ServersPlayerDataList[i] = temp;
-                print("pelaaja " + i + ": on ready " + pm.ServersPlayerDataList[i].playerRDY);
-            }
         }
         RpcUpdatePlayerNameList(pm.ServersPlayerDataList.ToArray());
     }
@@ -189,9 +181,18 @@ public class PlayerConnectionObject : NetworkBehaviour {
     public void RpcStartNextRound() {
         var gm = FindObjectOfType<GameManager>();
         var pm = FindObjectOfType<PlayerManager>();
-        //print("Clienttien round number kasvaa: " + gm.roundNumbr);
+        var um = FindObjectOfType<UIManager>();
+        um.waitStatusText.text = "Next round starting...";
+        // timer ennen ku pelin flow jatkuu
+        StartCoroutine(ExtraWait());
         gm.roundNumbr++;
-        gm.Gameplay();
+        //gm.Gameplay();
+    }
+
+    [ClientRpc]
+    public void RpcWaitTextState() {
+        var um = FindObjectOfType<UIManager>();
+        um.waitStatusText.text = "Waiting others...";
     }
 
     IEnumerator WaitDelay() {
@@ -201,8 +202,24 @@ public class PlayerConnectionObject : NetworkBehaviour {
         print("Serverdatalistcount: " + pm.ServersPlayerDataList.Count);
         yield return new WaitForSeconds(1f);
         RpcStartNextRound();
-        um.waitStatusText.text = "Waiting others...";
+        //um.waitStatusText.text = "Waiting others...";
         gm.playersReady = 0;
+    }
+
+    IEnumerator ExtraWait() {
+        var um = FindObjectOfType<UIManager>();
+        var gm = FindObjectOfType<GameManager>();
+        var pm = FindObjectOfType<PlayerManager>();
+        yield return new WaitForSeconds(2f);
+        for (int i = 0; i < pm.ServersPlayerDataList.Count; i++) {
+            print("Readyplayerlist reset");
+            var temp = pm.ServersPlayerDataList[i];
+            temp.playerRDY = false; // ************************************************************************************** Tämä Ei päivity!!!!!!!!!!!!
+            pm.ServersPlayerDataList[i] = temp;
+            print("pelaaja " + i + ": on ready " + pm.ServersPlayerDataList[i].playerRDY);
+        }
+        gm.Gameplay();
+
     }
 
     [Command]

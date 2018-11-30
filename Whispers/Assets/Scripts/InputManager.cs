@@ -86,6 +86,10 @@ public class InputManager : NetworkBehaviour {
         um.SetUI();
         um.EraseDrawnLines();
         um.ChangeUIText("");
+        //um.waitStatusText.text = "Waiting others...";
+        //if (gm.playersReady >= hg.numberOfPlayers) {
+        //    um.waitStatusText.text = "Next round starting...";
+        //}
 
         pco.CmdThisClientIsReady(pm.playerData.playerID);
 
@@ -112,6 +116,12 @@ public class InputManager : NetworkBehaviour {
         um.SetUI();
         um.PocketReset();
         um.ChangeUIText("");
+        //um.waitStatusText.text = "Waiting others...";
+        //if (gm.playersReady >= hg.numberOfPlayers) {
+        //    um.waitStatusText.text = "Next round starting...";
+        //}
+
+
 
         pco.CmdThisClientIsReady(pm.playerData.playerID);
 
