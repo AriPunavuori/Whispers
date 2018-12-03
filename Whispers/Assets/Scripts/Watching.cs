@@ -53,42 +53,42 @@ public class Watching : MonoBehaviour {
             previousButton.gameObject.SetActive(true);
         }
 
-        if (round >= hg.numberOfPlayers) {
-
-            if(chain + 1 >= hg.numberOfPlayers && round + 1 >= hg.numberOfPlayers){
-                nextButton.gameObject.SetActive(false);
-                var pco = GameObject.Find("" + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
-                if(!readyToQuit){
-                    pco.CmdReadyToQuit();
-                    readyToQuit = true;
-                }
-            } else{
-                chain++;
-                round = 0;
-                uiText.text = "Next chain of events looks like this:";
-            }
-        }
-
         var ch = rdm.chains[chain];
 
-        if (round % 2 == 0) {
-            if (round == 0) {
+        if(round % 2 == 0) {
+            if(round == 0) {
                 uiText.text = pm.playerDataList[((chain - 1 + hg.numberOfPlayers) % hg.numberOfPlayers)].playerName + " was asked to draw " + ch.guesses[0];
             } else {
                 uiText.text = "Which " + pm.playerDataList[(chain - round + hg.numberOfPlayers) % hg.numberOfPlayers].playerName + " deciphered as:\n " + ch.guesses[round / 2];
             }
-               // (chain % hg.numberOfPlayers - 1)
-
-
         } else {
             var aNoun = artNoun[Random.Range(0, artNoun.Length)];
             var pics = rdm.chains[chain].pictures;
-            if (round - 1 == 0) {
+            if(round - 1 == 0) {
                 uiText.text = "which this " + aNoun/*pm.playerDataList[((chain - 1 + hg.numberOfPlayers) % hg.numberOfPlayers)].playerName*/ + " drew as";
                 um.ShowPicture(pics[0]);
             } else {
                 uiText.text = "which " + pm.playerDataList[(chain - round + hg.numberOfPlayers) % hg.numberOfPlayers].playerName + " drew as";
                 um.ShowPicture(pics[(round - 1) / 2]);
+            }
+        }
+
+        if (round >= hg.numberOfPlayers) {
+            print("Roundi" + round);
+            if(chain + 1 >= hg.numberOfPlayers){
+                nextButton.gameObject.SetActive(false);
+                //um.uiText.text = "Thats it folks, move along!";
+                var pco = GameObject.Find("" + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
+                if(!readyToQuit){
+                    pco.CmdReadyToQuit();
+                    readyToQuit = true;
+                }
+                return;
+            } else{
+                chain++;
+                print("Chain kasvaa" + chain);
+                round = 0;
+                print("Roundi nollataan" + round);
             }
         }
     }
