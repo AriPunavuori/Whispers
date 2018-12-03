@@ -1640,7 +1640,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: 1
+  _volume: 0.5432503
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -3556,7 +3556,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: 1
+  _volume: 0.56234133
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -3577,7 +3577,7 @@ MonoBehaviour:
   _customCurvesType: 0
   _customCurvesName: 
   _overrideFadeProperties: 0
-  _fadeInTime: 0
+  _fadeInTime: 0.2
   _fadeInCurve: 0.5
   _fadeOutTime: 0
   _fadeOutCurve: 0.5
