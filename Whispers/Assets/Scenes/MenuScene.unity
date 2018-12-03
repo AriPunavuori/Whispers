@@ -2156,31 +2156,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 114178052565672246, guid: 6c4bc4364fe8a484c8a517c1c429dc64,
-        type: 2}
-      propertyPath: _audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: dce977233f8eb974dbcc2402ae67b1b4, type: 3}
-    - target: {fileID: 114178052565672246, guid: 6c4bc4364fe8a484c8a517c1c429dc64,
-        type: 2}
-      propertyPath: _fadeInTime
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114178052565672246, guid: 6c4bc4364fe8a484c8a517c1c429dc64,
-        type: 2}
-      propertyPath: _fadeInCurve
-      value: 0.637
-      objectReference: {fileID: 0}
-    - target: {fileID: 114178052565672246, guid: 6c4bc4364fe8a484c8a517c1c429dc64,
-        type: 2}
-      propertyPath: _fadeOutTime
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114178052565672246, guid: 6c4bc4364fe8a484c8a517c1c429dc64,
-        type: 2}
-      propertyPath: _fadeOutCurve
-      value: 0.725
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c4bc4364fe8a484c8a517c1c429dc64, type: 2}
   m_IsPrefabAsset: 0
