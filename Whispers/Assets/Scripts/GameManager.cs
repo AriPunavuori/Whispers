@@ -100,8 +100,8 @@ public class GameManager : NetworkBehaviour {
         var um = FindObjectOfType<UIManager>();
         var wg = FindObjectOfType<WordGenerator>();
         pm.playMode = PlayerManager.PlayMode.Draw;
-        um.SetUI();
         um.uiText.text = "\nHere we go!";
+        um.SetUI();
         PlayerNotReady();
         wg.WordG();
         pco.CmdAddGuessToChain(wg.myWord, pm.playerData.playerID);
