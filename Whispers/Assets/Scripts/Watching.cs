@@ -45,12 +45,32 @@ public class Watching : MonoBehaviour {
 
 
     public void Next() {
-        um.PocketReset();
-        round++;
         Fabric.EventManager.Instance.PostEvent("next");
-        //guessText.text = "";
+
+        um.PocketReset();
+
+        round++;
+
         if(round>0){
             previousButton.gameObject.SetActive(true);
+        }
+
+        if(round >= hg.numberOfPlayers) {
+
+            if(chain + 2 > hg.numberOfPlayers) {
+                nextButton.gameObject.SetActive(false);
+                //um.uiText.text = "Thats it folks, move along!";
+                var pco = GameObject.Find("" + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
+                if(!readyToQuit) {
+                    pco.CmdReadyToQuit();
+                    readyToQuit = true;
+                }
+            } else {
+                chain++;
+                print("Chain kasvaa" + chain);
+                round = 0;
+                print("Roundi nollataan" + round);
+            }
         }
 
         var ch = rdm.chains[chain];
@@ -64,7 +84,7 @@ public class Watching : MonoBehaviour {
         } else {
             var aNoun = artNoun[Random.Range(0, artNoun.Length)];
             var pics = rdm.chains[chain].pictures;
-            if(round - 1 == 0) {
+            if(round == 1) {
                 uiText.text = "which this " + aNoun/*pm.playerDataList[((chain - 1 + hg.numberOfPlayers) % hg.numberOfPlayers)].playerName*/ + " drew as";
                 um.ShowPicture(pics[0]);
             } else {
@@ -72,35 +92,19 @@ public class Watching : MonoBehaviour {
                 um.ShowPicture(pics[(round - 1) / 2]);
             }
         }
-
-        if (round >= hg.numberOfPlayers) {
-            print("Roundi" + round);
-            if(chain + 1 >= hg.numberOfPlayers){
-                nextButton.gameObject.SetActive(false);
-                //um.uiText.text = "Thats it folks, move along!";
-                var pco = GameObject.Find("" + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
-                if(!readyToQuit){
-                    pco.CmdReadyToQuit();
-                    readyToQuit = true;
-                }
-                return;
-            } else{
-                chain++;
-                print("Chain kasvaa" + chain);
-                round = 0;
-                print("Roundi nollataan" + round);
-            }
-        }
     }
 
     public void Previous() {
+
         Fabric.EventManager.Instance.PostEvent("prev");
-        round--;
+
         um.PocketReset();
+
+        round--;
+
         if(round<hg.numberOfPlayers){
             nextButton.gameObject.SetActive(true);
         }
-        //guessText.text = "";
 
         if(round == 0 && chain == 0){
             previousButton.gameObject.SetActive(false);
@@ -108,10 +112,7 @@ public class Watching : MonoBehaviour {
 
         if(round < 0) {
             chain--;
-            round = hg.numberOfPlayers;
-            //if(chain == 0 ) {
-            //    chain = hg.numberOfPlayers - 1; //Teksti thats it folks ja nappi play again?
-            //}
+            round = hg.numberOfPlayers - 1;
         }
 
         var ch = rdm.chains[chain];
@@ -123,12 +124,11 @@ public class Watching : MonoBehaviour {
             } else {
                 uiText.text = "Which " + pm.playerDataList[(chain - round + hg.numberOfPlayers) % hg.numberOfPlayers].playerName + " deciphered as:\n " + ch.guesses[round / 2];
             }
-            // (chain % hg.numberOfPlayers - 1)
-
 
         } else {
+
             var pics = rdm.chains[chain].pictures;
-            if(round - 1 == 0) {
+            if(round == 1) {
                 uiText.text = "to which this " + pm.playerDataList[((chain - 1 + hg.numberOfPlayers) % hg.numberOfPlayers)].playerName + " drew as";
                 um.ShowPicture(pics[0]);
             } else {
