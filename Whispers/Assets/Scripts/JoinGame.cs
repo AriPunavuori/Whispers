@@ -31,27 +31,46 @@ public class JoinGame : NetworkBehaviour {
 
     public void OnMatchList(bool success, string extendedInfo, List<MatchInfoSnapshot> matchList) {
         var join = GameObject.Find("JoinButton").GetComponent<Join>();
+        hg = FindObjectOfType<HostGame>();
 
-        if (!success) {
-            Fabric.EventManager.Instance.PostEvent("error2");
-            join.TextCont.SetActive(true);
-            join.statusText.text = "Room search unsuccesful.";
-            return;
+        if (textBox.text == hg.roomCode.ToString()) {
+            if (!success) {
+                Fabric.EventManager.Instance.PostEvent("error2");
+                join.TextCont.gameObject.GetComponentInChildren<SVGImage>().color = Color.red;
+                join.TextCont.SetActive(true);
+                join.statusText.text = "Room search unsuccesful.";
+                return;
+            }
+            if (matchList == null) {
+                Fabric.EventManager.Instance.PostEvent("error2");
+                join.TextCont.SetActive(true);
+                join.statusText.text = "There is no list.";
+                return;
+            }
+            if (matchList.Count == 0) {
+                Fabric.EventManager.Instance.PostEvent("error2");
+                join.TextCont.gameObject.GetComponentInChildren<SVGImage>().color = Color.red;
+                join.TextCont.SetActive(true);
+                join.statusText.text = "No rooms found.";
+                return;
+            }
+
+            foundGame = matchList[0];
+            JoinRoom(foundGame);
         }
-        if (matchList == null) {
+        else if (textBox.text == "") {
             Fabric.EventManager.Instance.PostEvent("error2");
+            join.TextCont.gameObject.GetComponentInChildren<SVGImage>().color = Color.red;
             join.TextCont.SetActive(true);
-            join.statusText.text = "There is no list.";
-            return;
+            join.statusText.text = "Insert roomcode";
         }
-        if(matchList.Count == 0){
+
+        else {
             Fabric.EventManager.Instance.PostEvent("error2");
+            join.TextCont.gameObject.GetComponentInChildren<SVGImage>().color = Color.red;
             join.TextCont.SetActive(true);
-            join.statusText.text = "No rooms found.";
-            return;
+            join.statusText.text = "Wrong roomcode, insert new one.";
         }
-        foundGame = matchList[0];
-        JoinRoom(foundGame);
     }
 
     public void JoinButton() {
@@ -68,6 +87,7 @@ public class JoinGame : NetworkBehaviour {
             networkManager.StartMatchMaker();
         }
         var join = GameObject.Find("JoinButton").GetComponent<Join>();
+        join.TextCont.gameObject.GetComponentInChildren<SVGImage>().color = Color.white;
         join.TextCont.SetActive(true);
         join.statusText.text = "Match found! \nJoining...";
         Fabric.EventManager.Instance.PostEvent("stopmenu");

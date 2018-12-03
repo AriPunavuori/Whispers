@@ -48,6 +48,7 @@ public class HostGame : NetworkBehaviour {
     public void CreateRoom() {
         GenerateRoomCode();
         textCont.SetActive(true);
+        textCont.gameObject.GetComponentInChildren<SVGImage>().color = Color.white;
         statusText.text = "Creating room!";
         var networkManager = FindObjectOfType<NetworkManager>();
         if (networkManager.matchMaker == null) {

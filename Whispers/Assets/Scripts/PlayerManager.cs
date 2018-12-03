@@ -77,15 +77,15 @@ public class PlayerManager : MonoBehaviour {
         if (nameInput.text == "") {
             // show errormsg window and ask new name
             textContainer.SetActive(true);
-            textContainer.gameObject.GetComponentInChildren<Image>().color = Color.red;
-        Fabric.EventManager.Instance.PostEvent("error2");
+            textContainer.gameObject.GetComponentInChildren<SVGImage>().color = Color.red;
+            Fabric.EventManager.Instance.PostEvent("error2");
             statusText.text = "No name set\n Please set new name";
             return;
         }
         playerData.playerName = nameInput.text.RemoveDiacritics();
         Fabric.EventManager.Instance.PostEvent("button2");
         onValidName.Invoke();
-        textContainer.gameObject.GetComponentInChildren<Image>().color = Color.gray;
+        textContainer.gameObject.GetComponentInChildren<SVGImage>().color = Color.white;
 
     }
 }
