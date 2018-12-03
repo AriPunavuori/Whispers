@@ -87,7 +87,7 @@ public class Watching : MonoBehaviour {
             } else{
                 chain++;
                 print("Chain kasvaa" + chain);
-                round = 0;
+                round = -1;
                 print("Roundi nollataan" + round);
             }
         }
