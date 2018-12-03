@@ -72,6 +72,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
         pd.playerID = hg.numberOfPlayers - 1;
         pd.playerRDY = true;
         pm.ServersPlayerDataList.Add(pd);
+        Fabric.EventManager.Instance.PostEvent("connect");
         RpcUpdatePlayerCount(hg.numberOfPlayers);
         RpcClearPlayerNameList();
         RpcUpdatePlayerNameList(pm.ServersPlayerDataList.ToArray());
