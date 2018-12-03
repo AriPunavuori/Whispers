@@ -1309,7 +1309,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: 0.17782794
+  _volume: 0.1
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -1387,7 +1387,7 @@ MonoBehaviour:
   _delayInBeats: 0
   _loop: 1
   _ignoreNativeLoop: 0
-  _randomizeStart: 0
+  _randomizeStart: 1
   _randomizeStartPercentage: 100
   _numLoops: -1
   _loopMarkersLoaded: 0
@@ -3556,7 +3556,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: 0.56234133
+  _volume: 0.31622776
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -3577,7 +3577,7 @@ MonoBehaviour:
   _customCurvesType: 0
   _customCurvesName: 
   _overrideFadeProperties: 0
-  _fadeInTime: 0.2
+  _fadeInTime: 0
   _fadeInCurve: 0.5
   _fadeOutTime: 0
   _fadeOutCurve: 0.5
