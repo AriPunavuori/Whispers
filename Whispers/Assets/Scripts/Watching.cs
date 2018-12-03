@@ -154,6 +154,7 @@ public class Watching : MonoBehaviour {
 
         nm.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, nm.OnDropConnection);
         nm.StopHost();
+        Destroy(GameObject.Find("NetworkManager"));
         StartCoroutine(WaitKill(1));
         //SceneManager.LoadScene(0);
 
