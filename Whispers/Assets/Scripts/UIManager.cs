@@ -152,9 +152,9 @@ public class UIManager : NetworkBehaviour {
         var chainIdx = (gm.roundNumbr + pm.playerData.playerID) % hg.numberOfPlayers;
         var temp = gm.roundNumbr - 1;
         if (temp == 0)
-            ChangeUIText("Draw " + rdm.chains[chainIdx].guesses[0]);
+            ChangeUIText("Your word to draw: " + rdm.chains[chainIdx].guesses[0]);
         else
-            ChangeUIText("Draw " + rdm.chains[chainIdx].guesses[(gm.roundNumbr - 1) / 2]);
+            ChangeUIText("Your word to draw: " + rdm.chains[chainIdx].guesses[(gm.roundNumbr - 1) / 2]);
 
     }
 

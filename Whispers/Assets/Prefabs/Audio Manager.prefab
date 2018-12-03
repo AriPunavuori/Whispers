@@ -1065,10 +1065,10 @@ MonoBehaviour:
   _customCurvesType: 0
   _customCurvesName: 
   _overrideFadeProperties: 0
-  _fadeInTime: 0
-  _fadeInCurve: 0.5
-  _fadeOutTime: 0.3
-  _fadeOutCurve: 0.5
+  _fadeInTime: 2
+  _fadeInCurve: 0.637
+  _fadeOutTime: 1.5
+  _fadeOutCurve: 0.725
   _reverbZoneMix: 1
   _overrideBypassProperties: 0
   _bypassEffects: 0
@@ -1110,7 +1110,7 @@ MonoBehaviour:
   Guid: 
   _componentHolder: {fileID: 0}
   _onEventNotifyEventName: 
-  _audioClip: {fileID: 8300000, guid: e4000585906037749a7455d0b52508a2, type: 3}
+  _audioClip: {fileID: 8300000, guid: dce977233f8eb974dbcc2402ae67b1b4, type: 3}
   _audioClipHandle:
     _audioClipPath: 
     _useAudioClipPath: 1
@@ -1309,7 +1309,7 @@ MonoBehaviour:
   _stealingBehaviour: 0
   _minimumPlaybackInterval: 0
   _overrideParentVolume: 0
-  _volume: 0.30902955
+  _volume: 0.17782794
   _volumeRandomization: 0
   _mute: 0
   _overrideParentPitch: 0
@@ -1661,7 +1661,7 @@ MonoBehaviour:
   _customCurvesType: 0
   _customCurvesName: 
   _overrideFadeProperties: 0
-  _fadeInTime: 0
+  _fadeInTime: 0.1
   _fadeInCurve: 0.5
   _fadeOutTime: 0
   _fadeOutCurve: 0.5
