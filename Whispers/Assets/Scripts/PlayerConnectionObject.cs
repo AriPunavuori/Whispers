@@ -249,7 +249,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
         w.quitButton.gameObject.SetActive(true);
         w.nextButton.gameObject.SetActive(false);
         w.previousButton.gameObject.SetActive(false);
-        w.uiText.text = "Thats it motherf*ckers, GMAE Over!";
+        w.uiText.text = "Thats it folks, GMAE Over!";
     }
 
 

@@ -43,7 +43,6 @@ public class Watching : MonoBehaviour {
         um.PocketReset();
     }
 
-
     public void Next() {
         Fabric.EventManager.Instance.PostEvent("next");
 
@@ -55,22 +54,17 @@ public class Watching : MonoBehaviour {
             previousButton.gameObject.SetActive(true);
         }
 
-        if(round >= hg.numberOfPlayers) {
-
-            if(chain + 2 > hg.numberOfPlayers) {
-                nextButton.gameObject.SetActive(false);
-                //um.uiText.text = "Thats it folks, move along!";
-                var pco = GameObject.Find("" + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
-                if(!readyToQuit) {
-                    pco.CmdReadyToQuit();
-                    readyToQuit = true;
-                }
-            } else {
-                chain++;
-                print("Chain kasvaa" + chain);
-                round = 0;
-                print("Roundi nollataan" + round);
+        if(chain + 2 > hg.numberOfPlayers && round + 1 > hg.numberOfPlayers) {
+            nextButton.gameObject.SetActive(false);
+            //um.uiText.text = "Thats it folks, move along!";
+            var pco = GameObject.Find("" + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
+            if(!readyToQuit) {
+                pco.CmdReadyToQuit();
+                readyToQuit = true;
             }
+        } else if(round > hg.numberOfPlayers){
+            chain++;
+            round = 0;
         }
 
         var ch = rdm.chains[chain];
@@ -167,11 +161,9 @@ public class Watching : MonoBehaviour {
     IEnumerator WaitKill(float t){
         yield return new WaitForSeconds(t);
         LoadScene();
-
     }
 
     void LoadScene(){
         SceneManager.LoadScene(0);
     }
-
 }
