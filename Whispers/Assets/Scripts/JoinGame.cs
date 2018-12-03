@@ -33,44 +33,36 @@ public class JoinGame : NetworkBehaviour {
         var join = GameObject.Find("JoinButton").GetComponent<Join>();
         hg = FindObjectOfType<HostGame>();
 
-        if (textBox.text == hg.roomCode.ToString()) {
-            if (!success) {
-                Fabric.EventManager.Instance.PostEvent("error2");
-                join.TextCont.gameObject.GetComponentInChildren<SVGImage>().color = Color.red;
-                join.TextCont.SetActive(true);
-                join.statusText.text = "Room search unsuccesful.";
-                return;
-            }
-            if (matchList == null) {
-                Fabric.EventManager.Instance.PostEvent("error2");
-                join.TextCont.SetActive(true);
-                join.statusText.text = "There is no list.";
-                return;
-            }
-            if (matchList.Count == 0) {
-                Fabric.EventManager.Instance.PostEvent("error2");
-                join.TextCont.gameObject.GetComponentInChildren<SVGImage>().color = Color.red;
-                join.TextCont.SetActive(true);
-                join.statusText.text = "No rooms found.";
-                return;
-            }
-
-            foundGame = matchList[0];
-            JoinRoom(foundGame);
-        }
-        else if (textBox.text == "") {
+        if(textBox.text == "") {
             Fabric.EventManager.Instance.PostEvent("error2");
             join.TextCont.gameObject.GetComponentInChildren<SVGImage>().color = Color.red;
             join.TextCont.SetActive(true);
             join.statusText.text = "Insert roomcode";
+            return;
         }
-
-        else {
+        if (!success) {
             Fabric.EventManager.Instance.PostEvent("error2");
             join.TextCont.gameObject.GetComponentInChildren<SVGImage>().color = Color.red;
             join.TextCont.SetActive(true);
-            join.statusText.text = "Wrong roomcode, insert new one.";
+            join.statusText.text = "Room search unsuccesful.";
+            return;
         }
+        if (matchList == null) {
+            Fabric.EventManager.Instance.PostEvent("error2");
+            join.TextCont.SetActive(true);
+            join.statusText.text = "There is no list.";
+            return;
+        }
+        if (matchList.Count == 0) {
+            Fabric.EventManager.Instance.PostEvent("error2");
+            join.TextCont.gameObject.GetComponentInChildren<SVGImage>().color = Color.red;
+            join.TextCont.SetActive(true);
+            join.statusText.text = "No rooms found.";
+            return;
+        }
+
+        foundGame = matchList[0];
+        JoinRoom(foundGame);
     }
 
     public void JoinButton() {
