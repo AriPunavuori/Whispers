@@ -27,9 +27,10 @@ public class Watching : MonoBehaviour {
     PlayerManager pm;
     UIManager um;
     RoundDataManager rdm;
-
+    UnityAdsExample UAE;
 
     void Start() {
+        UAE = FindObjectOfType<UnityAdsExample>();
         rdm = FindObjectOfType<RoundDataManager>();
         hg = FindObjectOfType<HostGame>();
         gm = FindObjectOfType<GameManager>();
@@ -38,6 +39,7 @@ public class Watching : MonoBehaviour {
         artNoun = aNoun.text.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
         um.PocketReset();
     }
+
 
     public void Next() {
         Fabric.EventManager.Instance.PostEvent("next");

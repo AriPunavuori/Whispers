@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class EndScreen : MonoBehaviour {
 
-    public CamScript eCam;
+    //public CamScript eCam;
     public GameObject picPrefab;
     //public RenderTexture camImage;
     public Transform origPic;
@@ -50,14 +50,14 @@ public class EndScreen : MonoBehaviour {
                 //pacImage = camImage;
                 foreach (var l in ch.pictures[round]) {
                     var drawnLine = Instantiate(LinePrefab);
-                    drawnLine.transform.parent = eCam.transform;
+                    //drawnLine.transform.parent = eCam.transform;
                     var lineToDraw = drawnLine.GetComponent<LineRenderer>();
                     lineToDraw.positionCount = l.points.Length;
                     lineToDraw.SetPositions(l.points);
                 }
-                var tex = eCam.RTImage();
-                var spr = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
-                pac.GetComponent<Image>().sprite = spr;
+                //var tex = eCam.RTImage();
+                //var spr = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
+                //pac.GetComponent<Image>().sprite = spr;
                 round++;
                 // do something - ch.pictures[round]
 

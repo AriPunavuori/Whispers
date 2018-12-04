@@ -49,6 +49,8 @@ public class UIManager : NetworkBehaviour {
     public GameObject beginToggle;
     public GameObject timerBar;
 
+    UnityAdsExample UAE;
+
     private void Awake() {
         //rdm = RoundDataManager.instance;
         //gm = GameManager.instance;
@@ -59,6 +61,7 @@ public class UIManager : NetworkBehaviour {
         //wg = WordGenerator.instance;
         //im = InputManager.instance;
         waitStatusText = GameObject.Find("WaitingLobbyStatusText").GetComponent<TextMeshProUGUI>();
+        UAE = FindObjectOfType<UnityAdsExample>();
     }
 
     private void Start() {
@@ -89,11 +92,8 @@ public class UIManager : NetworkBehaviour {
             Fabric.EventManager.Instance.PostEvent("stopmenu");
             Fabric.EventManager.Instance.PostEvent("stopdrawtheme");
             Fabric.EventManager.Instance.PostEvent("stoprun");
-            Fabric.EventManager.Instance.PostEvent("drawtheme");
-            if (NRO >= 1) {
-                Fabric.EventManager.Instance.PostEvent("startround");
-            }
-            NRO++;
+            Fabric.EventManager.Instance.PostEvent("whisptheme");
+            Fabric.EventManager.Instance.PostEvent("startround");
             paperBCG.SetActive(true);
             timerBar.SetActive(true);
         } else {
@@ -106,7 +106,7 @@ public class UIManager : NetworkBehaviour {
             Fabric.EventManager.Instance.PostEvent("stoprun");
             Fabric.EventManager.Instance.PostEvent("stopmenu");
             Fabric.EventManager.Instance.PostEvent("stopdrawtheme");
-            Fabric.EventManager.Instance.PostEvent("whisptheme");
+            Fabric.EventManager.Instance.PostEvent("drawtheme");
             paperBCG.SetActive(true);
             beginToggle.SetActive(true);
         }
@@ -119,6 +119,7 @@ public class UIManager : NetworkBehaviour {
             Fabric.EventManager.Instance.PostEvent("stopdrawtheme");
             Fabric.EventManager.Instance.PostEvent("Endgame");
             paperBCG.SetActive(true);
+            UAE.ShowRewardedAd();
             uiText.text = "And this is what people did!";
         }
     }

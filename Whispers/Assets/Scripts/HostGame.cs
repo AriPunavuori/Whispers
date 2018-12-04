@@ -59,7 +59,7 @@ public class HostGame : NetworkBehaviour {
         var pm = FindObjectOfType<PlayerManager>();
         pm.playerData.playerIsHost = true;
         Fabric.EventManager.Instance.PostEvent("stopmenu");
-        Fabric.EventManager.Instance.PostEvent("whisptheme");
+        Fabric.EventManager.Instance.PostEvent("drawtheme");
 
     }
 }

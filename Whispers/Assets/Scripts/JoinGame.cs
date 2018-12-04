@@ -21,7 +21,7 @@ public class JoinGame : NetworkBehaviour {
     }
 
     private void Start() {
-        Fabric.EventManager.Instance.PostEvent("tune");
+        //Fabric.EventManager.Instance.PostEvent("tune");
         //networkManager = NetworkManager.singleton;
         //if (networkManager.matchMaker == null) {
         //    networkManager.StartMatchMaker();
@@ -84,7 +84,7 @@ public class JoinGame : NetworkBehaviour {
         join.statusText.text = "Match found! \nJoining...";
         Fabric.EventManager.Instance.PostEvent("stopmenu");
         Fabric.EventManager.Instance.PostEvent("next");
-        Fabric.EventManager.Instance.PostEvent("whisptheme");
+        Fabric.EventManager.Instance.PostEvent("drawtheme");
         networkManager.matchMaker.JoinMatch(_match.networkId, "", "", "", 0, 0, networkManager.OnMatchJoined);
     }
 }
