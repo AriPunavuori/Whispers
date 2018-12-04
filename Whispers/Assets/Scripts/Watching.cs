@@ -107,7 +107,7 @@ public class Watching : MonoBehaviour {
 
         if(round < 0) {
             chain--;
-            round = hg.numberOfPlayers - 1;
+            round = hg.numberOfPlayers;
         }
 
         var ch = rdm.chains[chain];
