@@ -18,20 +18,16 @@ public class Watching : MonoBehaviour {
     string[] artNoun;
     string[] separators = new string[] { "\r\n", "\n" };
 
-
     public TextAsset aNoun;
-
-    RoundDataManager rdm;
-
     public TextMeshProUGUI uiText;
+    public TextMeshProUGUI chainNbrText;
 
     HostGame hg;
-     
     GameManager gm;
-
     PlayerManager pm;
-
     UIManager um;
+    RoundDataManager rdm;
+
 
     void Start() {
         rdm = FindObjectOfType<RoundDataManager>();
@@ -50,7 +46,9 @@ public class Watching : MonoBehaviour {
 
         round++;
 
-        if(round>0){
+       
+
+        if (round>0){
             previousButton.gameObject.SetActive(true);
         }
 
@@ -65,6 +63,8 @@ public class Watching : MonoBehaviour {
         } else if(round > hg.numberOfPlayers){
             chain++;
             round = 0;
+           
+
         }
 
         var ch = rdm.chains[chain];
@@ -86,6 +86,7 @@ public class Watching : MonoBehaviour {
                 um.ShowPicture(pics[(round - 1) / 2]);
             }
         }
+        chainNbrText.text = "Chain " + (chain + 1) + "/" + hg.numberOfPlayers;
     }
 
     public void Previous() {
@@ -130,6 +131,7 @@ public class Watching : MonoBehaviour {
                 um.ShowPicture(pics[(round - 1) / 2]);
             }
         }
+        chainNbrText.text = "Chain " + (chain + 1) + "/" + hg.numberOfPlayers;
     }
 
     public void QuitGame(){
