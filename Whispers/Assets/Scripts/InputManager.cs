@@ -17,11 +17,17 @@ public class InputManager : NetworkBehaviour {
     }
     public bool isDrawing = false;
 
+    PlayerManager pm;
+    UIManager um;
+    DrawingMachine dm;
+
+    private void Awake() {
+        pm = FindObjectOfType<PlayerManager>();
+        um = FindObjectOfType<UIManager>();
+        dm = FindObjectOfType<DrawingMachine>();
+    }
 
     void Update() { // Kosketuksen alussa tehdään seuraavaa
-        var pm = FindObjectOfType<PlayerManager>();
-        var um = FindObjectOfType<UIManager>();
-        var dm = FindObjectOfType<DrawingMachine>();
 
         if(!IsPointerOverUIObject(Input.mousePosition) && pm.playMode == PlayerManager.PlayMode.Draw) {
             if(Input.GetKeyDown(KeyCode.Mouse0) || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began) {
