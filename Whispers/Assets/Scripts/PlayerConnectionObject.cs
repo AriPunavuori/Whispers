@@ -19,7 +19,6 @@ public class PlayerConnectionObject : NetworkBehaviour {
     bool rdmCreated;
     GameObject UIContainer;
 
-    
     NetworkIdentity target;
 
     private void Awake() {
@@ -91,22 +90,11 @@ public class PlayerConnectionObject : NetworkBehaviour {
         pm.playerDataList.Clear();
     }
 
-
     [ClientRpc]
     void RpcUpdatePlayerNameList(PlayerData[] pd){
         var textToShow = "";
         var pm = FindObjectOfType<PlayerManager>();
         pm.playerDataList = new List<PlayerData>(pd);
-        //UIContainer = GameObject.Find("PlayerInfoContainer");
-        //if (UIContainer == null) {
-        //    UIContainer = GameObject.Find("PlayerInfoContainer(Clone)");
-        //}
-        //Destroy(UIContainer);
-        //UIContainer = Instantiate(UIContainerPrefab);
-        //var wUI = GameObject.Find("WaitingUI");
-        //UIContainer.transform.SetParent(wUI.transform);
-        //UIContainer.transform.localScale = Vector3.one;
-        //UIContainer.GetComponent<RectTransform>().localPosition = Vector3.zero;
         print("Lista ennen looppia: " + textToShow);
         for (int i = 0 ; i < pm.playerDataList.Count ;i++){
             if(pm.playerDataList[i].playerRDY == true){
@@ -115,14 +103,9 @@ public class PlayerConnectionObject : NetworkBehaviour {
             } else {
                 print("Tämä taas ei: " + pm.playerDataList[i].playerName);
             }
-            //var PlayerInfo = Instantiate(playerUIPrefab);
-            //PlayerInfo.GetComponent<GetPlayerInfo>().nameText.text = pd[i].playerName;
-            //PlayerInfo.transform.SetParent(UIContainer.transform);
-            //PlayerInfo.transform.localScale = Vector3.one;
             print(pm.playerDataList[i].playerName);
         }
         var um = FindObjectOfType<UIManager>();
-        print("Koko listan sisältö: " + textToShow);
         if(pm.playMode == PlayerManager.PlayMode.Wait||pm.playMode == PlayerManager.PlayMode.Menu) {
             um.waitText.text = textToShow;
         }
@@ -183,13 +166,10 @@ public class PlayerConnectionObject : NetworkBehaviour {
         var gm = FindObjectOfType<GameManager>();
         var pm = FindObjectOfType<PlayerManager>();
         var um = FindObjectOfType<UIManager>();
-        //var animator = FindObjectOfType<Animator>();
-        //animator.SetBool("Start", false);
         um.waitStatusText.text = "Next round starting...";
         // timer ennen ku pelin flow jatkuu
         StartCoroutine(ExtraWait());
         gm.roundNumbr++;
-        //gm.Gameplay();
     }
 
     [ClientRpc]
@@ -205,8 +185,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
         var gm = FindObjectOfType<GameManager>();
         var um = FindObjectOfType<UIManager>();
         var pm = FindObjectOfType<PlayerManager>();
-        print("Serverdatalistcount: " + pm.ServersPlayerDataList.Count);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         RpcStartNextRound();
         gm.playersReady = 0;
     }
@@ -215,16 +194,13 @@ public class PlayerConnectionObject : NetworkBehaviour {
         var um = FindObjectOfType<UIManager>();
         var gm = FindObjectOfType<GameManager>();
         var pm = FindObjectOfType<PlayerManager>();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < pm.ServersPlayerDataList.Count; i++) {
-            print("Readyplayerlist reset");
             var temp = pm.ServersPlayerDataList[i];
-            temp.playerRDY = false; // ************************************************************************************** Tämä Ei päivity!!!!!!!!!!!!
+            temp.playerRDY = false;
             pm.ServersPlayerDataList[i] = temp;
-            print("pelaaja " + i + ": on ready " + pm.ServersPlayerDataList[i].playerRDY);
         }
         gm.Gameplay();
-
     }
 
     [Command]
@@ -237,12 +213,10 @@ public class PlayerConnectionObject : NetworkBehaviour {
         }
     }
 
-
     IEnumerator QuitDelay(){
         yield return new WaitForSeconds(5);
         RpcQuitClients();
     }
-
 
     [ClientRpc]
     void RpcQuitClients(){
@@ -252,6 +226,4 @@ public class PlayerConnectionObject : NetworkBehaviour {
         w.previousButton.gameObject.SetActive(false);
         w.uiText.text = "Thats it folks, GMAE Over!";
     }
-
-
 }
