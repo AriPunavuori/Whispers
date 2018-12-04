@@ -212,38 +212,48 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcClientQuit() {
-        var nm = FindObjectOfType<NetworkManager>();
-        if(!isServer) {
-            nm.StopClient();
-        } else {
-            StartCoroutine(HostKill(1));
-        }
-        StartCoroutine(WaitKill(2));
-
-        Destroy(GameObject.Find("PlayerManager"));
-        Destroy(GameObject.Find("Audio Manager"));
+        //if(!isServer) {
+        //    StartCoroutine(ClientKill(1));
+        //} else {
+        //    StartCoroutine(HostKill(2));
+        //}
+        Application.Quit();
     }
 
     IEnumerator HostKill(float t) {
+        print("tultiin Hostkilliin");
         yield return new WaitForSeconds(t);
         var nm = FindObjectOfType<NetworkManager>();
-        print("Tuhotaan nm");
         MatchInfo matchInfo = nm.matchInfo;
         print(matchInfo);
         print(nm);
         nm.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, nm.OnDropConnection);
         nm.StopHost();
-        Destroy(GameObject.Find("NetworkManager"));
+        print("Tuhotaan nm hostista");
+        var nmgo = GameObject.Find("NetworkManager");
+        var pmgo = GameObject.Find("PlayerkManager");
+        var amgo = GameObject.Find("Audio Manager");
+        Destroy(nmgo);
+        Destroy(pmgo);
+        Destroy(amgo);
+        print(nmgo);
+        print(pmgo);
+        print(amgo);
+        LoadScene();
     }
 
-    IEnumerator WaitKill(float t) {
-        print("tultiin waitkilliin");
+    IEnumerator ClientKill(float t) {
+        print("tultiin Clientkilliin");
         yield return new WaitForSeconds(t);
-        print("Tuhotaan nm");
         var nm = FindObjectOfType<NetworkManager>();
+        Destroy(GameObject.Find("PlayerManager"));
+        Destroy(GameObject.Find("Audio Manager"));
         MatchInfo matchInfo = nm.matchInfo;
         nm.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, nm.OnDropConnection);
+        nm.StopClient();
+        print("Tuhotaan nm clientistä");
         Destroy(GameObject.Find("NetworkManager"));
+
         LoadScene();
     }
 
