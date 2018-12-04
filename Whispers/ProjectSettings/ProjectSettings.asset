@@ -728,7 +728,7 @@ PlayerSettings:
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 3
   cloudProjectId: 2adfbfa3-f96d-4d80-a421-98f3a469b1c6
-  projectName: Whispers
+  projectName: Whisper-It
   organizationId: nikle34
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0

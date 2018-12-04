@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.SceneManagement;
+using UnityEngine.Networking.Match;
 using Picture = System.Collections.Generic.List<LineData>;
 using TMPro;
 
@@ -201,6 +203,52 @@ public class PlayerConnectionObject : NetworkBehaviour {
             pm.ServersPlayerDataList[i] = temp;
         }
         gm.Gameplay();
+    }
+
+    [Command]
+    public void CmdQuit() {
+        RpcClientQuit();
+    }
+
+    [ClientRpc]
+    public void RpcClientQuit() {
+        var nm = FindObjectOfType<NetworkManager>();
+        if(!isServer) {
+            nm.StopClient();
+        } else {
+            StartCoroutine(HostKill(1));
+        }
+        StartCoroutine(WaitKill(2));
+
+        Destroy(GameObject.Find("PlayerManager"));
+        Destroy(GameObject.Find("Audio Manager"));
+    }
+
+    IEnumerator HostKill(float t) {
+        yield return new WaitForSeconds(t);
+        var nm = FindObjectOfType<NetworkManager>();
+        print("Tuhotaan nm");
+        MatchInfo matchInfo = nm.matchInfo;
+        print(matchInfo);
+        print(nm);
+        nm.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, nm.OnDropConnection);
+        nm.StopHost();
+        Destroy(GameObject.Find("NetworkManager"));
+    }
+
+    IEnumerator WaitKill(float t) {
+        print("tultiin waitkilliin");
+        yield return new WaitForSeconds(t);
+        print("Tuhotaan nm");
+        var nm = FindObjectOfType<NetworkManager>();
+        MatchInfo matchInfo = nm.matchInfo;
+        nm.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, nm.OnDropConnection);
+        Destroy(GameObject.Find("NetworkManager"));
+        LoadScene();
+    }
+
+    void LoadScene() {
+        SceneManager.LoadScene(0);
     }
 
     [Command]

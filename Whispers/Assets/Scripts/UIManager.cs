@@ -119,7 +119,7 @@ public class UIManager : NetworkBehaviour {
             Fabric.EventManager.Instance.PostEvent("stopdrawtheme");
             Fabric.EventManager.Instance.PostEvent("Endgame");
             paperBCG.SetActive(true);
-            UAE.ShowRewardedAd();
+            //UAE.ShowRewardedAd();
             uiText.text = "And this is what people did!";
         }
     }

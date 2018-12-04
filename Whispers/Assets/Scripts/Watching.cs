@@ -138,22 +138,24 @@ public class Watching : MonoBehaviour {
 
     public void QuitGame(){
         var nm = FindObjectOfType<NetworkManager>();
+        var pco = FindObjectOfType<PlayerConnectionObject>();
         //var pm = FindObjectOfType<PlayerManager>();
         Fabric.EventManager.Instance.PostEvent("stop");
         Fabric.EventManager.Instance.PostEvent("stopmenu");
         Fabric.EventManager.Instance.PostEvent("stoprun");
         Fabric.EventManager.Instance.PostEvent("swish");
 
+        pco.CmdQuit();
+        //MatchInfo matchInfo = nm.matchInfo;
 
-        MatchInfo matchInfo = nm.matchInfo;
 
-        Destroy(GameObject.Find("PlayerManager"));
-        Destroy(GameObject.Find("Audio Manager"));
 
-        nm.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, nm.OnDropConnection);
-        nm.StopHost();
-        Destroy(GameObject.Find("NetworkManager"));
-        StartCoroutine(WaitKill(1));
+        //nm.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, nm.OnDropConnection);
+        //Destroy(GameObject.Find("NetworkManager"));
+        //StartCoroutine(WaitKill(1));
+
+        //--------------------------------------
+
         //SceneManager.LoadScene(0);
 
         //nm.StopMatchMaker();
@@ -162,12 +164,4 @@ public class Watching : MonoBehaviour {
         //StartCoroutine(WaitKill());
     }
 
-    IEnumerator WaitKill(float t){
-        yield return new WaitForSeconds(t);
-        LoadScene();
-    }
-
-    void LoadScene(){
-        SceneManager.LoadScene(0);
-    }
 }
