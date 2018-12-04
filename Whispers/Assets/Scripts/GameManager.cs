@@ -99,13 +99,13 @@ public class GameManager : NetworkBehaviour {
         var pco = GameObject.Find("" + pm.playerData.playerID).GetComponent<PlayerConnectionObject>();
         var um = FindObjectOfType<UIManager>();
         var wg = FindObjectOfType<WordGenerator>();
-        pm.playMode = PlayerManager.PlayMode.Draw;
+
+        pm.playMode = PlayerManager.PlayMode.Wait;
         um.uiText.text = "\nHere we go!";
-        um.SetUI();
+        //um.SetUI();
         PlayerNotReady();
         wg.WordG();
         pco.CmdAddGuessToChain(wg.myWord, pm.playerData.playerID);
-        //roundNumbr++;
         um.PocketReset();
         pco.CmdThisClientIsReady(pm.playerData.playerID);
     }

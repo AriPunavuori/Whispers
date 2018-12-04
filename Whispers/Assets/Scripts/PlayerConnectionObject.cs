@@ -185,7 +185,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
         var gm = FindObjectOfType<GameManager>();
         var um = FindObjectOfType<UIManager>();
         var pm = FindObjectOfType<PlayerManager>();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         RpcStartNextRound();
         gm.playersReady = 0;
     }
@@ -194,7 +194,7 @@ public class PlayerConnectionObject : NetworkBehaviour {
         var um = FindObjectOfType<UIManager>();
         var gm = FindObjectOfType<GameManager>();
         var pm = FindObjectOfType<PlayerManager>();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         for (int i = 0; i < pm.ServersPlayerDataList.Count; i++) {
             var temp = pm.ServersPlayerDataList[i];
             temp.playerRDY = false;

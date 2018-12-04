@@ -46,6 +46,7 @@ public class UIManager : NetworkBehaviour {
     int NRO = 0;
 
     public GameObject paperBCG;
+    public GameObject beginToggle;
     public GameObject timerBar;
 
     private void Awake() {
@@ -107,6 +108,7 @@ public class UIManager : NetworkBehaviour {
             Fabric.EventManager.Instance.PostEvent("stopdrawtheme");
             Fabric.EventManager.Instance.PostEvent("whisptheme");
             paperBCG.SetActive(true);
+            beginToggle.SetActive(true);
         }
 
 
