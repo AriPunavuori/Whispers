@@ -52,7 +52,6 @@ public class PlayerManager : MonoBehaviour {
     //GameManager gm;
 
     private void Awake() {
-        Fabric.EventManager.Instance.PostEvent("tune");
         if(!created) {
             DontDestroyOnLoad(this.gameObject);
             created = true;

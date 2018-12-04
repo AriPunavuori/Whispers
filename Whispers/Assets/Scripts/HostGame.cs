@@ -35,6 +35,8 @@ public class HostGame : NetworkBehaviour {
         //pm = PlayerManager.instance;
     }
     private void Start() {
+        Fabric.EventManager.Instance.PostEvent("tune");
+
         //networkManager = NetworkManager.singleton;
         //if (networkManager.matchMaker == null) {
         //    networkManager.StartMatchMaker();
