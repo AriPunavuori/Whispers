@@ -115,7 +115,7 @@ public class GameManager : NetworkBehaviour {
         var wg = FindObjectOfType<WordGenerator>();
 
         pm.playMode = PlayerManager.PlayMode.Wait;
-        um.uiText.text = "\nHere we go!";
+        um.uiText.text = "\n\nHere we go!";
         //um.SetUI();
         PlayerNotReady();
         wg.WordG();
