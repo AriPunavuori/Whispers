@@ -212,34 +212,28 @@ public class PlayerConnectionObject : NetworkBehaviour {
 
     [ClientRpc]
     public void RpcClientQuit() {
-        //if(!isServer) {
-        //    StartCoroutine(ClientKill(1));
-        //} else {
-        //    StartCoroutine(HostKill(2));
-        //}
-        Application.Quit();
+        var gm = FindObjectOfType<GameManager>();
+        //gm.QuitGame();
+        if(!isServer) {
+            StartCoroutine(ClientKill(.5f));
+        } else {
+            StartCoroutine(HostKill(.7f));
+        }
+        //Application.Quit();
     }
 
     IEnumerator HostKill(float t) {
         print("tultiin Hostkilliin");
         yield return new WaitForSeconds(t);
         var nm = FindObjectOfType<NetworkManager>();
-        MatchInfo matchInfo = nm.matchInfo;
-        print(matchInfo);
-        print(nm);
-        nm.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, nm.OnDropConnection);
+        Destroy(GameObject.Find("PlayerManager"));
+        Destroy(GameObject.Find("Audio Manager"));
+        //MatchInfo matchInfo = nm.matchInfo;
+        //nm.matchMaker.DropConnection(matchInfo.networkId, matchInfo.nodeId, 0, nm.OnDropConnection);
         nm.StopHost();
         print("Tuhotaan nm hostista");
-        var nmgo = GameObject.Find("NetworkManager");
-        var pmgo = GameObject.Find("PlayerkManager");
-        var amgo = GameObject.Find("Audio Manager");
-        Destroy(nmgo);
-        Destroy(pmgo);
-        Destroy(amgo);
-        print(nmgo);
-        print(pmgo);
-        print(amgo);
-        LoadScene();
+        Destroy(GameObject.Find("NetworkManager"));
+        StartCoroutine(ReloadScene(1));
     }
 
     IEnumerator ClientKill(float t) {
@@ -253,7 +247,11 @@ public class PlayerConnectionObject : NetworkBehaviour {
         nm.StopClient();
         print("Tuhotaan nm clientistä");
         Destroy(GameObject.Find("NetworkManager"));
+        StartCoroutine(ReloadScene(1));
+    }
 
+    IEnumerator ReloadScene(float t) {
+        yield return new WaitForSeconds(t);
         LoadScene();
     }
 

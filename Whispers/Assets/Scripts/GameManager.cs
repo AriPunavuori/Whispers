@@ -29,6 +29,9 @@ public class GameManager : NetworkBehaviour {
     bool tuneplayed;
     public bool TRO;
 
+    float quitTimer;
+    bool quitNow;
+
     public int roundNumbr = 0;
 
     //float startTime = 1;
@@ -58,9 +61,20 @@ public class GameManager : NetworkBehaviour {
     }
     private void Start() {
         pm = FindObjectOfType<PlayerManager>();
+        um = FindObjectOfType<UIManager>();
     }
 
     void Update () {
+
+        quitTimer -= Time.deltaTime;
+
+        if(quitNow) {
+            um.uiText.text = "This Game will self destruct in: " + quitTimer.ToString("n0");
+            if(quitTimer < 0) {
+                Application.Quit();
+            }
+        }
+
         if(pm.playMode == PlayerManager.PlayMode.Draw || pm.playMode == PlayerManager.PlayMode.Write){
             if (!tuneplayed) {
                 tuneplayed = true;
@@ -146,4 +160,11 @@ public class GameManager : NetworkBehaviour {
         roundTimer = time;
     }
 
+    public void QuitGame() {
+        quitTimer = 5f;
+        quitNow = true;
+    }
 }
+
+
+
